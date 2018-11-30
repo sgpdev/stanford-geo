@@ -8,7 +8,6 @@ const router = express.Router();
 
 var jsonParser = bodyParser.json();
 
-console.log("router running");
 router.post("/api", jsonParser, ctrl.example.post);
 
 module.exports = router;

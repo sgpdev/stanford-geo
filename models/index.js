@@ -1,6 +1,7 @@
 const { Pool } = require("pg");
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
+//Check if they are needed or not
 
 const pool = new Pool({
   user: "sgp_server",
@@ -9,11 +10,6 @@ const pool = new Pool({
   password: "sgpsgp",
   port: 5432
 });
-
-//  pool.query("SELECT * FROM sample", (err, res) => {
-//    console.log(err, res);
-//    pool.end();
-// });
 
 module.exports = {
   pool
