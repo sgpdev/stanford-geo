@@ -1,0 +1,91 @@
+{
+    "search_attributes": [{
+            "attribute_id": "sample identifier",
+            "attribute_api": "uuid",
+            "attribute_db": "sample_id",
+            "select_priority": 1,
+            "where_priority": 1,
+            "group_priority": 1,
+            "join_path": []
+        },
+        {
+            "attribute_id": "analysis result identifier",
+            "attribute_api": "urid",
+            "attribute_db": "analyte_det_id",
+            "select_priority": 2,
+            "where_priority": 2,
+            "group_priority": 2,
+            "join_path": []
+        },
+        {
+            "attribute_id": "section name",
+            "attribute_api": "sec_name",
+            "attribute_db": "section_name",
+            "select_priority": 10,
+            "where_priority": 20,
+            "group_priority": 12,
+            "join_path": [{
+                    "from_table": "collecting_event",
+                    "to_table": "base",
+                    "from_atts_db": "coll_event_id",
+                    "to_atts_db": "coll_event_id",
+                    "join_priority": 1
+                },
+                {
+                    "from_table": "site",
+                    "to_table": "collecting_event",
+                    "from_atts_db": "site_id",
+                    "to_atts_db": "site_id",
+                    "join_priority": 2
+                }
+            ]
+        },
+        {
+            "attribute_id": "height in meters in outcrop",
+            "attribute_api": "height_m",
+            "attribute_db": "height_depth_m",
+            "select_priority": 11,
+            "where_priority": 20,
+            "group_priority": 10,
+            "join_path": []
+        },
+        {
+            "attribute_id": "collector first name",
+            "attribute_api": "collector_first",
+            "attribute_db": "first_name",
+            "select_priority": 30,
+            "where_priority": 20,
+            "group_priority": 20,
+            "join_path": [{
+                "from_table": "person",
+                "to_table": "base",
+                "from_atts_db": "person_id",
+                "to_atts_db": "run_by",
+                "join_priority": 1
+            }]
+        },
+        {
+            "attribute_id": "Kusa Ma7shi",
+            "attribute_api": "country",
+            "attribute_db": "country",
+            "select_priority": 3,
+            "where_priority": 3,
+            "group_priority": 3,
+            "join_path": [{
+                    "from_table": "collecting_event",
+                    "to_table": "base",
+                    "from_atts_db": "coll_event_id",
+                    "to_atts_db": "coll_event_id",
+                    "join_priority": 1
+                },
+                {
+                    "from_table": "site",
+                    "to_table": "collecting_event",
+                    "from_atts_db": "site_id",
+                    "to_atts_db": "site_id",
+                    "join_priority": 2
+                }
+            ]
+        }
+    ]
+}

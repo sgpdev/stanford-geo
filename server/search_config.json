@@ -1,91 +1,2363 @@
 {
-    "search_attributes": [{
-            "attribute_id": "sample identifier",
-            "attribute_api": "uuid",
-            "attribute_db": "sample_id",
-            "select_priority": 1,
-            "where_priority": 1,
-            "group_priority": 1,
-            "join_path": []
-        },
-        {
-            "attribute_id": "analysis result identifier",
-            "attribute_api": "urid",
-            "attribute_db": "analyte_det_id",
-            "select_priority": 2,
-            "where_priority": 2,
-            "group_priority": 2,
-            "join_path": []
-        },
-        {
-            "attribute_id": "section name",
-            "attribute_api": "sec_name",
-            "attribute_db": "section_name",
-            "select_priority": 10,
-            "where_priority": 20,
-            "group_priority": 12,
-            "join_path": [{
-                    "from_table": "collecting_event",
-                    "to_table": "base",
-                    "from_atts_db": "coll_event_id",
-                    "to_atts_db": "coll_event_id",
-                    "join_priority": 1
-                },
-                {
-                    "from_table": "site",
-                    "to_table": "collecting_event",
-                    "from_atts_db": "site_id",
-                    "to_atts_db": "site_id",
-                    "join_priority": 2
-                }
-            ]
-        },
-        {
-            "attribute_id": "height in meters in outcrop",
-            "attribute_api": "height_m",
-            "attribute_db": "height_depth_m",
-            "select_priority": 11,
-            "where_priority": 20,
-            "group_priority": 10,
-            "join_path": []
-        },
-        {
-            "attribute_id": "collector first name",
-            "attribute_api": "collector_first",
-            "attribute_db": "first_name",
-            "select_priority": 30,
-            "where_priority": 20,
-            "group_priority": 20,
-            "join_path": [{
-                "from_table": "person",
-                "to_table": "base",
-                "from_atts_db": "person_id",
-                "to_atts_db": "run_by",
-                "join_priority": 1
-            }]
-        },
-        {
-            "attribute_id": "Kusa Ma7shi",
-            "attribute_api": "country",
-            "attribute_db": "country",
-            "select_priority": 3,
-            "where_priority": 3,
-            "group_priority": 3,
-            "join_path": [{
-                    "from_table": "collecting_event",
-                    "to_table": "base",
-                    "from_atts_db": "coll_event_id",
-                    "to_atts_db": "coll_event_id",
-                    "join_priority": 1
-                },
-                {
-                    "from_table": "site",
-                    "to_table": "collecting_event",
-                    "from_atts_db": "site_id",
-                    "to_atts_db": "site_id",
-                    "join_priority": 2
-                }
-            ]
-        }
+  "Attributes": {
+    "search_attributes": [
+      {
+        "attribute_api": "sample_id",
+        "attribute_id": "sample identifier",
+        "attribute_db": "sample_id",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 1,
+        "where_priority": 2,
+        "group_priority": 1
+      },
+      {
+        "attribute_api": "original_name",
+        "attribute_id": "sample original name",
+        "attribute_db": "original_num",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 2,
+        "where_priority": 3,
+        "group_priority": 2
+      },
+      {
+        "attribute_api": "analysis_id",
+        "attribute_id": "analysis result identifier",
+        "attribute_db": "analyte_det_id",
+        "search_bases": "analyses",
+        "select_priority": 253,
+        "where_priority": 4,
+        "group_priority": 253
+      },
+      {
+        "attribute_api": "ana_code",
+        "attribute_id": "analyte code",
+        "attribute_db": "analyte_code",
+        "search_bases": "analyses",
+        "select_priority": 252,
+        "where_priority": 5,
+        "group_priority": 252
+      },
+      {
+        "attribute_api": "abundance",
+        "attribute_id": "analyte abundance",
+        "attribute_db": "abundance",
+        "search_bases": "analyses",
+        "select_priority": 251,
+        "where_priority": 100,
+        "group_priority": 251
+      },
+      {
+        "attribute_api": "unit_used",
+        "attribute_id": "units used",
+        "attribute_db": "determination_unit",
+        "search_bases": "analyses",
+        "select_priority": 250,
+        "where_priority": 101,
+        "group_priority": 250
+      },
+      {
+        "attribute_api": "alternate_name",
+        "attribute_id": "alternate name",
+        "attribute_db": "alternate_num",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 3,
+        "where_priority": 7,
+        "group_priority": 3,
+        "join_path": "alternate_num(sample_id)base(sample_id)"
+      },
+      {
+        "attribute_api": "height_meters",
+        "attribute_id": "height/depth",
+        "attribute_db": "height_depth_m",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 4,
+        "where_priority": 102,
+        "group_priority": 4
+      },
+      {
+        "attribute_api": "section_name",
+        "attribute_id": "section name",
+        "attribute_db": "section_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 21,
+        "where_priority": 8,
+        "group_priority": 21,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)"
+        ]
+      },
+      {
+        "attribute_api": "site_type",
+        "attribute_id": "site type",
+        "attribute_db": "site_type",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 22,
+        "where_priority": 9,
+        "group_priority": 22,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)"
+        ]
+      },
+      {
+        "attribute_api": "country",
+        "attribute_id": "country",
+        "attribute_db": "country",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 23,
+        "where_priority": 10,
+        "group_priority": 23,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)",
+          "dic_country(country)site(country)"
+        ]
+      },
+      {
+        "attribute_api": "state_province",
+        "attribute_id": "state/province",
+        "attribute_db": "state_province",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 24,
+        "where_priority": 11,
+        "group_priority": 24,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)"
+        ]
+      },
+      {
+        "attribute_api": "site_desc",
+        "attribute_id": "site description",
+        "attribute_db": "site_desc",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 25,
+        "where_priority": 300,
+        "group_priority": 25,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)"
+        ]
+      },
+      {
+        "attribute_api": "coord_lat",
+        "attribute_id": "site latitude",
+        "attribute_db": "lat_dec",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 26,
+        "where_priority": 103,
+        "group_priority": 26,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)"
+        ]
+      },
+      {
+        "attribute_api": "coord_long",
+        "attribute_id": "site longitude",
+        "attribute_db": "long_dec",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 27,
+        "where_priority": 104,
+        "group_priority": 27,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)"
+        ]
+      },
+      {
+        "attribute_api": "craton_terrane",
+        "attribute_id": "craton/terrane",
+        "attribute_db": "ct_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 28,
+        "where_priority": 13,
+        "group_priority": 28,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)",
+          "craton_terrane(craton_terrane_id)site(craton_terrane_id)"
+        ]
+      },
+      {
+        "attribute_api": "basin_name",
+        "attribute_id": "basin name",
+        "attribute_db": "basin_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 29,
+        "where_priority": 14,
+        "group_priority": 29,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)",
+          "basin(basin_id)site(basin_id)"
+        ]
+      },
+      {
+        "attribute_api": "basin_type",
+        "attribute_id": "basin type",
+        "attribute_db": "basin_type",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 30,
+        "where_priority": 15,
+        "group_priority": 30,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)",
+          "basin(basin_id)site(basin_id)",
+          "dic_basin_type(basin_type_id)basin(basin_type_id)"
+        ]
+      },
+      {
+        "attribute_api": "meta_bin",
+        "attribute_id": "metamorphic bin",
+        "attribute_db": "meta_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 31,
+        "where_priority": 16,
+        "group_priority": 31,
+        "join_path": [
+          "collecting_event(coll_event_id)base(coll_event_id)",
+          "site(site_id)collecting_event(site_id)",
+          "dic_meta(meta_id)site(metamorphic_bin)"
+        ]
+      },
+      {
+        "attribute_api": "earliest_date",
+        "attribute_id": "earliest collection time",
+        "attribute_db": "start_date",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 275,
+        "where_priority": 105,
+        "group_priority": 275,
+        "join_path": "collecting_event(coll_event_id)base(coll_event_id)"
+      },
+      {
+        "attribute_api": "latest_date",
+        "attribute_id": "latest collection time",
+        "attribute_db": "end_date",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 276,
+        "where_priority": 106,
+        "group_priority": 276,
+        "join_path": "collecting_event(coll_event_id)base(coll_event_id)"
+      },
+      {
+        "attribute_api": "collector_first",
+        "attribute_id": "collector first name",
+        "attribute_db": "first_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 277,
+        "where_priority": 17,
+        "group_priority": 277,
+        "join_path": [
+          "collector(coll_event_id)base(coll_event_id)",
+          "person(person_id)collector(person_id)"
+        ]
+      },
+      {
+        "attribute_api": "collector_last",
+        "attribute_id": "collector last name",
+        "attribute_db": "last_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 278,
+        "where_priority": 18,
+        "group_priority": 278,
+        "join_path": [
+          "collector(coll_event_id)base(coll_event_id)",
+          "person(person_id)collector(person_id)"
+        ]
+      },
+      {
+        "attribute_api": "geol_ctxt_notes",
+        "attribute_id": "geological context notes",
+        "attribute_db": "geol_context_notes",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 55,
+        "where_priority": 400,
+        "group_priority": 55,
+        "join_path": "geol_context(geol_context_id)base(geol_context_id)"
+      },
+      {
+        "attribute_api": "lithostrat_desc",
+        "attribute_id": "lithostratigraphic description",
+        "attribute_db": "lithostrat_desc",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 54,
+        "where_priority": 107,
+        "group_priority": 54,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "lithostrat(lithostrat_id)geol_context(lithostrat_id)"
+        ]
+      },
+      {
+        "attribute_api": "lithostrat_verb",
+        "attribute_id": "verbatim lithostratigraphy",
+        "attribute_db": "verbatim_strat",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 53,
+        "where_priority": 108,
+        "group_priority": 53,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "lithostrat(lithostrat_id)geol_context(lithostrat_id)"
+        ]
+      },
+      {
+        "attribute_api": "strat_name",
+        "attribute_id": "stratigraphy name",
+        "attribute_db": "strat_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 52,
+        "where_priority": 109,
+        "group_priority": 52,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "lithostrat(lithostrat_id)geol_context(lithostrat_id)",
+          "dic_lithostrat(strat_id)lithostrat(strat_id)"
+        ]
+      },
+      {
+        "attribute_api": "strat_name_long",
+        "attribute_id": "long stratigraphy name",
+        "attribute_db": "strat_name_long",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 51,
+        "where_priority": 19,
+        "group_priority": 51,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "lithostrat(lithostrat_id)geol_context(lithostrat_id)",
+          "dic_lithostrat(strat_id)lithostrat(strat_id)"
+        ]
+      },
+      {
+        "attribute_api": "dep_env_bin",
+        "select_priority": 56,
+        "group_priority": 56
+      },
+      {
+        "attribute_api": "environment_notes",
+        "attribute_id": "environment notes",
+        "attribute_db": "env_notes",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 57,
+        "where_priority": 401,
+        "group_priority": 57,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "environment(env_id)geol_context(env_id)"
+        ]
+      },
+      {
+        "attribute_api": "environment_verb",
+        "attribute_id": "verbatim environment",
+        "attribute_db": "verbatim_env",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 58,
+        "where_priority": 110,
+        "group_priority": 58,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "environment(env_id)geol_context(env_id)"
+        ]
+      },
+      {
+        "attribute_api": "is_turbiditic",
+        "attribute_id": "turbiditic (t/f)",
+        "attribute_db": "is_turbiditic",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 59,
+        "where_priority": 20,
+        "group_priority": 59,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "environment(env_id)geol_context(env_id)"
+        ]
+      },
+      {
+        "attribute_api": "biostrat_verb",
+        "attribute_id": "verbatim biostratigraphy",
+        "attribute_db": "verbatim_biostrat",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 50,
+        "where_priority": 111,
+        "group_priority": 50,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "biostrat(biostrat_id)geol_context(biostrat_id)"
+        ]
+      },
+      {
+        "attribute_api": "biozone_name",
+        "attribute_id": "biozone name",
+        "attribute_db": "biozone_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 49,
+        "where_priority": 112,
+        "group_priority": 49,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "biostrat(biostrat_id)geol_context(biostrat_id)",
+          "dic_biostrat(dic_biostrat_id)biostrat(dic_biostrat_id)"
+        ]
+      },
+      {
+        "attribute_api": "age_verb",
+        "attribute_id": "verbatim geological age",
+        "attribute_db": "verbatim_age",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 48,
+        "where_priority": 402,
+        "group_priority": 48,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "geol_age(age_id)geol_context(age_id)"
+        ]
+      },
+      {
+        "attribute_api": "age_ics_name",
+        "attribute_id": "ics age",
+        "attribute_db": "ics_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 47,
+        "where_priority": 21,
+        "group_priority": 47,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "geol_age(age_id)geol_context(age_id)",
+          "dic_ics_age(ics_id)geol_age(ics_id)"
+        ]
+      },
+      {
+        "attribute_api": "lithology_name",
+        "attribute_id": "lithology name",
+        "attribute_db": "lith_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 70,
+        "where_priority": 22,
+        "group_priority": 70,
+        "join_path": "dic_lithology(lith_id)base(lith_id)"
+      },
+      {
+        "attribute_api": "lithology_type",
+        "attribute_id": "lithology type",
+        "attribute_db": "lith_type",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 71,
+        "where_priority": 23,
+        "group_priority": 71,
+        "join_path": "dic_lithology(lith_id)base(lith_id)"
+      },
+      {
+        "attribute_api": "lithology_class",
+        "attribute_id": "lithology class",
+        "attribute_db": "lith_class",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 72,
+        "where_priority": 24,
+        "group_priority": 72,
+        "join_path": "dic_lithology(lith_id)base(lith_id)"
+      },
+      {
+        "attribute_api": "lithology_text",
+        "attribute_id": "lithology texture",
+        "attribute_db": "lith_texture",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 73,
+        "where_priority": 25,
+        "group_priority": 73,
+        "join_path": "dic_lith_texture(lith_texture_id)base(lith_texture_id)"
+      },
+      {
+        "attribute_api": "lithology_text_desc",
+        "attribute_id": "lithology texture description",
+        "attribute_db": "lith_texture_desc",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 74,
+        "where_priority": 403,
+        "group_priority": 74,
+        "join_path": "dic_lith_texture(lith_texture_id)base(lith_texture_id)"
+      },
+      {
+        "attribute_api": "lithology_comp",
+        "attribute_id": "lithology composition",
+        "attribute_db": "lith_composition",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 75,
+        "where_priority": 26,
+        "group_priority": 75,
+        "join_path": "dic_lith_composition(lith_composition_id)base(lith_composition_id)"
+      },
+      {
+        "attribute_api": "lithology_comp_desc",
+        "attribute_id": "lithology composition description",
+        "attribute_db": "lith_composition_desc",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 76,
+        "where_priority": 404,
+        "group_priority": 76,
+        "join_path": "dic_lith_composition(lith_composition_id)base(lith_composition_id)"
+      },
+      {
+        "attribute_api": "lithology_notes",
+        "attribute_id": "lithology notes",
+        "attribute_db": "lith_notes",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 77,
+        "where_priority": 405,
+        "group_priority": 77
+      },
+      {
+        "attribute_api": "color_name",
+        "attribute_id": "color name",
+        "attribute_db": "color_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 78,
+        "where_priority": 27,
+        "group_priority": 78,
+        "join_path": "dic_color(color_id)base(color_id)"
+      },
+      {
+        "attribute_api": "color_qualifier",
+        "attribute_id": "color qualifier",
+        "attribute_db": "color_qualifier",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 79,
+        "where_priority": 28,
+        "group_priority": 79,
+        "join_path": "dic_color(color_id)base(color_id)"
+      },
+      {
+        "attribute_api": "color_shade",
+        "attribute_id": "color shade",
+        "attribute_db": "color_shade",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 80,
+        "where_priority": 29,
+        "group_priority": 80,
+        "join_path": "dic_color(color_id)base(color_id)"
+      },
+      {
+        "attribute_api": "munsell_code",
+        "attribute_id": "munsell code",
+        "attribute_db": "munsell_code",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 81,
+        "where_priority": 30,
+        "group_priority": 81
+      },
+      {
+        "attribute_api": "fossil_verb",
+        "attribute_id": "verbatim fossil",
+        "attribute_db": "verbatim_fossil",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 86,
+        "where_priority": 113,
+        "group_priority": 86,
+        "join_path": "fossil_sample(sample_id)base(sample_id)"
+      },
+      {
+        "attribute_api": "fossil_name",
+        "attribute_id": "fossil name",
+        "attribute_db": "fossil_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 84,
+        "where_priority": 31,
+        "group_priority": 84,
+        "join_path": [
+          "fossil_sample(sample_id)base(sample_id)",
+          "fossil(fossil_id)fossil_sample(fossil_id)"
+        ]
+      },
+      {
+        "attribute_api": "fossil_pbdb",
+        "attribute_id": "PBDB code",
+        "attribute_db": "pbdb_code",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 85,
+        "where_priority": 32,
+        "group_priority": 85,
+        "join_path": [
+          "fossil_sample(sample_id)base(sample_id)",
+          "fossil(fossil_id)fossil_sample(fossil_id)"
+        ]
+      },
+      {
+        "attribute_api": "sedstruct_name",
+        "attribute_id": "sedimentary structure name",
+        "attribute_db": "sed_structure_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 82,
+        "where_priority": 33,
+        "group_priority": 82,
+        "join_path": [
+          "sed_structure_sample(sample_id)base(sample_id)",
+          "dic_sed_structure(sed_structure_id)sed_structure_sample(sed_structure_id)"
+        ]
+      },
+      {
+        "attribute_api": "sedstruct_desc",
+        "attribute_id": "sedimentary structure description",
+        "attribute_db": "sed_structure_desc",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 83,
+        "where_priority": 406,
+        "group_priority": 83,
+        "join_path": [
+          "sed_structure_sample(sample_id)base(sample_id)",
+          "dic_sed_structure(sed_structure_id)sed_structure_sample(sed_structure_id)"
+        ]
+      },
+      {
+        "attribute_api": "interpreted_age",
+        "attribute_id": "interpreted age",
+        "attribute_db": "interpreted_age",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 41,
+        "where_priority": 34,
+        "group_priority": 41,
+        "join_path": "interpreted_age(sample_id)base(sample_id)"
+      },
+      {
+        "attribute_api": "interpreted_age_notes",
+        "attribute_id": "interpreted age justification",
+        "attribute_db": "interpreted_age_notes",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 42,
+        "where_priority": 407,
+        "group_priority": 42,
+        "join_path": "interpreted_age(sample_id)base(sample_id)"
+      },
+      {
+        "attribute_api": "max_age",
+        "attribute_id": "max age",
+        "attribute_db": "max_age",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 45,
+        "where_priority": 35,
+        "group_priority": 45,
+        "join_path": "interpreted_age(sample_id)base(sample_id)"
+      },
+      {
+        "attribute_api": "min_age",
+        "attribute_id": "min age",
+        "attribute_db": "min_age",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 46,
+        "where_priority": 36,
+        "group_priority": 46,
+        "join_path": "interpreted_age(sample_id)base(sample_id)"
+      },
+      {
+        "attribute_api": "sample_notes",
+        "attribute_id": "sample notes",
+        "attribute_db": "sample_notes",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 271,
+        "where_priority": 408,
+        "group_priority": 271
+      },
+      {
+        "attribute_api": "project_name",
+        "attribute_id": "project name",
+        "attribute_db": "project_name",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 272,
+        "where_priority": 37,
+        "group_priority": 272,
+        "join_path": [
+          "project_sample(sample_id)base(sample_id)",
+          "project(project_id)project_sample(project_id)"
+        ]
+      },
+      {
+        "attribute_api": "project_type",
+        "attribute_id": "project type",
+        "attribute_db": "project_type",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 273,
+        "where_priority": 114,
+        "group_priority": 273,
+        "join_path": [
+          "project_sample(sample_id)base(sample_id)",
+          "project(project_id)project_sample(project_id)"
+        ]
+      },
+      {
+        "attribute_api": "data_source",
+        "attribute_id": "data source",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 274,
+        "where_priority": 1,
+        "group_priority": 274
+      },
+      {
+        "attribute_api": "run_by_first",
+        "attribute_id": "run by first name",
+        "attribute_db": "first_name",
+        "search_bases": "analyses",
+        "select_priority": 261,
+        "where_priority": 180,
+        "group_priority": 261,
+        "join_path": "person(person_id)base(run_by)"
+      },
+      {
+        "attribute_api": "run_by_last",
+        "attribute_id": "run by last name",
+        "attribute_db": "last_name",
+        "search_bases": "analyses",
+        "select_priority": 262,
+        "where_priority": 181,
+        "group_priority": 262,
+        "join_path": "person(person_id)base(run_by)"
+      },
+      {
+        "attribute_api": "provider_first",
+        "attribute_id": "provided by first name",
+        "attribute_db": "first_name",
+        "search_bases": "analyses",
+        "select_priority": 263,
+        "where_priority": 182,
+        "group_priority": 263,
+        "join_path": "person(person_id)base(provided_by)"
+      },
+      {
+        "attribute_api": "provider_last",
+        "attribute_id": "provided by last name",
+        "attribute_db": "last_name",
+        "search_bases": "analyses",
+        "select_priority": 264,
+        "where_priority": 183,
+        "group_priority": 264,
+        "join_path": "person(person_id)base(provided_by)"
+      },
+      {
+        "attribute_api": "provider_lab",
+        "attribute_id": "lab provider name",
+        "attribute_db": "institution_name",
+        "search_bases": "analyses",
+        "select_priority": 265,
+        "where_priority": 184,
+        "group_priority": 265,
+        "join_path": [
+          "batch(batch_id)base(batch_id)",
+          "institution(institution_id)batch(lab_id)"
+        ]
+      },
+      {
+        "attribute_api": "batch_id",
+        "attribute_id": "batch identifier",
+        "attribute_db": "batch_id",
+        "search_bases": "analyses",
+        "select_priority": 266,
+        "where_priority": 185,
+        "group_priority": 266,
+        "join_path": "batch(batch_id)base(batch_id)"
+      },
+      {
+        "attribute_api": "batch_lab_id",
+        "attribute_id": "lab batch identifier",
+        "attribute_db": "lab_batch_id",
+        "search_bases": "analyses",
+        "select_priority": 267,
+        "where_priority": 186,
+        "group_priority": 267,
+        "join_path": "batch(batch_id)base(batch_id)"
+      },
+      {
+        "attribute_api": "geochem_method",
+        "attribute_id": "geochemical method brief",
+        "attribute_db": "prep_translation",
+        "search_bases": "analyses",
+        "select_priority": 254,
+        "where_priority": 187,
+        "group_priority": 254,
+        "join_path": "dic_prep_method(prep_id)base(prep_id)"
+      },
+      {
+        "attribute_api": "experiment_method_code",
+        "attribute_id": "experimental method code",
+        "attribute_db": "exp_method_code",
+        "search_bases": "analyses",
+        "select_priority": 255,
+        "where_priority": 188,
+        "group_priority": 255,
+        "join_path": "dic_exp_method(exp_method_id)base(exp_method_id)"
+      },
+      {
+        "attribute_api": "experiment_method",
+        "attribute_id": "experimental method translation",
+        "attribute_db": "exp_method_translation",
+        "search_bases": "analyses",
+        "select_priority": 256,
+        "where_priority": 189,
+        "group_priority": 256,
+        "join_path": "dic_exp_method(exp_method_id)base(exp_method_id)"
+      },
+      {
+        "attribute_api": "analytical_method_code",
+        "attribute_id": "analytical method code",
+        "attribute_db": "ana_method_code",
+        "search_bases": "analyses",
+        "select_priority": 257,
+        "where_priority": 190,
+        "group_priority": 257,
+        "join_path": "dic_ana_method(ana_method_id)base(ana_method_id)"
+      },
+      {
+        "attribute_api": "analytical_method",
+        "attribute_id": "analytical method translation",
+        "attribute_db": "ana_method_translation",
+        "search_bases": "analyses",
+        "select_priority": 258,
+        "where_priority": 191,
+        "group_priority": 258,
+        "join_path": "dic_ana_method(ana_method_id)base(ana_method_id)"
+      },
+      {
+        "attribute_api": "upper_detection",
+        "attribute_id": "upper detection limit",
+        "attribute_db": "detection_upper_limit",
+        "search_bases": "analyses",
+        "select_priority": 259,
+        "where_priority": 192,
+        "group_priority": 259
+      },
+      {
+        "attribute_api": "lower_detection",
+        "attribute_id": "lower detection limit",
+        "attribute_db": "detection_lower_limit",
+        "search_bases": "analyses",
+        "select_priority": 260,
+        "where_priority": 193,
+        "group_priority": 260
+      },
+      {
+        "attribute_api": "fe_carb",
+        "attribute_id": "Fe-carb (wt%)",
+        "attribute_db": "fe_carb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 181,
+        "where_priority": 200,
+        "group_priority": 181
+      },
+      {
+        "attribute_api": "fe_ox",
+        "attribute_id": "Fe-ox (wt%)",
+        "attribute_db": "fe_ox",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 182,
+        "where_priority": 201,
+        "group_priority": 182
+      },
+      {
+        "attribute_api": "fe_mag",
+        "attribute_id": "Fe-mag (wt%)",
+        "attribute_db": "fe_mag",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 183,
+        "where_priority": 202,
+        "group_priority": 183
+      },
+      {
+        "attribute_api": "fe_py",
+        "attribute_id": "Fe-py (wt%)",
+        "attribute_db": "fe_py",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 184,
+        "where_priority": 203,
+        "group_priority": 184
+      },
+      {
+        "attribute_api": "fe_hr",
+        "attribute_id": "FeHR",
+        "attribute_db": "fe_hr",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 185,
+        "where_priority": 204,
+        "group_priority": 185
+      },
+      {
+        "attribute_api": "fe_hr_et",
+        "attribute_id": "FeHR/FeT",
+        "attribute_db": "fe_hr_et",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 186,
+        "where_priority": 205,
+        "group_priority": 186
+      },
+      {
+        "attribute_api": "fe_py_hr",
+        "attribute_id": "Fe-py/FeHR",
+        "attribute_db": "fe_py_hr",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 187,
+        "where_priority": 206,
+        "group_priority": 187
+      },
+      {
+        "attribute_api": "fe_et_al",
+        "attribute_id": "FeT/Al",
+        "attribute_db": "fe_et_al",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 188,
+        "where_priority": 207,
+        "group_priority": 188
+      },
+      {
+        "attribute_api": "toc",
+        "attribute_id": "TOC (wt%)",
+        "attribute_db": "toc",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 189,
+        "where_priority": 208,
+        "group_priority": 189
+      },
+      {
+        "attribute_api": "tot_c",
+        "attribute_id": "Total Carbon (wt%)",
+        "attribute_db": "tot_c",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 190,
+        "where_priority": 209,
+        "group_priority": 190
+      },
+      {
+        "attribute_api": "del_13c",
+        "attribute_id": "Delta13C-org (permil)",
+        "attribute_db": "del_13c",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 201,
+        "where_priority": 210,
+        "group_priority": 201
+      },
+      {
+        "attribute_api": "del_34s",
+        "attribute_id": "Delta34S-py (permil)",
+        "attribute_db": "del_34s",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 204,
+        "where_priority": 211,
+        "group_priority": 204
+      },
+      {
+        "attribute_api": "del_238u",
+        "attribute_id": "Delta238U (permil)",
+        "attribute_db": "del_238u",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 205,
+        "where_priority": 212,
+        "group_priority": 205
+      },
+      {
+        "attribute_api": "del_98mo",
+        "attribute_id": "Delta98Mo (permil)",
+        "attribute_db": "del_98mo",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 203,
+        "where_priority": 213,
+        "group_priority": 203
+      },
+      {
+        "attribute_api": "del_15n",
+        "attribute_id": "Delta15N (permil)",
+        "attribute_db": "del_15n",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 202,
+        "where_priority": 214,
+        "group_priority": 202
+      },
+      {
+        "attribute_api": "cn_ratio",
+        "attribute_id": "C:N (atomic)",
+        "attribute_db": "cn_ratio",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 191,
+        "where_priority": 215,
+        "group_priority": 191
+      },
+      {
+        "attribute_api": "ag",
+        "attribute_id": "Ag (ppm)",
+        "attribute_db": "ag",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 101,
+        "where_priority": 216,
+        "group_priority": 101
+      },
+      {
+        "attribute_api": "alu",
+        "attribute_id": "Al (wt%)",
+        "attribute_db": "alu",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 102,
+        "where_priority": 217,
+        "group_priority": 102
+      },
+      {
+        "attribute_api": "ars",
+        "attribute_id": "As (ppm)",
+        "attribute_db": "ars",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 103,
+        "where_priority": 218,
+        "group_priority": 103
+      },
+      {
+        "attribute_api": "au",
+        "attribute_id": "Au (ppb)",
+        "attribute_db": "au",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 104,
+        "where_priority": 219,
+        "group_priority": 104
+      },
+      {
+        "attribute_api": "ba",
+        "attribute_id": "Ba (ppm)",
+        "attribute_db": "ba",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 105,
+        "where_priority": 220,
+        "group_priority": 105
+      },
+      {
+        "attribute_api": "be",
+        "attribute_id": "Be (ppm)",
+        "attribute_db": "be",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 106,
+        "where_priority": 221,
+        "group_priority": 106
+      },
+      {
+        "attribute_api": "bi",
+        "attribute_id": "Bi (ppm)",
+        "attribute_db": "bi",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 107,
+        "where_priority": 222,
+        "group_priority": 107
+      },
+      {
+        "attribute_api": "ca",
+        "attribute_id": "Ca (wt%)",
+        "attribute_db": "ca",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 108,
+        "where_priority": 223,
+        "group_priority": 108
+      },
+      {
+        "attribute_api": "cd",
+        "attribute_id": "Cd (ppm)",
+        "attribute_db": "cd",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 109,
+        "where_priority": 224,
+        "group_priority": 109
+      },
+      {
+        "attribute_api": "ce",
+        "attribute_id": "Ce (ppm)",
+        "attribute_db": "ce",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 110,
+        "where_priority": 225,
+        "group_priority": 110
+      },
+      {
+        "attribute_api": "co",
+        "attribute_id": "Co (ppm)",
+        "attribute_db": "co",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 111,
+        "where_priority": 226,
+        "group_priority": 111
+      },
+      {
+        "attribute_api": "cr",
+        "attribute_id": "Cr (ppm)",
+        "attribute_db": "cr",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 112,
+        "where_priority": 227,
+        "group_priority": 112
+      },
+      {
+        "attribute_api": "cs",
+        "attribute_id": "Cs (ppm)",
+        "attribute_db": "cs",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 113,
+        "where_priority": 228,
+        "group_priority": 113
+      },
+      {
+        "attribute_api": "cu",
+        "attribute_id": "Cu (ppm)",
+        "attribute_db": "cu",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 114,
+        "where_priority": 229,
+        "group_priority": 114
+      },
+      {
+        "attribute_api": "dy",
+        "attribute_id": "Dy (ppm)",
+        "attribute_db": "dy",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 115,
+        "where_priority": 230,
+        "group_priority": 115
+      },
+      {
+        "attribute_api": "er",
+        "attribute_id": "Er (ppm)",
+        "attribute_db": "er",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 116,
+        "where_priority": 231,
+        "group_priority": 116
+      },
+      {
+        "attribute_api": "eu",
+        "attribute_id": "Eu (ppm)",
+        "attribute_db": "eu",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 117,
+        "where_priority": 232,
+        "group_priority": 117
+      },
+      {
+        "attribute_api": "fe",
+        "attribute_id": "Fe (wt%)",
+        "attribute_db": "fe_t",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 118,
+        "where_priority": 233,
+        "group_priority": 118
+      },
+      {
+        "attribute_api": "ga",
+        "attribute_id": "Ga (ppm)",
+        "attribute_db": "ga",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 119,
+        "where_priority": 234,
+        "group_priority": 119
+      },
+      {
+        "attribute_api": "ge",
+        "attribute_id": "Ge (ppm)",
+        "attribute_db": "ge",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 120,
+        "where_priority": 235,
+        "group_priority": 120
+      },
+      {
+        "attribute_api": "gd",
+        "attribute_id": "Gd (ppm)",
+        "attribute_db": "gd",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 121,
+        "where_priority": 236,
+        "group_priority": 121
+      },
+      {
+        "attribute_api": "hf",
+        "attribute_id": "Hf (ppm)",
+        "attribute_db": "hf",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 122,
+        "where_priority": 237,
+        "group_priority": 122
+      },
+      {
+        "attribute_api": "hg",
+        "attribute_id": "Hg (ppm)",
+        "attribute_db": "hg",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 123,
+        "where_priority": 238,
+        "group_priority": 123
+      },
+      {
+        "attribute_api": "ho",
+        "attribute_id": "Ho (ppm)",
+        "attribute_db": "ho",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 124,
+        "where_priority": 239,
+        "group_priority": 124
+      },
+      {
+        "attribute_api": "ind",
+        "attribute_id": "In (ppm)",
+        "attribute_db": "ind",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 125,
+        "where_priority": 240,
+        "group_priority": 125
+      },
+      {
+        "attribute_api": "k",
+        "attribute_id": "K (wt%)",
+        "attribute_db": "k",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 126,
+        "where_priority": 241,
+        "group_priority": 126
+      },
+      {
+        "attribute_api": "loi",
+        "attribute_id": "LOI (wt%)",
+        "attribute_db": "loi",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 127,
+        "where_priority": 242,
+        "group_priority": 127
+      },
+      {
+        "attribute_api": "la",
+        "attribute_id": "La (ppm)",
+        "attribute_db": "la",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 128,
+        "where_priority": 243,
+        "group_priority": 128
+      },
+      {
+        "attribute_api": "li",
+        "attribute_id": "Li (ppm)",
+        "attribute_db": "li",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 129,
+        "where_priority": 244,
+        "group_priority": 129
+      },
+      {
+        "attribute_api": "lu",
+        "attribute_id": "Lu (ppm)",
+        "attribute_db": "lu",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 130,
+        "where_priority": 245,
+        "group_priority": 130
+      },
+      {
+        "attribute_api": "mg",
+        "attribute_id": "Mg (wt%)",
+        "attribute_db": "mg",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 131,
+        "where_priority": 246,
+        "group_priority": 131
+      },
+      {
+        "attribute_api": "mn",
+        "attribute_id": "Mn (ppm)",
+        "attribute_db": "mn",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 132,
+        "where_priority": 247,
+        "group_priority": 132
+      },
+      {
+        "attribute_api": "mo",
+        "attribute_id": "Mo (ppm)",
+        "attribute_db": "mo",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 133,
+        "where_priority": 248,
+        "group_priority": 133
+      },
+      {
+        "attribute_api": "n",
+        "attribute_id": "N (wt%)",
+        "attribute_db": "n",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 134,
+        "where_priority": 249,
+        "group_priority": 134
+      },
+      {
+        "attribute_api": "na",
+        "attribute_id": "Na (wt%)",
+        "attribute_db": "na",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 135,
+        "where_priority": 250,
+        "group_priority": 135
+      },
+      {
+        "attribute_api": "nb",
+        "attribute_id": "Nb (ppm)",
+        "attribute_db": "nb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 136,
+        "where_priority": 251,
+        "group_priority": 136
+      },
+      {
+        "attribute_api": "nd",
+        "attribute_id": "Nd (ppm)",
+        "attribute_db": "nd",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 137,
+        "where_priority": 252,
+        "group_priority": 137
+      },
+      {
+        "attribute_api": "ni",
+        "attribute_id": "Ni (ppm)",
+        "attribute_db": "ni",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 138,
+        "where_priority": 253,
+        "group_priority": 138
+      },
+      {
+        "attribute_api": "p",
+        "attribute_id": "P (ppm)",
+        "attribute_db": "p",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 139,
+        "where_priority": 254,
+        "group_priority": 139
+      },
+      {
+        "attribute_api": "pb",
+        "attribute_id": "Pb (ppm)",
+        "attribute_db": "pb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 140,
+        "where_priority": 255,
+        "group_priority": 140
+      },
+      {
+        "attribute_api": "pr",
+        "attribute_id": "Pr (ppm)",
+        "attribute_db": "pr",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 141,
+        "where_priority": 256,
+        "group_priority": 141
+      },
+      {
+        "attribute_api": "rb",
+        "attribute_id": "Rb (ppm)",
+        "attribute_db": "rb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 142,
+        "where_priority": 257,
+        "group_priority": 142
+      },
+      {
+        "attribute_api": "re",
+        "attribute_id": "Re (ppm)",
+        "attribute_db": "re",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 143,
+        "where_priority": 258,
+        "group_priority": 143
+      },
+      {
+        "attribute_api": "su",
+        "attribute_id": "S (wt%)",
+        "attribute_db": "su",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 144,
+        "where_priority": 259,
+        "group_priority": 144
+      },
+      {
+        "attribute_api": "sb",
+        "attribute_id": "Sb (ppm)",
+        "attribute_db": "sb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 145,
+        "where_priority": 260,
+        "group_priority": 145
+      },
+      {
+        "attribute_api": "sc",
+        "attribute_id": "Sc (ppm)",
+        "attribute_db": "sc",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 146,
+        "where_priority": 261,
+        "group_priority": 146
+      },
+      {
+        "attribute_api": "se",
+        "attribute_id": "Se (ppm)",
+        "attribute_db": "se",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 147,
+        "where_priority": 262,
+        "group_priority": 147
+      },
+      {
+        "attribute_api": "si",
+        "attribute_id": "Si (wt%)",
+        "attribute_db": "si",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 148,
+        "where_priority": 263,
+        "group_priority": 148
+      },
+      {
+        "attribute_api": "sm",
+        "attribute_id": "Sm (ppm)",
+        "attribute_db": "sm",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 149,
+        "where_priority": 264,
+        "group_priority": 149
+      },
+      {
+        "attribute_api": "sn",
+        "attribute_id": "Sn (ppm)",
+        "attribute_db": "sn",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 150,
+        "where_priority": 265,
+        "group_priority": 150
+      },
+      {
+        "attribute_api": "sr",
+        "attribute_id": "Sr (ppm)",
+        "attribute_db": "sr",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 151,
+        "where_priority": 266,
+        "group_priority": 151
+      },
+      {
+        "attribute_api": "ta",
+        "attribute_id": "Ta (ppm)",
+        "attribute_db": "ta",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 152,
+        "where_priority": 267,
+        "group_priority": 152
+      },
+      {
+        "attribute_api": "tb",
+        "attribute_id": "Tb (ppm)",
+        "attribute_db": "tb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 153,
+        "where_priority": 268,
+        "group_priority": 153
+      },
+      {
+        "attribute_api": "te",
+        "attribute_id": "Te (ppm)",
+        "attribute_db": "te",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 154,
+        "where_priority": 269,
+        "group_priority": 154
+      },
+      {
+        "attribute_api": "th",
+        "attribute_id": "Th (ppm)",
+        "attribute_db": "th",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 155,
+        "where_priority": 270,
+        "group_priority": 155
+      },
+      {
+        "attribute_api": "ti",
+        "attribute_id": "Ti (wt%)",
+        "attribute_db": "ti",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 156,
+        "where_priority": 271,
+        "group_priority": 156
+      },
+      {
+        "attribute_api": "tl",
+        "attribute_id": "Tl (ppm)",
+        "attribute_db": "tl",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 157,
+        "where_priority": 272,
+        "group_priority": 157
+      },
+      {
+        "attribute_api": "tm",
+        "attribute_id": "Tm (ppm)",
+        "attribute_db": "tm",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 158,
+        "where_priority": 273,
+        "group_priority": 158
+      },
+      {
+        "attribute_api": "u",
+        "attribute_id": "U (ppm)",
+        "attribute_db": "u",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 159,
+        "where_priority": 274,
+        "group_priority": 159
+      },
+      {
+        "attribute_api": "v",
+        "attribute_id": "V (ppm)",
+        "attribute_db": "v",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 160,
+        "where_priority": 275,
+        "group_priority": 160
+      },
+      {
+        "attribute_api": "w",
+        "attribute_id": "W (ppm)",
+        "attribute_db": "w",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 161,
+        "where_priority": 276,
+        "group_priority": 161
+      },
+      {
+        "attribute_api": "y",
+        "attribute_id": "Y (ppm)",
+        "attribute_db": "y",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 162,
+        "where_priority": 277,
+        "group_priority": 162
+      },
+      {
+        "attribute_api": "yb",
+        "attribute_id": "Yb (ppm)",
+        "attribute_db": "yb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 163,
+        "where_priority": 278,
+        "group_priority": 163
+      },
+      {
+        "attribute_api": "zn",
+        "attribute_id": "Zn (ppm)",
+        "attribute_db": "zn",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 164,
+        "where_priority": 279,
+        "group_priority": 164
+      },
+      {
+        "attribute_api": "zr",
+        "attribute_id": "Zr (ppm)",
+        "attribute_db": "zr",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 165,
+        "where_priority": 280,
+        "group_priority": 165
+      }
     ]
+  },
+  "BaseRelations": {
+    "default_relations": [
+      {
+        "defrel_api": "analyses",
+        "defrel_type": "Analyses",
+        "defrel_db": "analyses_base",
+        "default_show": [
+          "sample_id",
+          "original_name",
+          "analysis_id",
+          "ana_code",
+          "abundance",
+          "unit_used"
+        ]
+      },
+      {
+        "defrel_api": "samples",
+        "defrel_type": "Samples",
+        "defrel_db": "samples_base",
+        "default_show": [
+          "sample_id",
+          "original_name"
+        ]
+      },
+      {
+        "defrel_api": "nhhxrf",
+        "defrel_type": "Samples (No HHXRF)",
+        "defrel_db": "nhhxrf_base",
+        "default_show": [
+          "sample_id",
+          "original_name"
+        ]
+      }
+    ]
+  },
+  "Joins": {
+    "joins_list": [
+      {
+        "join_hash": "alternate_num(sample_id)base(sample_id)",
+        "from_table": "alternate_num",
+        "from_atts_db": "sample_id",
+        "to_table": "base",
+        "to_atts_db": "sample_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "collecting_event(coll_event_id)base(coll_event_id)",
+        "from_table": "collecting_event",
+        "from_atts_db": "coll_event_id",
+        "to_table": "base",
+        "to_atts_db": "coll_event_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "site(site_id)collecting_event(site_id)",
+        "from_table": "site",
+        "from_atts_db": "site_id",
+        "to_table": "collecting_event",
+        "to_atts_db": "site_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "dic_country(country)site(country)",
+        "from_table": "dic_country",
+        "from_atts_db": "country",
+        "to_table": "site",
+        "to_atts_db": "country",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "craton_terrane(craton_terrane_id)site(craton_terrane_id)",
+        "from_table": "craton_terrane",
+        "from_atts_db": "craton_terrane_id",
+        "to_table": "site",
+        "to_atts_db": "craton_terrane_id",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "basin(basin_id)site(basin_id)",
+        "from_table": "basin",
+        "from_atts_db": "basin_id",
+        "to_table": "site",
+        "to_atts_db": "basin_id",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "dic_basin_type(basin_type_id)basin(basin_type_id)",
+        "from_table": "dic_basin_type",
+        "from_atts_db": "basin_type_id",
+        "to_table": "basin",
+        "to_atts_db": "basin_type_id",
+        "join_priority": 4
+      },
+      {
+        "join_hash": "dic_meta(meta_id)site(metamorphic_bin)",
+        "from_table": "dic_meta",
+        "from_atts_db": "meta_id",
+        "to_table": "site",
+        "to_atts_db": "metamorphic_bin",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "collector(coll_event_id)base(coll_event_id)",
+        "from_table": "collector",
+        "from_atts_db": "coll_event_id",
+        "to_table": "base",
+        "to_atts_db": "coll_event_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "person(person_id)collector(person_id)",
+        "from_table": "person",
+        "from_atts_db": "person_id",
+        "to_table": "collector",
+        "to_atts_db": "person_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "geol_context(geol_context_id)base(geol_context_id)",
+        "from_table": "geol_context",
+        "from_atts_db": "geol_context_id",
+        "to_table": "base",
+        "to_atts_db": "geol_context_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "lithostrat(lithostrat_id)geol_context(lithostrat_id)",
+        "from_table": "lithostrat",
+        "from_atts_db": "lithostrat_id",
+        "to_table": "geol_context",
+        "to_atts_db": "lithostrat_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "dic_lithostrat(strat_id)lithostrat(strat_id)",
+        "from_table": "dic_lithostrat",
+        "from_atts_db": "strat_id",
+        "to_table": "lithostrat",
+        "to_atts_db": "strat_id",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "environment(env_id)geol_context(env_id)",
+        "from_table": "environment",
+        "from_atts_db": "env_id",
+        "to_table": "geol_context",
+        "to_atts_db": "env_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "biostrat(biostrat_id)geol_context(biostrat_id)",
+        "from_table": "biostrat",
+        "from_atts_db": "biostrat_id",
+        "to_table": "geol_context",
+        "to_atts_db": "biostrat_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "dic_biostrat(dic_biostrat_id)biostrat(dic_biostrat_id)",
+        "from_table": "dic_biostrat",
+        "from_atts_db": "dic_biostrat_id",
+        "to_table": "biostrat",
+        "to_atts_db": "dic_biostrat_id",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "geol_age(age_id)geol_context(age_id)",
+        "from_table": "geol_age",
+        "from_atts_db": "age_id",
+        "to_table": "geol_context",
+        "to_atts_db": "age_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "dic_ics_age(ics_id)geol_age(ics_id)",
+        "from_table": "dic_ics_age",
+        "from_atts_db": "ics_id",
+        "to_table": "geol_age",
+        "to_atts_db": "ics_id",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "dic_lithology(lith_id)base(lith_id)",
+        "from_table": "dic_lithology",
+        "from_atts_db": "lith_id",
+        "to_table": "base",
+        "to_atts_db": "lith_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "dic_lith_texture(lith_texture_id)base(lith_texture_id)",
+        "from_table": "dic_lith_texture",
+        "from_atts_db": "lith_texture_id",
+        "to_table": "base",
+        "to_atts_db": "lith_texture_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "dic_lith_composition(lith_composition_id)base(lith_composition_id)",
+        "from_table": "dic_lith_composition",
+        "from_atts_db": "lith_composition_id",
+        "to_table": "base",
+        "to_atts_db": "lith_composition_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "dic_color(color_id)base(color_id)",
+        "from_table": "dic_color",
+        "from_atts_db": "color_id",
+        "to_table": "base",
+        "to_atts_db": "color_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "fossil_sample(sample_id)base(sample_id)",
+        "from_table": "fossil_sample",
+        "from_atts_db": "sample_id",
+        "to_table": "base",
+        "to_atts_db": "sample_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "fossil(fossil_id)fossil_sample(fossil_id)",
+        "from_table": "fossil",
+        "from_atts_db": "fossil_id",
+        "to_table": "fossil_sample",
+        "to_atts_db": "fossil_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "sed_structure_sample(sample_id)base(sample_id)",
+        "from_table": "sed_structure_sample",
+        "from_atts_db": "sample_id",
+        "to_table": "base",
+        "to_atts_db": "sample_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "dic_sed_structure(sed_structure_id)sed_structure_sample(sed_structure_id)",
+        "from_table": "dic_sed_structure",
+        "from_atts_db": "sed_structure_id",
+        "to_table": "sed_structure_sample",
+        "to_atts_db": "sed_structure_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "interpreted_age(sample_id)base(sample_id)",
+        "from_table": "interpreted_age",
+        "from_atts_db": "sample_id",
+        "to_table": "base",
+        "to_atts_db": "sample_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "project_sample(sample_id)base(sample_id)",
+        "from_table": "project_sample",
+        "from_atts_db": "sample_id",
+        "to_table": "base",
+        "to_atts_db": "sample_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "project(project_id)project_sample(project_id)",
+        "from_table": "project",
+        "from_atts_db": "project_id",
+        "to_table": "project_sample",
+        "to_atts_db": "project_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "person(person_id)base(run_by)",
+        "from_table": "person",
+        "from_atts_db": "person_id",
+        "to_table": "base",
+        "to_atts_db": "run_by",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "person(person_id)base(provided_by)",
+        "from_table": "person",
+        "from_atts_db": "person_id",
+        "to_table": "base",
+        "to_atts_db": "provided_by",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "batch(batch_id)base(batch_id)",
+        "from_table": "batch",
+        "from_atts_db": "batch_id",
+        "to_table": "base",
+        "to_atts_db": "batch_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "institution(institution_id)batch(lab_id)",
+        "from_table": "institution",
+        "from_atts_db": "institution_id",
+        "to_table": "batch",
+        "to_atts_db": "lab_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "dic_prep_method(prep_id)base(prep_id)",
+        "from_table": "dic_prep_method",
+        "from_atts_db": "prep_id",
+        "to_table": "base",
+        "to_atts_db": "prep_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "dic_exp_method(exp_method_id)base(exp_method_id)",
+        "from_table": "dic_exp_method",
+        "from_atts_db": "exp_method_id",
+        "to_table": "base",
+        "to_atts_db": "exp_method_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "dic_ana_method(ana_method_id)base(ana_method_id)",
+        "from_table": "dic_ana_method",
+        "from_atts_db": "ana_method_id",
+        "to_table": "base",
+        "to_atts_db": "ana_method_id",
+        "join_priority": 1
+      }
+    ]
+  }
 }

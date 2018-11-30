@@ -5,7 +5,7 @@ const app = express();
 const pool = new Pool({
   user: "sgp_server",
   host: "localhost",
-  database: "geochem_old",
+  database: "geochem_test",
   password: "sgpsgp",
   port: 5432
 });

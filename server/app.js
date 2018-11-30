@@ -27,54 +27,69 @@ var search_atts = {};
 var search_joins = {};
 
 var search_config = JSON.parse(fs.readFileSync("./server/search_config.json", "utf8"));
-var default_config = JSON.parse(fs.readFileSync("./server/default_config.json", "utf8"));
+//var default_config = JSON.parse(fs.readFileSync("./server/default_config.json", "utf8"));
 
-function initialize(search_config, default_config) {
-    // Deserialize the search and default configuration files
-    for (var i = 0; i < search_config.search_attributes.length; i++) {
+function initialize(search_config) {
+    // Deserialize the search configuration file into Attributes Joins and BaseRelations
+    for (var i = 0; i < search_config.Joins.joins_list.length; i++) {
+        var new_join = new Join(
+            search_config.Joins.joins_list[i].join_hash,
+            search_config.Joins.joins_list[i].from_table,
+            search_config.Joins.joins_list[i].to_table,
+            search_config.Joins.joins_list[i].from_atts_db,
+            search_config.Joins.joins_list[i].to_atts_db,
+            search_config.Joins.joins_list[i].join_priority
+        );
+        search_joins[new_join.join_hash] = new_join;
+    }
+
+    for (var i = 0; i < search_config.Attributes.search_attributes.length; i++) {
         var new_join_path = [];
-        for (var j = 0; j < search_config.search_attributes[i].join_path.length; j++) {
-            var new_join = new Join(
-                search_config.search_attributes[i].join_path[j].from_table,
-                search_config.search_attributes[i].join_path[j].to_table,
-                search_config.search_attributes[i].join_path[j].from_atts_db,
-                search_config.search_attributes[i].join_path[j].to_atts_db,
-                search_config.search_attributes[i].join_path[j].join_priority
-            );
-            new_join_path[j] = new_join;
-            search_joins[new_join.hash()] = new_join;
+        if (search_config.Attributes.search_attributes[i].join_path) {
+            if (typeof search_config.Attributes.search_attributes[i].join_path === "string") {
+                new_join_path.push(search_joins[search_config.Attributes.search_attributes[i].join_path]);
+            } else if (Array.isArray(search_config.Attributes.search_attributes[i].join_path)) {
+                search_config.Attributes.search_attributes[i].join_path.forEach((item) => {
+                    new_join_path.push(search_joins[item]);
+                });
+            }
         }
         var new_attribute = new Attribute(
-            search_config.search_attributes[i].attribute_id,
-            search_config.search_attributes[i].attribute_db,
-            search_config.search_attributes[i].attribute_api,
-            search_config.search_attributes[i].select_priority,
-            search_config.search_attributes[i].where_priority,
-            search_config.search_attributes[i].group_priority,
+            search_config.Attributes.search_attributes[i].attribute_id,
+            search_config.Attributes.search_attributes[i].attribute_db,
+            search_config.Attributes.search_attributes[i].attribute_api,
+            search_config.Attributes.search_attributes[i].search_bases,
+            search_config.Attributes.search_attributes[i].select_priority,
+            search_config.Attributes.search_attributes[i].where_priority,
+            search_config.Attributes.search_attributes[i].group_priotiy,
             new_join_path
         );
         search_atts[new_attribute.attribute_api] = new_attribute;
     }
-    for (var i = 0; i < default_config.default_relations.length; i++) {
+
+    for (var i = 0; i < search_config.BaseRelations.default_relations.length; i++) {
         var new_base_rel = new BaseRelation(
-            default_config.default_relations[i].defrel_type,
-            default_config.default_relations[i].defrel_db,
-            default_config.default_relations[i].defrel_api,
-            default_config.default_relations[i].default_show
+            search_config.BaseRelations.default_relations[i].defrel_type,
+            search_config.BaseRelations.default_relations[i].defrel_db,
+            search_config.BaseRelations.default_relations[i].defrel_api,
+            search_config.BaseRelations.default_relations[i].default_show
         );
         default_rels[new_base_rel.br_api] = new_base_rel;
     }
+
     //console.log(default_rels, "default_rels");
-    // console.log(search_atts, "search_atts");
-    // console.log(search_joins, "search_joins");
+    //console.log(search_atts["section_name"], "search_atts");
+    //console.log(search_joins, "search_joins");
 }
 
-initialize(search_config, default_config);
+initialize(search_config);
 // app.use("/api", routes);
 app.post("/api", jsonParser, function(req, res) {
 
+console.log(req.body);
+
     // Base Relation Setup
-    var req_type = "all";
+    var req_type = "samples";
     if (default_rels[req.body.type]) {
         req_type = req.body.type;
     }
@@ -143,12 +158,11 @@ app.post("/api", jsonParser, function(req, res) {
     const sq_query = {
         text: search_req.sq_sql
     };
-    console.log(req.body);
     db.pool.query(sq_query, (err, res) => {
         if (err) {
             console.log(err)
         } else {
-            //console.log(res);
+            console.log(res);
         }
     });
     res.send("POST request to the homepage");

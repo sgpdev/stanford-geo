@@ -10,11 +10,13 @@ class App extends React.Component {
     postSearch() {
         axios
             .post("/api", {
-                type: "dups",
+                type: "samples",
                 filters: {
                     country: ["USA", "Canada"],
+                    color_name: ["blue", "brown", "red"],
+                    site_type: ["core"]
                 },
-                show: ["country", "sec_name", "height_m"]
+                show: ["country", "color_name", "basin_type", "site_type"]
             })
             .then(function(response) {
                 console.log(response);
@@ -34,8 +36,8 @@ class App extends React.Component {
             p > Happy coding! < /p> <
             button onClick = {
                 this.postSearch
-            } > Search < /button> <
-            /div>
+            } > Search < /button> < /
+            div >
         );
     }
 }

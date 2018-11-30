@@ -1,10 +1,10 @@
-const TinyQueue = require("tinyqueue");
 // class for a searchable attribute
 class Attribute {
     constructor(
         attribute_id,
         attribute_db,
         attribute_api,
+search_bases,
         select_priority,
         where_priority,
         group_priotiy,
@@ -14,6 +14,7 @@ class Attribute {
         this.attribute_db = attribute_db;
         this.attribute_api = attribute_api;
         this.attribute_sql = "";
+this.search_bases = search_bases;
         this.select_priority = select_priority;
         this.where_priority = where_priority;
         this.group_priotiy = group_priotiy;
@@ -23,7 +24,8 @@ class Attribute {
 
 // class for logical join
 class Join {
-    constructor(from_table, to_table, from_atts_db, to_atts_db, join_priority) {
+    constructor(join_hash, from_table, to_table, from_atts_db, to_atts_db, join_priority) {
+        this.join_hash = join_hash;
         this.from_table = from_table;
         this.to_table = to_table;
         this.from_atts_db = from_atts_db;
@@ -32,11 +34,7 @@ class Join {
     }
 
     hash() {
-        let hash_str = `${this.from_table}(${this.from_atts_db})${this.to_table}(${
-      this.to_atts_db
-    })`;
-
-        return hash_str;
+        return this.join_hash;
     }
 }
 
@@ -159,7 +157,7 @@ class SearchQuery {
             if (item.attribute_sql.length == 0) {
                 item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
             }
-            select_str_list.push(item.attribute_sql);
+            select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
         });
         select_str = `SELECT ${select_str_list.join(", ")}`;
 
