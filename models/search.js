@@ -63,7 +63,7 @@ class AttributeValue {
                 this.av_value_db = `${this.av_attribute.attribute_sql} IN (${temp_arr.toString()})`;
                 break;
             case "num_arr":
-                // @TODO make BETWEEN list
+                this.av_value_db = `${this.av_attribute.attribute_sql} BETWEEN ${this.av_value_api[0]} AND ${this.av_value_api[1]}`;
                 break;
             default: // @TODO Error Case
 

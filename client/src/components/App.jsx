@@ -1,53 +1,109 @@
 import React, { Component } from "react";
 import axios from "axios";
-import NavBar from "./NavBar";
-import Home from "./Home";
-import About from "./About";
-import Join from "./Join";
-import References from "./References";
-import Team from "./Team";
-import Search from "./Search";
-import Drawer from "./Drawer";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+import Radiobox from "./Radiobox";
+import MultiSelect from "./MultiSelect";
+import Checkbox from "./Checkbox";
+import Table from "./Table";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: [
+        {
+          "sample identifier": 1202,
+          "sample original name": "60"
+        }
+      ],
+      query: {
+        type: "samples",
+        filters: {
+          country: ["USA", "Canada"],
+          alu: [0, 2]
+        },
+        show: ["country", "section_name", "height_meters", "alu"]
+      },
+      column: [
+        {
+          columns: []
+        }
+      ]
+    };
+
+    this.postSearch = this.postSearch.bind(this);
+    this.changeType = this.changeType.bind(this);
+    this.constructMulti = this.constructMulti.bind(this);
+    this.columnConstructor = this.columnConstructor.bind(this);
+  }
+  columnConstructor() {
+    this.setState({
+      column: [
+        {
+          columns: Object.keys(this.state.data[0]).map(key => ({
+            Header: key,
+            accessor: key
+          }))
+        }
+      ]
+    });
+  }
+
+  changeType(value) {
+    let query = this.state.query;
+    query.type = value;
+    this.setState({ query });
+  }
+
+  //Multi Select construct array
+  constructMulti(array) {
+    let query = this.state.query;
+    query.filters["Country"] = array.map(option => option.value);
+    console.log("home", this.state.query.filters);
   }
 
   postSearch() {
+    var that = this;
     axios
-      .post("/api", {
-        type: "dups",
-        filters: {
-          country: ["USA", "Canada"]
-        },
-        show: ["country", "sec_name", "height_m"]
-      })
+      .post("/api/post", this.state.query)
       .then(function(response) {
-        console.log(response);
+        that.setState({
+          data: response.data
+        });
+        that.columnConstructor(that.state.data[0]);
+        console.log(that.state.data);
       })
       .catch(function(error) {
         console.log(error);
       });
   }
 
+  getFuzzy() {
+    //     {attributes:"",
+    //   search:"",
+    // limti:"numb"}
+  }
+
   render() {
     return (
-      <div>
-        <Router>
-          <div className="navigation">
-            <NavBar />
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/join" component={Join} />
-            <Route path="/references" component={References} />
-            <Route path="/team" component={Team} />
-            <Route path="/search" component={Search} />
-          </div>
-        </Router>
+      <div style={{ marginTop: "100px" }}>
+        TYPE:
+        <Radiobox type={this.state.query.type} changeType={this.changeType} />
+        <br />
+        Filters:
+        <MultiSelect constructMulti={this.constructMulti} />
+        <br />
+        <Checkbox />
+        <br />
+        <div>{this.state.query.type}</div>
+        <br />
+        <Table
+          column={this.state.column}
+          data={this.state.data}
+          columnConstructor={this.columnConstructor}
+        />
+        <br />
+        <button onClick={this.postSearch}>Post</button>
       </div>
     );
   }

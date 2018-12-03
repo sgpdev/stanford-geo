@@ -1,57 +1,20 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import { makeData, Logo, Tips } from "./Utils";
+import { Logo, Tips } from "./Utils";
 
 export default class Table extends Component {
   constructor() {
     super();
-    this.state = {
-      data: makeData(),
-      column: [
-        {
-          columns: [
-            {
-              Header: "Sample Identifier",
-              accessor: "sample_id"
-            },
-            {
-              Header: "Sample Original Name",
-              accessor: "original_num"
-            },
-            {
-              Header: "Analysis Result Identifier",
-              accessor: "analyte_det_id"
-            },
-            {
-              Header: "Analyte Code",
-              accessor: "analyte_code"
-            },
-            {
-              Header: "Analyte Abundance",
-              accessor: "abundance"
-            }
-          ]
-        }
-      ]
-    };
   }
 
   componentDidMount() {
-    console.log(this.props.show);
-    this.ColumnConstructor(this.props.show);
-  }
-
-  ColumnConstructor(show) {
-    this.setState({
-      column: [
-        { columns: show.map(item => ({ Header: item, accessor: item })) }
-      ]
-    });
+    console.log(this.props.data, "dayta");
+    this.props.columnConstructor();
   }
 
   render() {
-    const { data, column } = this.state;
+    const { data, column } = this.props;
     return (
       <div>
         <ReactTable

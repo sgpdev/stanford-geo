@@ -12,56 +12,11 @@ export default class Search extends React.Component {
     super();
     this.state = {
       data: makeData(),
-      column: [
-        {
-          columns: [
-            {
-              Header: "Sample Identifier",
-              accessor: "sample_id"
-            },
-            {
-              Header: "Sample Original Name",
-              accessor: "original_num"
-            },
-            {
-              Header: "Analysis Result Identifier",
-              accessor: "analyte_det_id"
-            },
-            {
-              Header: "Analyte Code",
-              accessor: "analyte_code"
-            },
-            {
-              Header: "Analyte Abundance",
-              accessor: "abundance"
-            }
-          ]
-        }
-      ],
       api: {
         filter: [1, 2, 3],
         show: ["sample_id", "abundance"]
       }
     };
-    this.changeColumns = this.changeColumns.bind(this);
-  }
-  changeColumns() {
-    this.setState({
-      column: [
-        {
-          columns: [
-            {
-              Header: "Sample Identifier",
-              accessor: "sample_id"
-            },
-            {
-              Header: "Sample Original Name",
-              accessor: "original_num"
-            }
-          ]
-        }
-      ]
-    });
   }
 
   render() {
