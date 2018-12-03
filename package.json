@@ -34,7 +34,6 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
-    "elasticsearch": "^15.2.0",
     "express": "^4.16.3",
     "js-priority-queue": "^0.1.5",
     "mongoose": "^5.2.4",
@@ -42,8 +41,7 @@
     "pg": "^7.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-fontawesome": "^1.6.1",
-    "tinyqueue": "^2.0.0"
+    "react-fontawesome": "^1.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

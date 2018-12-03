@@ -14,9 +14,9 @@ class App extends React.Component {
                 filters: {
                     country: ["USA", "Canada"],
                     color_name: ["blue", "brown", "red"],
-                    site_type: ["core"]
+                    fe: [0, 2]
                 },
-                show: ["country", "color_name", "basin_type", "site_type"]
+                show: ["country", "color_name", "fe"]
             })
             .then(function(response) {
                 console.log(response);
