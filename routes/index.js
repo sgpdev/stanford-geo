@@ -207,5 +207,9 @@ router.get("/get", function(req, res) {
     ctrl.example.get(sq_query, req, res);
 });
 
+router.get("/get", function(req, res) {});
+
 // export our router to be mounted by the parent application
 module.exports = router;
+
+`select distinct ${"ff"} from ${"fff"} where ${"ff"} is not null;`;

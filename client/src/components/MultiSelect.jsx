@@ -28,7 +28,7 @@ class MultiSelect extends Component {
 
   handleChange(selectedOption) {
     this.setState({ selectedOption });
-    this.props.constructMulti(selectedOption);
+    this.props.constructMulti(this.props.attribute, selectedOption);
     console.log(`Option selected:`, selectedOption);
   }
 

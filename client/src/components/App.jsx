@@ -33,6 +33,7 @@ class App extends Component {
 
     this.postSearch = this.postSearch.bind(this);
     this.changeType = this.changeType.bind(this);
+    this.changeShow = this.changeShow.bind(this);
     this.constructMulti = this.constructMulti.bind(this);
     this.columnConstructor = this.columnConstructor.bind(this);
   }
@@ -52,14 +53,22 @@ class App extends Component {
   changeType(value) {
     let query = this.state.query;
     query.type = value;
+
+    this.setState({ query });
+  }
+
+  changeShow(value) {
+    let query = this.state.query;
+    console.log("changeshow working");
+    query.show.push(value);
     this.setState({ query });
   }
 
   //Multi Select construct array
-  constructMulti(array) {
+  constructMulti(attribute, arr) {
     let query = this.state.query;
-    query.filters["Country"] = array.map(option => option.value);
-    console.log("home", this.state.query.filters);
+    query.filters[attribute] = arr.map(option => option.value);
+    console.log("queryyy", this.state.query);
   }
 
   postSearch() {
@@ -78,6 +87,20 @@ class App extends Component {
       });
   }
 
+  // getAttributes(){
+  //   .post("/api/post", this.state.query)
+  //   .then(function(response) {
+  //     that.setState({
+  //       data: response.data
+  //     });
+  //     that.columnConstructor(that.state.data[0]);
+  //     console.log(that.state.data);
+  //   })
+  //   .catch(function(error) {
+  //     console.log(error);
+  //   });
+  // }
+
   getFuzzy() {
     //     {attributes:"",
     //   search:"",
@@ -91,9 +114,9 @@ class App extends Component {
         <Radiobox type={this.state.query.type} changeType={this.changeType} />
         <br />
         Filters:
-        <MultiSelect constructMulti={this.constructMulti} />
+        <MultiSelect constructMulti={this.constructMulti} attribute="country" />
         <br />
-        <Checkbox />
+        <Checkbox changeShow={this.changeShow} />
         <br />
         <div>{this.state.query.type}</div>
         <br />

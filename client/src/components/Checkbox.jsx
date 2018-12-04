@@ -52,7 +52,6 @@ const arr = [
   "munsell_cde",
   "fossil_vrb",
   "fossil_nme",
-  "fossil_pdb",
   "sedstruct_nme",
   "sedstruct_dsc",
   "interpreted_ge",
@@ -102,7 +101,7 @@ export default class Checkbox extends Component {
 
   render() {
     return (
-      <div onChange={event => this.props.changeType(event.target.value)}>
+      <div onChange={event => this.props.changeShow(event.target.value)}>
         {arr.map(item => (
           <label className="options">
             {item}:
