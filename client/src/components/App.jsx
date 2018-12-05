@@ -5,6 +5,8 @@ import Radiobox from "./Radiobox";
 import MultiSelect from "./MultiSelect";
 import Checkbox from "./Checkbox";
 import Table from "./Table";
+import AsyncMulti from "./AsyncMulti";
+import RangeSelect from "./RangeSelect";
 
 class App extends Component {
   constructor(props) {
@@ -18,17 +20,15 @@ class App extends Component {
       ],
       query: {
         type: "samples",
-        filters: {
-          country: ["USA", "Canada"],
-          alu: [0, 2]
-        },
-        show: ["country", "section_name", "height_meters", "alu"]
+        filters: {},
+        show: ["country"]
       },
       column: [
         {
           columns: []
         }
-      ]
+      ],
+      attributes: []
     };
 
     this.postSearch = this.postSearch.bind(this);
@@ -36,6 +36,7 @@ class App extends Component {
     this.changeShow = this.changeShow.bind(this);
     this.constructMulti = this.constructMulti.bind(this);
     this.columnConstructor = this.columnConstructor.bind(this);
+    this.constructRange = this.constructRange.bind(this);
   }
   columnConstructor() {
     this.setState({
@@ -58,6 +59,7 @@ class App extends Component {
   }
 
   changeShow(value) {
+    console.log(this.state.query.show);
     let query = this.state.query;
     console.log("changeshow working");
     query.show.push(value);
@@ -68,14 +70,22 @@ class App extends Component {
   constructMulti(attribute, arr) {
     let query = this.state.query;
     query.filters[attribute] = arr.map(option => option.value);
-    console.log("queryyy", this.state.query);
+    console.log(this.state.query);
+  }
+
+  constructRange(min, max, attribute) {
+    let query = this.state.query;
+    query.filters[attribute] = [min, max];
+    console.log(this.state.query);
   }
 
   postSearch() {
+    console.log("before sending", this.state.query);
     var that = this;
     axios
       .post("/api/post", this.state.query)
       .then(function(response) {
+        console.log(response.data);
         that.setState({
           data: response.data
         });
@@ -87,34 +97,22 @@ class App extends Component {
       });
   }
 
-  // getAttributes(){
-  //   .post("/api/post", this.state.query)
-  //   .then(function(response) {
-  //     that.setState({
-  //       data: response.data
-  //     });
-  //     that.columnConstructor(that.state.data[0]);
-  //     console.log(that.state.data);
-  //   })
-  //   .catch(function(error) {
-  //     console.log(error);
-  //   });
-  // }
-
-  getFuzzy() {
-    //     {attributes:"",
-    //   search:"",
-    // limti:"numb"}
-  }
-
   render() {
     return (
       <div style={{ marginTop: "100px" }}>
+        Range:
+        <RangeSelect
+          constructRange={this.constructRange}
+          attribute="interpreted_age"
+        />
+        <br />
         TYPE:
         <Radiobox type={this.state.query.type} changeType={this.changeType} />
         <br />
         Filters:
         <MultiSelect constructMulti={this.constructMulti} attribute="country" />
+        <br />
+        <AsyncMulti constructMulti={this.constructMulti} attribute="country" />
         <br />
         <Checkbox changeShow={this.changeShow} />
         <br />

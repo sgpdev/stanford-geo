@@ -9,7 +9,7 @@ export default class Radiobox extends Component {
   render() {
     return (
       <div onChange={event => this.props.changeType(event.target.value)}>
-        <input type="radio" value="sample" name="gender" /> sample
+        <input type="radio" value="samples" name="gender" /> samples
         <input type="radio" value="analyses" name="gender" /> analyses
         <input type="radio" value="nhhrxf" name="gender" /> NO HHRXF
       </div>

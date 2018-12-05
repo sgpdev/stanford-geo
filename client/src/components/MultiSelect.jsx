@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Select, { components } from "react-select";
+import axios from "axios";
 
 //function tahat takes all of the distinc countries from the database.
-const array = ["USA", "Albania"];
+const array = ["American", "Albania"];
 function makeOptions(array) {
   return array.map(option => ({ value: option, label: option }));
 }
@@ -17,7 +18,8 @@ class MultiSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: null
+      selectedOption: null,
+      attribute: null
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,6 +32,22 @@ class MultiSelect extends Component {
     this.setState({ selectedOption });
     this.props.constructMulti(this.props.attribute, selectedOption);
     console.log(`Option selected:`, selectedOption);
+  }
+
+  getAttributes(attributes) {
+    var that = this;
+    axios
+      .post("/api/post/attr", that.state.dynamic)
+      .then(function(response) {
+        that.setState({
+          attribute: response.data
+        });
+
+        console.log(that.state.attribute);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
