@@ -4,7 +4,7 @@ class Attribute {
         attribute_id,
         attribute_db,
         attribute_api,
-search_bases,
+        search_bases,
         select_priority,
         where_priority,
         group_priotiy,
@@ -14,7 +14,7 @@ search_bases,
         this.attribute_db = attribute_db;
         this.attribute_api = attribute_api;
         this.attribute_sql = "";
-this.search_bases = search_bases;
+        this.search_bases = search_bases;
         this.select_priority = select_priority;
         this.where_priority = where_priority;
         this.group_priotiy = group_priotiy;
@@ -99,12 +99,12 @@ class SearchQuery {
         }
     }
 
-    to_sql(search_atts, search_joins) {
+    compute_join_list(search_atts, search_joins, use_inner) {
         // Setup phase
         var table_hist = {
             "base": [this.sq_base_rel.br_db]
         };
-        var from_str = `FROM ${table_hist["base"]}`;
+        var join_cmd = use_inner ? "INNER JOIN" : "LEFT JOIN";
         // JOIN phase
         var join_str_list = [];
         for (var p = 0; p < 6; p++) {
@@ -122,7 +122,8 @@ class SearchQuery {
                         table_hist[next_join.from_table] = [table_name]
                     }
                     // create and append join string to join string list
-                    var join_str = `LEFT JOIN ${next_join.from_table} ${table_name} ON ${table_name}.${next_join.from_atts_db} = ${table_hist[next_join.to_table][0]}.${next_join.to_atts_db}`;
+                    var join_str = `${join_cmd} ${next_join.from_table} ${table_name} ON ${table_name}.${next_join.from_atts_db} = ${table_hist[next_join.to_table][0]}.${next_join.to_atts_db}`;
+
                     join_str_list.push(join_str);
                     // assign table name to relevant search attribute
                     for (var i = 0; i < this.sq_join[key].length; i++) {
@@ -133,8 +134,10 @@ class SearchQuery {
                 }
             }
         }
-        // midway attribute_sql setup
+        return join_str_list;
+    }
 
+    compute_where_list(search_atts, search_joins) {
         // WHERE phase
         var where_str_list = []
         this.sq_where.sort((a, b) => {
@@ -147,9 +150,13 @@ class SearchQuery {
             item.to_sql();
             where_str_list.push(item.av_value_db)
         });
+        return where_str_list;
+    }
+
+    compute_select_list(search_atts, search_joins, is_distinct) {
         // SELECT phase
-        var select_str = "";
         var select_str_list = []
+        var select_prefix = is_distinct ? "DISTINCT " : "";
         this.sq_select.sort((a, b) => {
             return a.select_priority - b.select_priority;
         });
@@ -157,21 +164,105 @@ class SearchQuery {
             if (item.attribute_sql.length == 0) {
                 item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
             }
-            select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
+            select_str_list.push(`${select_prefix}${item.attribute_sql} AS "${item.attribute_id}"`);
         });
-        select_str = `SELECT ${select_str_list.join(", ")}`;
+        return select_str_list;
+    }
 
+    to_sql_pub_api(search_atts, search_joins) {
+        var join_str_list = this.compute_join_list(search_atts, search_joins, false);
+        var where_str_list = this.compute_where_list(search_atts, search_joins);
+        var select_str_list = this.compute_select_list(search_atts, search_joins, false);
+        var select_str = `SELECT ${select_str_list.join(", ")}`;
+        var from_str = `FROM ${this.sq_base_rel.br_db}`;
         var join_str_sql = join_str_list.join(" ");
         var where_str_sql = `WHERE ${where_str_list.join(" AND ")}`;
-
-        console.log(table_hist);
-        console.log(select_str);
-        console.log(from_str);
-        console.log(join_str_sql);
-        console.log(where_str_sql);
-
         this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_str_sql};`;
     }
+
+    to_sql_pri_api(search_atts, search_joins, cur_search, cur_limit) {
+        var join_str_list = this.compute_join_list(search_atts, search_joins, false);
+        var select_str_list = this.compute_select_list(search_atts, search_joins, true);
+        var select_str = `SELECT ${select_str_list.join(", ")}`;
+        var from_str = `FROM ${this.sq_base_rel.br_db}`;
+        var join_str_sql = join_str_list.join(" ");
+        var where_limit_str_sql = `WHERE ${this.sq_select[0].attribute_sql} IS NOT NULL AND ${this.sq_select[0].attribute_sql} LIKE '${cur_search}%' ORDER BY ${this.sq_select[0].attribute_sql} LIMIT ${cur_limit}`;
+        this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_limit_str_sql};`
+    }
+
+    // to_sql(search_atts, search_joins) {
+    //     // Setup phase
+    //     var table_hist = {
+    //         "base": [this.sq_base_rel.br_db]
+    //     };
+    //     var from_str = `FROM ${table_hist["base"]}`;
+    //     // JOIN phase
+    //     var join_str_list = [];
+    //     for (var p = 0; p < 6; p++) {
+    //         for (var key in this.sq_join) {
+    //             // obtain join of correct join_priority
+    //             var next_join = search_joins[key];
+    //             if (next_join.join_priority == p) {
+    //                 var table_name = "";
+    //                 // determine table name by checking if table was previously visited
+    //                 if (table_hist[next_join.from_table]) {
+    //                     table_name = `${next_join.from_table}_${table_hist[next_join.from_table].length}`;
+    //                     table_hist[next_join.from_table].push(table_name);
+    //                 } else {
+    //                     table_name = `${next_join.from_table}_0`;
+    //                     table_hist[next_join.from_table] = [table_name]
+    //                 }
+    //                 // create and append join string to join string list
+    //                 var join_str = `LEFT JOIN ${next_join.from_table} ${table_name} ON ${table_name}.${next_join.from_atts_db} = ${table_hist[next_join.to_table][0]}.${next_join.to_atts_db}`;
+    //                 join_str_list.push(join_str);
+    //                 // assign table name to relevant search attribute
+    //                 for (var i = 0; i < this.sq_join[key].length; i++) {
+    //                     var att = this.sq_join[key][i];
+    //                     var search_att = search_atts[att];
+    //                     search_att.attribute_sql = `${table_name}.${search_att.attribute_db}`;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // midway attribute_sql setup
+    //
+    //     // WHERE phase
+    //     var where_str_list = []
+    //     this.sq_where.sort((a, b) => {
+    //         return a.av_attribute.where_priority - b.av_attribute.where_priority;
+    //     });
+    //     this.sq_where.forEach((item) => {
+    //         if (item.av_attribute.attribute_sql.length == 0) {
+    //             item.av_attribute.attribute_sql = `${this.sq_base_rel.br_db}.${item.av_attribute.attribute_db}`;
+    //         }
+    //         item.to_sql();
+    //         where_str_list.push(item.av_value_db)
+    //     });
+    //     // SELECT phase
+    //     var select_str = "";
+    //     var select_str_list = []
+    //     this.sq_select.sort((a, b) => {
+    //         return a.select_priority - b.select_priority;
+    //     });
+    //     this.sq_select.forEach((item) => {
+    //         if (item.attribute_sql.length == 0) {
+    //             item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
+    //         }
+    //         select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
+    //     });
+    //     select_str = `SELECT ${select_str_list.join(", ")}`;
+    //
+    //     var join_str_sql = join_str_list.join(" ");
+    //     var where_str_sql = `WHERE ${where_str_list.join(" AND ")}`;
+    //
+    //     console.log(table_hist);
+    //     console.log(select_str);
+    //     console.log(from_str);
+    //     console.log(join_str_sql);
+    //     console.log(where_str_sql);
+    //
+    //     this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_str_sql};`;
+    // }
 }
 
 // class with base and default info
