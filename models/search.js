@@ -50,7 +50,7 @@ class AttributeValue {
     to_sql() {
         switch (this.av_type) {
             case "string":
-                this.av_value_db = `${this.av_attribute.attribute_sql} = '${this.av_value_api}'`;
+                this.av_value_db = `LOWER(${this.av_attribute.attribute_sql}) = LOWER('${this.av_value_api}')`;
                 break;
             case "number":
                 this.av_value_db = `${this.av_attribute.attribute_sql} = ${this.av_value_api}`;
@@ -58,9 +58,9 @@ class AttributeValue {
             case "str_arr":
                 var temp_arr = [];
                 this.av_value_api.forEach((item) => {
-                    temp_arr.push(`'${item}'`);
+                    temp_arr.push(`LOWER('${item}')`);
                 });
-                this.av_value_db = `${this.av_attribute.attribute_sql} IN (${temp_arr.toString()})`;
+                this.av_value_db = `LOWER(${this.av_attribute.attribute_sql}) IN (${temp_arr.toString()})`;
                 break;
             case "num_arr":
                 this.av_value_db = `${this.av_attribute.attribute_sql} BETWEEN ${this.av_value_api[0]} AND ${this.av_value_api[1]}`;
@@ -186,7 +186,7 @@ class SearchQuery {
         var select_str = `SELECT ${select_str_list.join(", ")}`;
         var from_str = `FROM ${this.sq_base_rel.br_db}`;
         var join_str_sql = join_str_list.join(" ");
-        var where_limit_str_sql = `WHERE ${this.sq_select[0].attribute_sql} IS NOT NULL AND ${this.sq_select[0].attribute_sql} LIKE '${cur_search}%' ORDER BY ${this.sq_select[0].attribute_sql} LIMIT ${cur_limit}`;
+        var where_limit_str_sql = `WHERE ${this.sq_select[0].attribute_sql} IS NOT NULL AND LOWER(${this.sq_select[0].attribute_sql}) LIKE LOWER('${cur_search}%') ORDER BY ${this.sq_select[0].attribute_sql} LIMIT ${cur_limit}`;
         this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_limit_str_sql};`
     }
 

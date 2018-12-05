@@ -218,5 +218,3 @@ console.log(search_req);
 
 // export our router to be mounted by the parent application
 module.exports = router;
-
-// `select distinct ${"ff"} from ${"fff"} where ${"ff"} is not null;`;
