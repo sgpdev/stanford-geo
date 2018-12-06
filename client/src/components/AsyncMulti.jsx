@@ -10,11 +10,22 @@ import axios from "axios";
 //   }
 //   return inputOption;
 // };
+
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: "1px dotted pink",
+    color: "#8c1515",
+    padding: "2%",
+    width: "400px"
+  })
+};
+
 let kiki = [];
 const koko = inputValue => {
   var attribute = {
     limit: 10,
-    attribute: "country",
+    attribute: "state_province",
     current_search: inputValue
   };
   getAttributes(attribute);
@@ -33,6 +44,7 @@ const getAttributes = attribute => {
   axios
     .post("/api/post/attr", attribute)
     .then(function(response) {
+      console.log(kiki);
       kiki = response.data.map(option => ({
         value: option.country,
         label: option.country
@@ -67,13 +79,13 @@ export default class AsyncMulti extends Component {
     return (
       <AsyncSelect
         // This is the example that the list was cleared (FIXED)
-        cacheOptions
         defaultOptions
         value={this.state.selectedOption}
         loadOptions={promiseOptions}
         onChange={this.handleChange}
         closeMenuOnSelect={false}
         isMulti
+        styles={customStyles}
       />
     );
   }
