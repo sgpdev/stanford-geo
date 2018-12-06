@@ -37,16 +37,27 @@ export default class RangeSelect extends Component {
   render() {
     return (
       <div>
+        {this.props.title}
         <input
           onChange={this.handleMinChange}
           value={this.state.min}
           type="number"
+          style={{
+            width: "50px",
+            border: "2px solid rgba(140, 21, 21, 0.85)",
+            borderRadius: "4px"
+          }}
         />
-        -
+        {" - "}
         <input
           onChange={this.handleMaxChange}
           value={this.state.max}
           type="number"
+          style={{
+            width: "50px",
+            border: "2px solid rgba(140, 21, 21, 0.85)",
+            borderRadius: "4px"
+          }}
         />
       </div>
     );

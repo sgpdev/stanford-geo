@@ -25,7 +25,7 @@ let kiki = [];
 const koko = inputValue => {
   var attribute = {
     limit: 10,
-    attribute: "state_province",
+    attribute: "country",
     current_search: inputValue
   };
   getAttributes(attribute);
@@ -36,7 +36,7 @@ const promiseOptions = inputValue =>
   new Promise(resolve => {
     setTimeout(() => {
       resolve(koko(inputValue));
-    }, 2000);
+    }, 5000);
   });
 
 const getAttributes = attribute => {

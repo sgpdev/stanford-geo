@@ -26,7 +26,10 @@ export default class Dropdown extends Component {
     return (
       <div className="dd-wrapper">
         <div className="dd-header" onClick={() => this.toggleList()}>
-          <div className="dd-header-title">
+          <div
+            className="dd-header-title"
+            style={{ backgroundColor: "rgba(140, 21, 21, 0.37)" }}
+          >
             {headerTitle}
             <span style={{ float: "right", paddingRight: "10px" }}>
               {" "}

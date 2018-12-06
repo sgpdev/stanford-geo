@@ -203,11 +203,7 @@ class App extends Component {
             Defaults
           </a>
           <Dropdown title="Collection Site" list={this.state.location}>
-            <div
-              id="contact"
-              className="menu-item"
-              style={{ width: "200px", height: "200px" }}
-            >
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
               Country:{" "}
               <AsyncMulti
                 style={{ float: "right" }}
@@ -215,30 +211,206 @@ class App extends Component {
                 attribute="country"
               />
             </div>
-            <div
-              id="contact"
-              className="menu-item"
-              style={{ width: "200px", height: "200px" }}
-            >
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
               State/Province:{" "}
               <AsyncMulti
                 style={{ float: "right" }}
                 constructMulti={this.constructMulti}
-                attribute="state_province"
+                attribute="country"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Site Type:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="site_type"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Section Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="section_name"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Craton/Terrane:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="craton_terrane"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Basin Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="basin_name"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Basin Type:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="basin_type"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Metamorphic Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="meta_bin"
               />
             </div>
           </Dropdown>
-          <Dropdown
-            title="People/Batches/Insights"
-            list={this.state.location}
-          />
+          <Dropdown title="People/Batches/Insights" list={this.state.location}>
+            {" "}
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Collector's First Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="collector_first"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Collector's Lat Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="collector_last"
+              />
+            </div>
+            {this.state.query.type === "analyses" && (
+              <div>
+                <div
+                  id="contact"
+                  className="menu-item"
+                  style={{ width: "200px" }}
+                >
+                  Run By Last Name:{" "}
+                  <AsyncMulti
+                    style={{ float: "right" }}
+                    constructMulti={this.constructMulti}
+                    attribute="run_by_last"
+                  />
+                </div>
+                <div
+                  id="contact"
+                  className="menu-item"
+                  style={{ width: "200px" }}
+                >
+                  Lab Provider:{" "}
+                  <AsyncMulti
+                    style={{ float: "right" }}
+                    constructMulti={this.constructMulti}
+                    attribute="provider_lab"
+                  />
+                </div>
+              </div>
+            )}
+          </Dropdown>
           <Dropdown
             title="Geological Environmental Context"
             list={this.state.location}
-          />
+          >
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Long Stratigraphy Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="strat_name_long"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Environmental Bin:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="environment_bin"
+              />
+            </div>
+            <RangeSelect
+              constructRange={this.constructRange}
+              attribute="interpreted_age"
+              title="Interpreted Age:"
+            />
+          </Dropdown>
+          <Dropdown title="Misc" list={this.state.location}>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Project Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="project_name"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Data Source:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="data_source"
+              />
+            </div>
+          </Dropdown>
 
-          <Dropdown title="Lithology" list={this.state.location} />
-          {this.state.query.type === "analyses" && (
+          <Dropdown title="Lithology" list={this.state.location}>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              ICS Age:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="age_ics_name"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Lithology Name:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="lithology_name"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Lithology Type:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="lithology_type"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Lithology Class:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="lithology_class"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Lithology Texture:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="lithology_texture"
+              />
+            </div>
+            <div id="contact" className="menu-item" style={{ width: "200px" }}>
+              Lithology Composition:{" "}
+              <AsyncMulti
+                style={{ float: "right" }}
+                constructMulti={this.constructMulti}
+                attribute="lithology_comp"
+              />
+            </div>
+          </Dropdown>
+          {this.state.query.type !== "analyses" && (
             <Dropdown title="Analytes" list={this.state.location} />
           )}
         </Menu>
