@@ -1,0 +1,10 @@
+/*----- Drop Down Header Title ------*/
+
+.dd-header-title {
+  background-color: rgba(140, 21, 21, 0.37);
+}
+
+.dd-header-chevron {
+  float: right;
+  padding-right: 10px;
+}

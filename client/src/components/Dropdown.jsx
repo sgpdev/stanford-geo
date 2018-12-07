@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
+import "./Dropdown.css";
 
 export default class Dropdown extends Component {
   constructor(props) {
@@ -26,12 +27,9 @@ export default class Dropdown extends Component {
     return (
       <div className="dd-wrapper">
         <div className="dd-header" onClick={() => this.toggleList()}>
-          <div
-            className="dd-header-title"
-            style={{ backgroundColor: "rgba(140, 21, 21, 0.37)" }}
-          >
+          <div className="dd-header-title">
             {headerTitle}
-            <span style={{ float: "right", paddingRight: "10px" }}>
+            <span className="dd-header-chevron">
               {" "}
               {listOpen ? <FaChevronUp /> : <FaChevronDown />}
             </span>
