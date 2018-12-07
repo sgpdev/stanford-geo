@@ -218,7 +218,7 @@ class App extends Component {
               <AsyncMulti
                 style={{ float: "right" }}
                 constructMulti={this.constructMulti}
-                attribute="country"
+                attribute="state_province"
               />
             </div>
             <div id="contact" className="menu-item" style={{ width: "200px" }}>
