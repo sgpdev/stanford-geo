@@ -160,18 +160,10 @@ router.post("/post/attr", jsonParser, function(req, res) {
     var cur_att = null;
     var cur_search = "";
     var cur_limit = 50;
-    var cur_table = "";
     // Check if the attribute exists and determine table
     if (req.body.attribute) {
         if (search_atts[req.body.attribute]) {
             cur_att = search_atts[req.body.attribute];
-            if (cur_att.join_path.length == 0) {
-                // use first base relation
-                cur_table = `${cur_att.search_bases[0]}_base`;
-            } else {
-                // use from_table at end of join_path
-                cur_table = cur_att.join_path[cur_att.join_path.length - 1].from_table;
-            }
         } else {
             // @TODO Error Case
             res
@@ -202,13 +194,12 @@ router.post("/post/attr", jsonParser, function(req, res) {
         cur_limit = req.body.limit;
     }
 
-// Generate search request and construct SQL
-var search_req = new SearchQuery(default_rels[cur_att.search_bases[0]]);
-search_req.sq_select.push(cur_att);
-search_req.add_joins(cur_att);
-search_req.to_sql_pri_api(search_atts, search_joins, cur_search, cur_limit);
+    // Generate search request and construct SQL
+    var search_req = new SearchQuery(default_rels[cur_att.search_bases[0]]);
+    search_req.sq_select.push(cur_att);
+    search_req.to_sql_pri_api(search_atts, search_joins, cur_att, cur_search, cur_limit);
 
-console.log(search_req);
+    console.log(search_req);
 
     const sq_query = {
         text: search_req.sq_sql
@@ -218,3 +209,30 @@ console.log(search_req);
 
 // export our router to be mounted by the parent application
 module.exports = router;
+
+
+
+
+// // Generate MSCB Materialized Views Part 1
+// Use: have code run once to generate all materialized views. [add attributes to list for inclusion]
+// var attributes = ['country', 'original_name', 'section_name', 'site_type', 'state_province', 'craton_terrane', 'basin_name', 'basin_type', 'meta_bin', 'collector_first', 'collector_last', 'strat_name_long', 'age_ics_name', 'lithology_name', 'lithology_type', 'lithology_class', 'lithology_text', 'lithology_comp', 'project_name', 'data_source', 'run_by_last', 'provider_lab'];
+// var cur_limit = 10000000000;
+// var cur_search = "";
+// for (var i = 0; i < attributes.length; i++) {
+//     if (search_atts[attributes[i]]) {
+//         var cur_att = search_atts[attributes[i]];
+//         var search_req = new SearchQuery(default_rels[cur_att.search_bases[0]]);
+//         search_req.sq_select.push(cur_att);
+//         search_req.add_joins(cur_att);
+//         search_req.to_sql_pri_api(search_atts, search_joins, cur_search, cur_limit);
+//
+//         search_req.sq_sql = `BEGIN; CREATE MATERIALIZED VIEW public.${cur_att.attribute_api}__distinctmv AS ${search_req.sq_sql} WITH DATA; GRANT ALL ON TABLE public.${cur_att.attribute_api}__distinctmv TO PUBLIC; COMMIT;`
+//
+//         console.log(search_req.sq_sql);
+//
+//         const sq_query = {
+//             text: search_req.sq_sql
+//         };
+//         ctrl.example.get(sq_query, req, res);
+//     }
+// }

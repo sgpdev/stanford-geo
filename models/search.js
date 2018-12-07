@@ -180,89 +180,22 @@ class SearchQuery {
         this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_str_sql};`;
     }
 
-    to_sql_pri_api(search_atts, search_joins, cur_search, cur_limit) {
-        var join_str_list = this.compute_join_list(search_atts, search_joins, false);
-        var select_str_list = this.compute_select_list(search_atts, search_joins, true);
-        var select_str = `SELECT ${select_str_list.join(", ")}`;
-        var from_str = `FROM ${this.sq_base_rel.br_db}`;
-        var join_str_sql = join_str_list.join(" ");
-        var where_limit_str_sql = `WHERE ${this.sq_select[0].attribute_sql} IS NOT NULL AND LOWER(${this.sq_select[0].attribute_sql}) LIKE LOWER('${cur_search}%') ORDER BY ${this.sq_select[0].attribute_sql} LIMIT ${cur_limit}`;
-        this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_limit_str_sql};`
+    to_sql_pri_api(search_atts, search_joins, cur_att, cur_search, cur_limit) {
+        var select_str = `SELECT DISTINCT "${cur_att.attribute_id}" AS ${cur_att.attribute_api}`;
+        var from_str = `FROM ${cur_att.attribute_api}__distinctmv`;
+        var where_limit_str_sql = `WHERE ${cur_att.attribute_id} IS NOT NULL AND LOWER(${cur_att.attribute_id}) LIKE LOWER('${cur_search}%') ORDER BY ${cur_att.attribute_id} LIMIT ${cur_limit}`;
+        this.sq_sql = `${select_str} ${from_str} ${where_limit_str_sql};`
     }
 
-    // to_sql(search_atts, search_joins) {
-    //     // Setup phase
-    //     var table_hist = {
-    //         "base": [this.sq_base_rel.br_db]
-    //     };
-    //     var from_str = `FROM ${table_hist["base"]}`;
-    //     // JOIN phase
-    //     var join_str_list = [];
-    //     for (var p = 0; p < 6; p++) {
-    //         for (var key in this.sq_join) {
-    //             // obtain join of correct join_priority
-    //             var next_join = search_joins[key];
-    //             if (next_join.join_priority == p) {
-    //                 var table_name = "";
-    //                 // determine table name by checking if table was previously visited
-    //                 if (table_hist[next_join.from_table]) {
-    //                     table_name = `${next_join.from_table}_${table_hist[next_join.from_table].length}`;
-    //                     table_hist[next_join.from_table].push(table_name);
-    //                 } else {
-    //                     table_name = `${next_join.from_table}_0`;
-    //                     table_hist[next_join.from_table] = [table_name]
-    //                 }
-    //                 // create and append join string to join string list
-    //                 var join_str = `LEFT JOIN ${next_join.from_table} ${table_name} ON ${table_name}.${next_join.from_atts_db} = ${table_hist[next_join.to_table][0]}.${next_join.to_atts_db}`;
-    //                 join_str_list.push(join_str);
-    //                 // assign table name to relevant search attribute
-    //                 for (var i = 0; i < this.sq_join[key].length; i++) {
-    //                     var att = this.sq_join[key][i];
-    //                     var search_att = search_atts[att];
-    //                     search_att.attribute_sql = `${table_name}.${search_att.attribute_db}`;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     // midway attribute_sql setup
-    //
-    //     // WHERE phase
-    //     var where_str_list = []
-    //     this.sq_where.sort((a, b) => {
-    //         return a.av_attribute.where_priority - b.av_attribute.where_priority;
-    //     });
-    //     this.sq_where.forEach((item) => {
-    //         if (item.av_attribute.attribute_sql.length == 0) {
-    //             item.av_attribute.attribute_sql = `${this.sq_base_rel.br_db}.${item.av_attribute.attribute_db}`;
-    //         }
-    //         item.to_sql();
-    //         where_str_list.push(item.av_value_db)
-    //     });
-    //     // SELECT phase
-    //     var select_str = "";
-    //     var select_str_list = []
-    //     this.sq_select.sort((a, b) => {
-    //         return a.select_priority - b.select_priority;
-    //     });
-    //     this.sq_select.forEach((item) => {
-    //         if (item.attribute_sql.length == 0) {
-    //             item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
-    //         }
-    //         select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
-    //     });
-    //     select_str = `SELECT ${select_str_list.join(", ")}`;
-    //
-    //     var join_str_sql = join_str_list.join(" ");
-    //     var where_str_sql = `WHERE ${where_str_list.join(" AND ")}`;
-    //
-    //     console.log(table_hist);
-    //     console.log(select_str);
-    //     console.log(from_str);
-    //     console.log(join_str_sql);
-    //     console.log(where_str_sql);
-    //
-    //     this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_str_sql};`;
-    // }
+    // // Generate MSCB Materialized Views Part 2
+    // Use: uncomment out to_sql_pri_api and comment what is there then run with part 1
+    // var join_str_list = this.compute_join_list(search_atts, search_joins, false);
+    // var select_str_list = this.compute_select_list(search_atts, search_joins, true);
+    // var select_str = `SELECT ${select_str_list.join(", ")}`;
+    // var from_str = `FROM ${this.sq_base_rel.br_db}`;
+    // var join_str_sql = join_str_list.join(" ");
+    // var where_limit_str_sql = `WHERE ${this.sq_select[0].attribute_sql} IS NOT NULL ORDER BY ${this.sq_select[0].attribute_sql}`;
+    // this.sq_sql = `(${select_str} ${from_str} ${join_str_sql} ${where_limit_str_sql})`
 }
 
 // class with base and default info
