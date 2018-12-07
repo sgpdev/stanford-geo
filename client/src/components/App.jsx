@@ -10,6 +10,8 @@ import RangeSelect from "./RangeSelect";
 import Dropdown from "./Dropdown";
 import { push as Menu } from "react-burger-menu";
 
+
+var btoa = require('btoa');
 var styles = {
   bmBurgerButton: {
     position: "fixed",
@@ -161,7 +163,7 @@ class App extends Component {
     console.log("before sending", this.state.query);
     var that = this;
     axios
-      .post("/api/post", this.state.query)
+      .post("/api/post", this.state.query, {'Authorization' : `Basic ${btoa("admin:supersecret")}`})
       .then(function(response) {
         console.log(response.data);
         that.setState({
