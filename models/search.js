@@ -177,10 +177,9 @@ class SearchQuery {
     return where_str_list;
   }
 
-  compute_select_list(search_atts, search_joins, is_distinct) {
+  compute_select_list(search_atts, search_joins) {
     // SELECT phase
     var select_str_list = [];
-    var select_prefix = is_distinct ? "DISTINCT " : "";
     this.sq_select.sort((a, b) => {
       return a.select_priority - b.select_priority;
     });
@@ -189,7 +188,7 @@ class SearchQuery {
         item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
       }
       select_str_list.push(
-        `${select_prefix}${item.attribute_sql} AS "${item.attribute_id}"`
+        `${item.attribute_sql} AS "${item.attribute_id}"`
       );
     });
     return select_str_list;
@@ -204,8 +203,7 @@ class SearchQuery {
     var where_str_list = this.compute_where_list(search_atts, search_joins);
     var select_str_list = this.compute_select_list(
       search_atts,
-      search_joins,
-      false
+      search_joins
     );
     var select_str = `SELECT ${select_str_list.join(", ")}`;
     var from_str = `FROM ${this.sq_base_rel.br_db}`;
@@ -215,29 +213,18 @@ class SearchQuery {
   }
 
   to_sql_pri_api(search_atts, search_joins, cur_att, cur_search, cur_limit) {
-    var select_str = `SELECT DISTINCT "${cur_att.attribute_id}" AS ${
-      cur_att.attribute_api
-    }`;
+    var select_str = `SELECT DISTINCT ${cur_att.attribute_api}`;
     var from_str = `FROM ${cur_att.attribute_api}__distinctmv`;
     var where_limit_str_sql = `WHERE ${
-      cur_att.attribute_id
+      cur_att.attribute_api
     } IS NOT NULL AND LOWER(${
-      cur_att.attribute_id
+      cur_att.attribute_api
     }) LIKE LOWER('${cur_search}%') ORDER BY ${
-      cur_att.attribute_id
+      cur_att.attribute_api
     } LIMIT ${cur_limit}`;
     this.sq_sql = `${select_str} ${from_str} ${where_limit_str_sql};`;
   }
 
-  // // Generate MSCB Materialized Views Part 2
-  // Use: uncomment out to_sql_pri_api and comment what is there then run with part 1
-  // var join_str_list = this.compute_join_list(search_atts, search_joins, false);
-  // var select_str_list = this.compute_select_list(search_atts, search_joins, true);
-  // var select_str = `SELECT ${select_str_list.join(", ")}`;
-  // var from_str = `FROM ${this.sq_base_rel.br_db}`;
-  // var join_str_sql = join_str_list.join(" ");
-  // var where_limit_str_sql = `WHERE ${this.sq_select[0].attribute_sql} IS NOT NULL ORDER BY ${this.sq_select[0].attribute_sql}`;
-  // this.sq_sql = `(${select_str} ${from_str} ${join_str_sql} ${where_limit_str_sql})`
 }
 
 // class with base and default info

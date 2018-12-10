@@ -50,10 +50,10 @@ export default class AsyncMulti extends Component {
     };
     console.log(attribute);
     var answer = await axios.post("/api/post/attr", attribute);
-
+console.log(answer);
     return await answer.data.map(option => ({
-      value: option.country,
-      label: option.country
+      value: option[this.props.attribute],
+      label: option[this.props.attribute]
     }));
   }
   handleChange(selectedOption) {

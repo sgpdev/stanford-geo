@@ -10,7 +10,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -D -d --watch",
-    "test": "jest"
+    "test": "jest",
+    "mv_setup": "node ./models/script.js" 
   },
   "jest": {
     "collectCoverage": true,
