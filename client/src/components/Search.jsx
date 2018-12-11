@@ -164,6 +164,8 @@ class Search extends Component {
             columnConstructor={this.columnConstructor}
           />
           <br />
+          {`${JSON.stringify(this.state.query)}`}
+          <br />
 
           <button onClick={this.postSearch}>Post</button>
 

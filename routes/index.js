@@ -210,5 +210,9 @@ router.post("/post/attr", jsonParser, function(req, res) {
   ctrl.example.get(sq_query, req, res);
 });
 
+router.get("/get", jsonParser, function(req, res) {
+  res.status(201).send(`login succeeded`);
+});
+
 // export our router to be mounted by the parent application
 (module.exports = router), { search_atts, search_joins, default_rels };
