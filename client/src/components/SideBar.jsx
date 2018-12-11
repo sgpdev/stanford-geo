@@ -20,7 +20,7 @@ class SideBar extends Component {
   render() {
     return (
       <div id="side-bar">
-        <Menu pageWrapId={"page-wrap"} width={"33%"} isOpen={true} noOverlay>
+        <Menu pageWrapId={"page-wrap"} width={"33%"}>
           {/* <SideBar data={this.state.data} /> */}
           <div className="filter-menu-item">Filters</div>
           <div id="type" className="menu-item">
@@ -37,6 +37,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Country:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="country"
@@ -45,6 +47,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               State/Province:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="state_province"
@@ -53,6 +57,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Site Type:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="site_type"
@@ -61,6 +67,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Section Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="section_name"
@@ -69,6 +77,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Craton/Terrane:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="craton_terrane"
@@ -77,6 +87,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Basin Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="basin_name"
@@ -85,6 +97,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Basin Type:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="basin_type"
@@ -93,6 +107,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Metamorphic Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="meta_bin"
@@ -104,6 +120,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Collector's First Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="collector_first"
@@ -112,6 +130,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Collector's Lat Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="collector_last"
@@ -122,6 +142,8 @@ class SideBar extends Component {
                 <div id="contact" className="menu-item">
                   Run By Last Name:{" "}
                   <AsyncMulti
+                    user={this.props.user}
+                    password={this.props.password}
                     className="async-multi"
                     constructMulti={this.props.constructMulti}
                     attribute="run_by_last"
@@ -130,6 +152,8 @@ class SideBar extends Component {
                 <div id="contact" className="menu-item">
                   Lab Provider:{" "}
                   <AsyncMulti
+                    user={this.props.user}
+                    password={this.props.password}
                     className="async-multi"
                     constructMulti={this.props.constructMulti}
                     attribute="provider_lab"
@@ -142,6 +166,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Long Stratigraphy Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="strat_name_long"
@@ -150,6 +176,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Environmental Bin:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="environment_bin"
@@ -165,6 +193,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Project Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="project_name"
@@ -173,6 +203,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Data Source:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="data_source"
@@ -184,6 +216,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               ICS Age:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="age_ics_name"
@@ -192,6 +226,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Lithology Name:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="lithology_name"
@@ -200,6 +236,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Lithology Type:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="lithology_type"
@@ -208,6 +246,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Lithology Class:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="lithology_class"
@@ -216,6 +256,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Lithology Texture:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="lithology_texture"
@@ -224,6 +266,8 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Lithology Composition:{" "}
               <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
                 attribute="lithology_comp"

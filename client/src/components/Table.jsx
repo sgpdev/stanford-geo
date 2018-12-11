@@ -20,18 +20,6 @@ export default class Table extends Component {
         <ReactTable
           data={data}
           columns={column}
-          getTdProps={(state, rowInfo, column, instance) => {
-            return {
-              onMouseEnter: e =>
-                console.log("Cell - onMouseEnter", {
-                  state,
-                  rowInfo,
-                  column,
-                  instance,
-                  event: e
-                })
-            };
-          }}
           defaultPageSize={10}
           className="-striped -highlight"
         />

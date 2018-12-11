@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AsyncSelect from "react-select/lib/Async";
 import axios from "axios";
+var btoa = require("btoa");
 
 const customStyles = {
   option: (provided, state) => ({
@@ -48,9 +49,15 @@ export default class AsyncMulti extends Component {
       attribute: this.props.attribute,
       current_search: inputValue
     };
-    console.log(attribute);
-    var answer = await axios.post("/api/post/attr", attribute);
-console.log(answer);
+    console.log("kokooo", this.props.user, this.props.password);
+    var answer = await axios.post("/api/post/attr", attribute, {
+      headers: {
+        Authorization: `Basic ${btoa(
+          `${this.props.user}:${this.props.password}`
+        )}`
+      }
+    });
+    console.log(answer);
     return await answer.data.map(option => ({
       value: option[this.props.attribute],
       label: option[this.props.attribute]

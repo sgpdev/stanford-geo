@@ -211,4 +211,4 @@ router.post("/post/attr", jsonParser, function(req, res) {
 });
 
 // export our router to be mounted by the parent application
-module.exports = router, {search_atts, search_joins, default_rels};
+(module.exports = router), { search_atts, search_joins, default_rels };

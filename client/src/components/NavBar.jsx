@@ -18,20 +18,8 @@ export default class CustomNavBar extends Component {
             <Menu num={1} href="/">
               HOME
             </Menu>
-            <Menu num={2} href="/about">
-              ABOUT
-            </Menu>
-            <Menu num={3} href="/join">
-              GET INVOLVED
-            </Menu>
-            <Menu num={4} href="/references">
-              REFERENCES
-            </Menu>
-            <Menu num={5} href="/team">
-              TEAM
-            </Menu>
-            <Menu num={6} href="/search">
-              SEARCH
+            <Menu num={2} href="/documentation">
+              DOCUMENTATION
             </Menu>
           </Nav>
         </Navbar>
