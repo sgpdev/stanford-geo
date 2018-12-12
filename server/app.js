@@ -15,7 +15,7 @@ app.use(
   "/api",
   basicAuth({
     users: {
-      admin: "supersecret"
+      frontend: "Oligvie40"
     }
   })
 );

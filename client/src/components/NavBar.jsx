@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
-import "./Navbar.css";
+import "./NavBar.css";
 
 export default class CustomNavBar extends Component {
   render() {
@@ -20,6 +20,9 @@ export default class CustomNavBar extends Component {
             </Menu>
             <Menu num={2} href="/documentation">
               DOCUMENTATION
+            </Menu>
+            <Menu num={3} href="/about">
+              ABOUT
             </Menu>
           </Nav>
         </Navbar>

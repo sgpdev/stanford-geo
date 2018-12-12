@@ -11,7 +11,7 @@ export default class Documentation extends React.Component {
     this.handleShow = this.handleShow.bind(this);
 
     this.state = {
-      user: "",
+      user: "frontend",
       password: "",
       show: true
     };
@@ -30,8 +30,8 @@ export default class Documentation extends React.Component {
       return (
         <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
           <h4>Please Login!</h4>
-          <p>To access the sgp data please enter your username and Password</p>
-          <label for="textInput">User:</label>
+          <p>To access the sgp data please enter the Password</p>
+          {/* <label for="textInput">User:</label>
           <input
             type="text"
             id="name"
@@ -40,7 +40,7 @@ export default class Documentation extends React.Component {
             size="10"
             value={this.props.user}
             onChange={this.props.handleChange}
-          />
+          /> */}
           <label for="textInput">Password:</label>
           <input
             type="password"

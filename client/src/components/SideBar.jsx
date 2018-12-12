@@ -4,7 +4,7 @@ import "./SideBar.css";
 import Radiobox from "./Radiobox";
 import MultiSelect from "./MultiSelect";
 import Checkbox from "./Checkbox";
-
+import { CSVLink } from "react-csv";
 import AsyncMulti from "./AsyncMulti";
 import RangeSelect from "./RangeSelect";
 import Dropdown from "./Dropdown";
@@ -22,7 +22,7 @@ class SideBar extends Component {
       <div id="side-bar">
         <Menu pageWrapId={"page-wrap"} width={"33%"}>
           {/* <SideBar data={this.state.data} /> */}
-          <div className="filter-menu-item">Filters</div>
+
           <div id="type" className="menu-item">
             <span className="test">Type:</span>
             <Radiobox
@@ -30,9 +30,18 @@ class SideBar extends Component {
               changeType={this.props.changeType}
             />
           </div>
-          <a style={{ backgroundColor: "rgba(140, 21, 21, 0.37)" }} zz>
-            Defaults
-          </a>
+          <div className="filter-menu-item">Filters</div>
+          <div id="contact" className="menu-item">
+            Original Name:{" "}
+            <AsyncMulti
+              user={this.props.user}
+              password={this.props.password}
+              className="async-multi"
+              constructMulti={this.props.constructMulti}
+              attribute="original_name"
+            />
+          </div>
+
           <Dropdown title="Collection Site">
             <div id="contact" className="menu-item">
               Country:{" "}
@@ -274,11 +283,23 @@ class SideBar extends Component {
               />
             </div>
           </Dropdown>
-          {this.props.query.type !== "analyses" && (
+          <Dropdown title="Show">
+            <Checkbox changeShow={this.props.changeShow} />
+          </Dropdown>
+          {/* {this.props.query.type !== "analyses" && (
             <Dropdown title="Analytes">
               <Checkbox changeShow={this.props.changeShow} />
             </Dropdown>
-          )}
+          )} */}
+          <br />
+
+          <button onClick={this.props.postSearch}>Post</button>
+
+          <br />
+
+          <CSVLink data={this.props.data} filename={"Stanford-sgp.csv"}>
+            Export
+          </CSVLink>
         </Menu>
       </div>
     );

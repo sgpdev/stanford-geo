@@ -20,7 +20,7 @@ export default class Table extends Component {
         <ReactTable
           data={data}
           columns={column}
-          defaultPageSize={10}
+          defaultPageSize={25}
           className="-striped -highlight"
         />
         <br />

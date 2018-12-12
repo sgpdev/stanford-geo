@@ -18,16 +18,11 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-          "sample identifier": 1202,
-          "sample original name": "60"
-        }
-      ],
+      data: [{}],
       query: {
         type: "samples",
         filters: {},
-        show: ["country"]
+        show: []
       },
       column: [
         {
@@ -35,7 +30,7 @@ class Search extends Component {
         }
       ],
       attributes: [],
-      user: "",
+      user: "frontend",
       password: ""
     };
 
@@ -78,24 +73,50 @@ class Search extends Component {
   }
 
   changeShow(value) {
-    console.log(this.state.query.show);
-    let query = this.state.query;
-    console.log("changeshow working");
-    query.show.push(value);
-    this.setState({ query });
+    const show = this.state.query.show;
+    var showIndex = show.indexOf(value);
+
+    if (showIndex !== -1) {
+      let fiery = this.state.query.show;
+      fiery = fiery.splice(showIndex, 1);
+      this.setState({ fiery });
+      console.log(this.state.query.show, "pushing");
+    } else {
+      let query = this.state.query;
+
+      query.show.push(value);
+      this.setState({ query });
+      console.log(this.state.query.show, "pushing");
+    }
+    this.postSearch();
   }
 
   //Multi Select construct array
   constructMulti(attribute, arr) {
     let query = this.state.query;
-    query.filters[attribute] = arr.map(option => option.value);
+    if (arr.length) {
+      query.filters[attribute] = arr.map(option => option.value);
+    } else {
+      delete query.filters[attribute];
+    }
+
+    if (Object.keys(this.state.query.filters).length) {
+      this.postSearch();
+    }
+
     console.log(this.state.query);
   }
 
   constructRange(min, max, attribute) {
+    console.log(typeof min, typeof max, "checking if zero");
     let query = this.state.query;
-    query.filters[attribute] = [min, max];
-    console.log(this.state.query);
+    if (min === 0 && max === 0) {
+      delete query.filters[attribute];
+    } else {
+      query.filters[attribute] = [Number(min), Number(max)];
+      this.postSearch();
+      console.log(this.state.query);
+    }
   }
 
   postSearch() {
@@ -155,6 +176,8 @@ class Search extends Component {
           changeShow={this.changeShow}
           user={this.state.user}
           password={this.state.password}
+          data={this.state.data}
+          postSearch={this.postSearch}
         />
 
         <div id="page-wrap">

@@ -174,19 +174,23 @@ router.post("/post/attr", jsonParser, function(req, res) {
     }
   }
   // Grab current_search string and limit number
-  if (req.body.current_search && typeof req.body.current_search === "string") {
-    cur_search = req.body.current_search;
-  } else {
-    // @TODO Error Case
-    res
-      .status(400)
-      .send(
-        `current_search error: ${
-          req.body.current_search
-        } is not a valid in this API call.`
-      );
-    return;
+
+  if (req.body.current_search) {
+    if (typeof req.body.current_search === "string") {
+      cur_search = req.body.current_search;
+    } else {
+      // @TODO Error Case
+      res
+        .status(400)
+        .send(
+          `current_search error: ${
+            req.body.current_search
+          } is not a valid in this API call.`
+        );
+      return;
+    }
   }
+
   if (req.body.limit && typeof req.body.limit === "number") {
     cur_limit = req.body.limit;
   }

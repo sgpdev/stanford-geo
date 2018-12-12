@@ -17,8 +17,8 @@ export default class RangeSelect extends Component {
     this.setState({ min: event.target.value });
     console.log("Min", this.state.min, this.state.max);
     this.props.constructRange(
-      event.target.value,
-      this.state.max,
+      Number(event.target.value),
+      Number(this.state.max),
       this.props.attribute
     );
   }
@@ -26,10 +26,11 @@ export default class RangeSelect extends Component {
   handleMaxChange(event) {
     console.log(event.target.value);
     this.setState({ max: event.target.value });
+    console.log(this.state.max);
     // console.log("Max", this.state.min, this.state.max);
     this.props.constructRange(
-      this.state.min,
-      event.target.value,
+      Number(this.state.min),
+      Number(event.target.value),
       this.props.attribute
     );
   }

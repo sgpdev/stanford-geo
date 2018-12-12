@@ -13,23 +13,6 @@ const customStyles = {
   })
 };
 
-// const getAttributes = attribute => {
-//   console.log(attribute);
-//   var that = this;
-//   axios
-//     .post("/api/post/attr", attribute)
-//     .then(function(response) {
-//       console.log(response.data);
-//       kiki = response.data.map(option => ({
-//         value: option.country,
-//         label: option.country
-//       }));
-//     })
-//     .catch(function(error) {
-//       console.log(error);
-//     });
-// };
-
 export default class AsyncMulti extends Component {
   constructor(props) {
     super(props);
@@ -41,14 +24,19 @@ export default class AsyncMulti extends Component {
 
   async getOptions(inputValue) {
     console.log(this.props.attribute);
+
     if (!inputValue) {
-      return [];
+      var attribute = {
+        limit: 10,
+        attribute: this.props.attribute
+      };
+    } else {
+      var attribute = {
+        limit: 10,
+        attribute: this.props.attribute,
+        current_search: inputValue
+      };
     }
-    var attribute = {
-      limit: 10,
-      attribute: this.props.attribute,
-      current_search: inputValue
-    };
     console.log("kokooo", this.props.user, this.props.password);
     var answer = await axios.post("/api/post/attr", attribute, {
       headers: {
@@ -79,7 +67,7 @@ export default class AsyncMulti extends Component {
     return (
       <AsyncSelect
         // This is the example that the list was cleared (FIXED)
-        // defaultOptions
+        defaultOptions
         value={this.state.selectedOption}
         loadOptions={this.getOptions}
         onChange={this.handleChange}

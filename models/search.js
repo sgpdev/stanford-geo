@@ -187,9 +187,7 @@ class SearchQuery {
       if (item.attribute_sql.length == 0) {
         item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
       }
-      select_str_list.push(
-        `${item.attribute_sql} AS "${item.attribute_id}"`
-      );
+      select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
     });
     return select_str_list;
   }
@@ -201,14 +199,12 @@ class SearchQuery {
       false
     );
     var where_str_list = this.compute_where_list(search_atts, search_joins);
-    var select_str_list = this.compute_select_list(
-      search_atts,
-      search_joins
-    );
+    var select_str_list = this.compute_select_list(search_atts, search_joins);
     var select_str = `SELECT ${select_str_list.join(", ")}`;
     var from_str = `FROM ${this.sq_base_rel.br_db}`;
     var join_str_sql = join_str_list.join(" ");
-    var where_str_sql = `WHERE ${where_str_list.join(" AND ")}`;
+    var where_str_sql =
+      where_str_list.length == 0 ? "" : `WHERE ${where_str_list.join(" AND ")}`;
     this.sq_sql = `${select_str} ${from_str} ${join_str_sql} ${where_str_sql};`;
   }
 
@@ -224,7 +220,6 @@ class SearchQuery {
     } LIMIT ${cur_limit}`;
     this.sq_sql = `${select_str} ${from_str} ${where_limit_str_sql};`;
   }
-
 }
 
 // class with base and default info
