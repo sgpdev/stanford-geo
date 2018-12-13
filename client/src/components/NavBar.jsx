@@ -21,13 +21,13 @@ export default class CustomNavBar extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <Menu num={1} href="/">
+            <Menu num={1} href="/sgp-search/">
               HOME
             </Menu>
-            <Menu num={2} href="/documentation">
+            <Menu num={2} href="/sgp-search/documentation">
               DOCUMENTATION
             </Menu>
-            <Menu num={3} href="/about">
+            <Menu num={3} href="/sgp-search/about">
               ABOUT
             </Menu>
           </Nav>

@@ -4,10 +4,10 @@ const { Pool } = require("pg");
 //Check if they are needed or not
 
 const pool = new Pool({
-  user: "sufyan",
-  host: "localhost",
-  database: "geochem_test",
-  password: "",
+  user: "sgpserver",
+  host: "se3pgdb.stanford.edu",
+  database: "geochem1",
+  password: "sgpsgp",
   port: 5432
 });
 

@@ -125,7 +125,7 @@ class Search extends Component {
     console.log("before sending", this.state.query);
     var that = this;
     axios
-      .post("/api/post", this.state.query, {
+      .post("/sgp-search/api/post", this.state.query, {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -148,7 +148,7 @@ class Search extends Component {
     console.log("before sending", this.state.user, this.state.password);
     var that = this;
     axios
-      .get("/api/get", {
+      .get("/sgp-search/api/get", {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
