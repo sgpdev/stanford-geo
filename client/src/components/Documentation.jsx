@@ -11,8 +11,6 @@ export default class Documentation extends React.Component {
     this.handleShow = this.handleShow.bind(this);
 
     this.state = {
-      user: "frontend",
-      password: "",
       show: true
     };
   }

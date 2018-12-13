@@ -11,7 +11,13 @@ export default class CustomNavBar extends Component {
         <Navbar default collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">Stanford</Link>
+              <Link to="/">
+                <img
+                  src={require("./../images/sgp_logo.png")}
+                  width="68"
+                  height="48"
+                />
+              </Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>

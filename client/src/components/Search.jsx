@@ -3,16 +3,17 @@ import axios from "axios";
 import "./App.css";
 import Table from "./Table";
 import SideBar from "./SideBar";
-import { CSVLink } from "react-csv";
-import { Tooltip, ButtonToolbar, OverlayTrigger } from "react-bootstrap";
+import ReactTooltip from "react-tooltip";
+import {
+  Tooltip,
+  OverlayTrigger,
+  ButtonToolbar,
+  Button
+} from "react-bootstrap";
 import Documentation from "./Documentation";
-var btoa = require("btoa");
+import "./Search.css";
 
-const tool = (
-  <Tooltip id="tooltip">
-    <strong>Holy guacamole!</strong> Check this info.
-  </Tooltip>
-);
+var btoa = require("btoa");
 
 class Search extends Component {
   constructor(props) {
@@ -31,7 +32,8 @@ class Search extends Component {
       ],
       attributes: [],
       user: "frontend",
-      password: ""
+      password: "",
+      login: ""
     };
 
     this.postSearch = this.postSearch.bind(this);
@@ -154,6 +156,9 @@ class Search extends Component {
         }
       })
       .then(function(response) {
+        that.setState({
+          login: response.data
+        });
         console.log(response);
       })
       .catch(function(error) {
@@ -181,31 +186,24 @@ class Search extends Component {
         />
 
         <div id="page-wrap">
+          {this.state.login !== "login succeeded" && (
+            <Documentation
+              handleChange={this.handleChange}
+              handlePasswordChange={this.handlePasswordChange}
+              login={this.login}
+              user={this.state.user}
+              password={this.state.password}
+            />
+          )}
+
           <Table
             column={this.state.column}
             data={this.state.data}
             columnConstructor={this.columnConstructor}
           />
           <br />
-          {`${JSON.stringify(this.state.query)}`}
-          <br />
-
-          <button onClick={this.postSearch}>Post</button>
-
-          <br />
-
-          <CSVLink data={this.state.data} filename={"Stanford-sgp.csv"}>
-            Export
-          </CSVLink>
-
-          <br />
-          <Documentation
-            handleChange={this.handleChange}
-            handlePasswordChange={this.handlePasswordChange}
-            login={this.login}
-            user={this.state.user}
-            password={this.state.password}
-          />
+          {/* {`${JSON.stringify(this.state.query)}`}
+          <br /> */}
         </div>
       </div>
     );

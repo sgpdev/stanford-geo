@@ -8,10 +8,12 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "starts": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "start": "nodemon server/index.js",
     "react-dev": "webpack -D -d --watch",
     "test": "jest",
-    "mv_setup": "node ./models/script.js" 
+    "mv_setup": "node ./models/script.js"
   },
   "jest": {
     "collectCoverage": true,
@@ -37,9 +39,11 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "btoa": "^1.2.1",
+    "clean-webpack-plugin": "^1.0.0",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "express-basic-auth": "^1.1.6",
+    "html-webpack-plugin": "^3.2.0",
     "npm": "^6.2.0",
     "pg": "^7.6.1",
     "react": "^16.6.3",
@@ -53,10 +57,12 @@
     "react-drawer": "^1.3.4",
     "react-fontawesome": "^1.6.1",
     "react-icons": "^3.2.2",
+    "react-multi-toggle": "^1.1.0",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.1.2",
     "react-sidebar": "^3.0.2",
     "react-table": "^6.8.6",
+    "react-tooltip": "^3.9.0",
     "run": "^1.4.0",
     "tinyqueue": "^2.0.0"
   },
@@ -99,6 +105,7 @@
     "style-loader": "^0.21.0",
     "supertest": "^3.1.0",
     "webpack": "^4.26.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.1.2",
+    "webpack-merge": "^4.1.5"
   }
 }

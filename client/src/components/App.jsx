@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <div className="navigation">
+          <div>
             <NavBar />
             <Route exact path="/" component={Search} />
             <Route path="/documentation" component={Documentation} />

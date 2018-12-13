@@ -1,7 +1,10 @@
 /*----- Drop Down Header Title ------*/
 
 .dd-header-title {
-  background-color: rgba(140, 21, 21, 0.37);
+  border-radius: 4px;
+  margin: 4px;
+  text-indent: 10px;
+  background-color: rgba(80, 84, 95, 0.15);
 }
 
 .dd-header-chevron {

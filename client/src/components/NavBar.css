@@ -1,5 +1,5 @@
 .navbar {
-  height: 35px;
+  height: 45px;
   margin-bottom: 1px;
 }
 nav.navbar,
@@ -7,24 +7,25 @@ nav.navbar,
   background-color: white !important;
 }
 
+/* Navigation bar border */
 .sticky-nav {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 99999999;
+  border-bottom: 2px solid #9abee3;
 }
 .navbar-default {
   background-image: none;
-  border-bottom: 2px solid #8c1515;
   border-radius: 0;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #8c1515;
+  color: #9abee3;
 }
 
 .navbar-default .navbar-brand {
-  color: #8c1515;
+  color: #9abee3;
 }
 
 .navbar-default .navbar-toggle {
@@ -37,21 +38,22 @@ nav.navbar,
 
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
-  background-color: transparent;
+  background-color: #9abee3;
 }
 
 .navbar-default .navbar-brand:hover {
   color: white;
-  background-color: #8c1515;
+  background-color: #9abee3;
 }
 
 .navbar-default .navbar-brand {
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-family: sans-serif;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
   color: white;
-  background-color: #8c1515;
+  background-color: #9abee3;
+  text-decoration: none;
 }
 
 .navbar-nav {
