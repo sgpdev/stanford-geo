@@ -19,7 +19,7 @@ class App extends Component {
         <Router>
           <div>
             <NavBar />
-            <Route exact path="/sgp-search/" component={Search} />
+            <Route exact path="/sgp-search" component={Search} />
             <Route path="/sgp-search/documentation" component={Documentation} />
             <Route path="/sgp-search/about" component={About} />
           </div>

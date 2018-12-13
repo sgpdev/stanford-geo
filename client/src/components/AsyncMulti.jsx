@@ -38,7 +38,7 @@ export default class AsyncMulti extends Component {
       };
     }
     console.log("kokooo", this.props.user, this.props.password);
-    var answer = await axios.post("/sgp-search/api/post/attr", attribute, {
+    var answer = await axios.post("sgp-search/api/post/attr", attribute, {
       headers: {
         Authorization: `Basic ${btoa(
           `${this.props.user}:${this.props.password}`
