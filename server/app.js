@@ -13,10 +13,9 @@ app.use(express.static("public/"));
 app.use(express.static("client/dist"));
 
 app.use(
-  "/sgp-search/api",
   basicAuth({
     users: {
-      frontend: "Oligvie40"
+      frontend: "Ogilvie1"
     }
   })
 );

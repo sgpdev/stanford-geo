@@ -6,7 +6,6 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
-        console.log(response, "response");
         res.send(response.rows);
       }
     });
@@ -17,7 +16,6 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
-        console.log(response, "response");
         res.send(response.rows);
       }
     });

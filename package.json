@@ -1,8 +1,8 @@
 {
-  "name": "fullstackreacttemplate",
+  "name": "SGPWebApp",
   "version": "1.0.0",
-  "description": "fullstackreacttemplate",
-  "author": "Nicholas Vincent-Hill",
+  "description": "SGPWebApp",
+  "author": "Sufian Lattouf",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
@@ -10,7 +10,7 @@
   "scripts": {
     "starts": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "react-dev": "webpack -D -d --watch",
     "test": "jest",
     "mv_setup": "node ./models/script.js"

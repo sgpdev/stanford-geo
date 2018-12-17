@@ -4,13 +4,8 @@ import "./App.css";
 import Table from "./Table";
 import SideBar from "./SideBar";
 import ReactTooltip from "react-tooltip";
-import {
-  Tooltip,
-  OverlayTrigger,
-  ButtonToolbar,
-  Button
-} from "react-bootstrap";
 import Documentation from "./Documentation";
+import SidePanel from "./SidePanel";
 import "./Search.css";
 
 var btoa = require("btoa");
@@ -104,6 +99,10 @@ class Search extends Component {
 
     if (Object.keys(this.state.query.filters).length) {
       this.postSearch();
+    } else {
+      this.setState({
+        data: [{}]
+      });
     }
 
     console.log(this.state.query);
@@ -125,7 +124,7 @@ class Search extends Component {
     console.log("before sending", this.state.query);
     var that = this;
     axios
-      .post("/sgp-search/api/post", this.state.query, {
+      .post("sgp-search/api/post", this.state.query, {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -148,7 +147,7 @@ class Search extends Component {
     console.log("before sending", this.state.user, this.state.password);
     var that = this;
     axios
-      .get("/sgp-search/api/get", {
+      .get("sgp-search/api/get", {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -173,6 +172,7 @@ class Search extends Component {
   render() {
     return (
       <div id="outer-container">
+        <SidePanel />
         <SideBar
           query={this.state.query}
           changeType={this.changeType}

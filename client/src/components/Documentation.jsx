@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./Documentation.css";
 
 import { Alert, Button } from "react-bootstrap";
 
@@ -26,9 +26,9 @@ export default class Documentation extends React.Component {
   render() {
     if (this.state.show) {
       return (
-        <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+        <Alert bsClass="login" bsStyle="info" onDismiss={this.handleDismiss}>
           <h4>Please Login!</h4>
-          <p>To access the sgp data please enter the Password</p>
+          <p>To access the SGP data please enter the Password</p>
           {/* <label for="textInput">User:</label>
           <input
             type="text"
@@ -51,16 +51,17 @@ export default class Documentation extends React.Component {
           />
           <br />
           <p>
-            <Button onClick={this.props.login} bsStyle="danger">
+            <Button
+              onClick={this.props.login}
+              bsStyle="info"
+              bsClass="login-btn"
+            >
               Login
             </Button>
-            <span> or </span>
-            <Button onClick={this.handleDismiss}>Hide Alert</Button>
           </p>
         </Alert>
       );
     }
-
-    return <Button onClick={this.handleShow}>Show Alert</Button>;
+    // return <Button onClick={this.handleShow}>Show Alert</Button>;
   }
 }

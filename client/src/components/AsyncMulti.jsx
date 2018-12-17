@@ -7,7 +7,7 @@ const customStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: "1px dotted pink",
-    color: "#8c1515",
+    color: "#9cc2e6,",
     padding: "2%",
     width: "400px"
   })
@@ -23,8 +23,6 @@ export default class AsyncMulti extends Component {
   }
 
   async getOptions(inputValue) {
-    console.log(this.props.attribute);
-
     if (!inputValue) {
       var attribute = {
         limit: 10,
@@ -37,28 +35,25 @@ export default class AsyncMulti extends Component {
         current_search: inputValue
       };
     }
-    console.log("kokooo", this.props.user, this.props.password);
-    var answer = await axios.post("/sgp-search/api/post/attr", attribute, {
+
+    var answer = await axios.post("sgp-search/api/post/attr", attribute, {
       headers: {
         Authorization: `Basic ${btoa(
           `${this.props.user}:${this.props.password}`
         )}`
       }
     });
-    console.log(answer);
+
     return await answer.data.map(option => ({
       value: option[this.props.attribute],
       label: option[this.props.attribute]
     }));
   }
   handleChange(selectedOption) {
-    // console.log(selectedOption);
     this.setState({ selectedOption });
     this.props.constructMulti(this.props.attribute, selectedOption);
-    // console.log(`Option selected:`, selectedOption);
   }
   handleInputChange(inputValue) {
-    // console.log("noticing change", inputValue);
     this.setState({ inputValue });
     return inputValue;
   }

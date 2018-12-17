@@ -13,7 +13,7 @@ export const Logo = () => (
   >
     <img
       src={require("./../images/sgp_logo.png")}
-      style={{ width: `150px`, margin: ".5em auto .3em" }}
+      style={{ width: `300px`, margin: ".5em auto .3em" }}
     />
   </div>
 );

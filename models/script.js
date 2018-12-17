@@ -3,28 +3,25 @@
 const db = require("./index");
 var bodyParser = require("body-parser");
 var {
-    initialize,
-    default_rels,
-    search_atts,
-    search_joins
+  initialize,
+  default_rels,
+  search_atts,
+  search_joins
 } = require("./../routes/initialize.js");
-const {
-    AttributeValue,
-    SearchQuery
-} = require("./../models/search");
+const { AttributeValue, SearchQuery } = require("./../models/search");
 var jsonParser = bodyParser.json({
-    type: "application/json"
+  type: "application/json"
 });
 const fs = require("fs");
 let search_config = JSON.parse(
-    fs.readFileSync("./routes/search_config.json", "utf8")
+  fs.readFileSync("./routes/search_config.json", "utf8")
 );
 initialize(search_config);
 
 function createMaterializedViews() {
-    var mv_sql_list = [];
-    // Add 3 main materialized views for search bases
-    mv_sql_list.push(`BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.analyses_base CASCADE;
+  var mv_sql_list = [];
+  // Add 3 main materialized views for search bases
+  mv_sql_list.push(`BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.analyses_base CASCADE;
 CREATE MATERIALIZED VIEW public.analyses_base
  AS
 /*Standard query for duplicates
@@ -68,7 +65,7 @@ Includes details of methods, who ran the analysis, and where the analyses were r
     LEFT JOIN analysis a on a.analysis_id = adl.analysis_id
   ORDER BY ad.sample_id)
  WITH DATA; GRANT SELECT ON TABLE public.analyses_base TO PUBLIC; COMMIT;`);
-    mv_sql_list.push(`BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.samples_base CASCADE;
+  mv_sql_list.push(`BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.samples_base CASCADE;
 CREATE MATERIALIZED VIEW public.samples_base
  AS
 /*Standard query (ALL) for projects.
@@ -773,7 +770,7 @@ iron_ratios.tal
 ORDER BY s.sample_id, s.original_num)
 
  WITH DATA; GRANT SELECT ON TABLE public.samples_base TO PUBLIC; COMMIT;`);
-    mv_sql_list.push(`BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.nhhxrf_base CASCADE;
+  mv_sql_list.push(`BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.nhhxrf_base CASCADE;
 CREATE MATERIALIZED VIEW public.nhhxrf_base
  AS
 /*Standard query (NO HHXRF) for projects.
@@ -1480,46 +1477,89 @@ iron_ratios.pyhr,
 iron_ratios.tal
 ORDER BY s.sample_id, s.original_num)
  WITH DATA; GRANT SELECT ON TABLE public.nhhxrf_base TO PUBLIC; COMMIT;`);
-    // Add the other materialized views for attributes
+  // Add the other materialized views for attributes
 
-    var attributes = ['country', 'original_name', 'section_name', 'site_type', 'state_province', 'craton_terrane', 'basin_name', 'basin_type', 'meta_bin', 'collector_first', 'collector_last', 'strat_name_long', 'age_ics_name', 'lithology_name', 'lithology_type', 'lithology_class', 'lithology_text', 'lithology_comp', 'project_name', 'data_source', 'run_by_last', 'provider_lab'];
-    var cur_limit = 10000000000;
-    var cur_search = "";
-    for (var i = 0; i < attributes.length; i++) {
-        if (search_atts[attributes[i]]) {
-            var cur_att = search_atts[attributes[i]];
-            var search_req = new SearchQuery(Array.isArray(cur_att.search_bases) ? default_rels[cur_att.search_bases[0]] : default_rels[cur_att.search_bases]);
-            search_req.sq_select.push(cur_att);
-            search_req.add_joins(cur_att);
+  var attributes = [
+    "country",
+    "original_name",
+    "section_name",
+    "site_type",
+    "state_province",
+    "craton_terrane",
+    "basin_name",
+    "basin_type",
+    "meta_bin",
+    "collector_first",
+    "collector_last",
+    "strat_name_long",
+    "age_ics_name",
+    "lithology_name",
+    "lithology_type",
+    "lithology_class",
+    "lithology_text",
+    "lithology_comp",
+    "project_name",
+    "data_source",
+    "run_by_last",
+    "provider_lab"
+  ];
+  var cur_limit = 10000000000;
+  var cur_search = "";
+  for (var i = 0; i < attributes.length; i++) {
+    if (search_atts[attributes[i]]) {
+      var cur_att = search_atts[attributes[i]];
+      var search_req = new SearchQuery(
+        Array.isArray(cur_att.search_bases)
+          ? default_rels[cur_att.search_bases[0]]
+          : default_rels[cur_att.search_bases]
+      );
+      search_req.sq_select.push(cur_att);
+      search_req.add_joins(cur_att);
 
-            var join_str_list = search_req.compute_join_list(search_atts, search_joins, true);
-            if (cur_att.attribute_sql.length == 0) {
-                cur_att.attribute_sql = `${search_req.sq_base_rel.br_db}.${cur_att.attribute_db}`;
-            }
-            var select_str = `SELECT DISTINCT ${cur_att.attribute_sql} AS ${cur_att.attribute_api}`;
-            if (cur_att.attribute_db == cur_att.attribute_api) {
-                select_str = `SELECT DISTINCT ${cur_att.attribute_sql}`;
-            }
-            var from_str = `FROM ${search_req.sq_base_rel.br_db}`;
-            var join_str_sql = join_str_list.join(" ");
-            var where_order_str_sql = `WHERE ${cur_att.attribute_sql} IS NOT NULL ORDER BY ${cur_att.attribute_sql}`;
+      var join_str_list = search_req.compute_join_list(
+        search_atts,
+        search_joins,
+        true
+      );
+      if (cur_att.attribute_sql.length == 0) {
+        cur_att.attribute_sql = `${search_req.sq_base_rel.br_db}.${
+          cur_att.attribute_db
+        }`;
+      }
+      var select_str = `SELECT DISTINCT ${cur_att.attribute_sql} AS ${
+        cur_att.attribute_api
+      }`;
+      if (cur_att.attribute_db == cur_att.attribute_api) {
+        select_str = `SELECT DISTINCT ${cur_att.attribute_sql}`;
+      }
+      var from_str = `FROM ${search_req.sq_base_rel.br_db}`;
+      var join_str_sql = join_str_list.join(" ");
+      var where_order_str_sql = `WHERE ${
+        cur_att.attribute_sql
+      } IS NOT NULL ORDER BY ${cur_att.attribute_sql}`;
 
-            search_req.sq_sql = `BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.${cur_att.attribute_api}__distinctmv CASCADE; CREATE MATERIALIZED VIEW public.${cur_att.attribute_api}__distinctmv AS (${select_str} ${from_str} ${join_str_sql} ${where_order_str_sql}) WITH DATA; GRANT SELECT ON TABLE public.${cur_att.attribute_api}__distinctmv TO PUBLIC; COMMIT;`
+      search_req.sq_sql = `BEGIN; DROP MATERIALIZED VIEW IF EXISTS public.${
+        cur_att.attribute_api
+      }__distinctmv CASCADE; CREATE MATERIALIZED VIEW public.${
+        cur_att.attribute_api
+      }__distinctmv AS (${select_str} ${from_str} ${join_str_sql} ${where_order_str_sql}) WITH DATA; GRANT SELECT ON TABLE public.${
+        cur_att.attribute_api
+      }__distinctmv TO PUBLIC; COMMIT;`;
 
-            mv_sql_list.push(search_req.sq_sql);
-        }
+      mv_sql_list.push(search_req.sq_sql);
     }
+  }
 
-    mv_sql_list.forEach((query) => {
-        console.log(query);
-        db.pool.query(query, (err, response) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(response, "response");
-            }
-        });
+  mv_sql_list.forEach(query => {
+    // console.log(query);
+    db.pool.query(query, (err, response) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(response, "response");
+      }
     });
+  });
 }
 
 createMaterializedViews();

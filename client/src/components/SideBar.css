@@ -8,18 +8,18 @@
 }
 
 .bm-burger-bars {
-  background: #7d90b8;
+  background: white;
 }
 
 .bm-cross-button {
   height: 70px;
 }
 .bm-cross {
-  background: #7d90b8;
+  background: white;
 }
 
 .bm-menu {
-  background: white;
+  background: #7d90b8;
   font-size: 1.15em;
 }
 

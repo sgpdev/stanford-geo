@@ -21,7 +21,7 @@ export default class CustomNavBar extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <Menu num={1} href="/sgp-search/">
+            <Menu num={1} href="/sgp-search">
               HOME
             </Menu>
             <Menu num={2} href="/sgp-search/documentation">

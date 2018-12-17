@@ -6,8 +6,7 @@ module.exports = {
   entry: ["babel-polyfill", `./client/src/index.jsx`],
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "./client/dist"),
-    publicPath: 'https://pangea.stanford.edu/sgp-search/'
+    path: path.resolve(__dirname, "./client/dist")
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),

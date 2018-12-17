@@ -232,33 +232,8 @@ class SideBar extends Component {
             <RangeSelect
               constructRange={this.props.constructRange}
               attribute="interpreted_age"
-              title="Interpreted Age:"
+              title="Interpreted Age (Younger-Older):  "
             />
-          </Dropdown>
-          <Dropdown title="Misc">
-            <div id="contact" className="menu-item">
-              Project Name:{" "}
-              <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
-                className="async-multi"
-                constructMulti={this.props.constructMulti}
-                attribute="project_name"
-              />
-            </div>
-            <div id="contact" className="menu-item">
-              Data Source:{" "}
-              <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
-                className="async-multi"
-                constructMulti={this.props.constructMulti}
-                attribute="data_source"
-              />
-            </div>
-          </Dropdown>
-
-          <Dropdown title="Lithology">
             <div id="contact" className="menu-item">
               <ReactTooltip place="right" />
               <text data-tip={toolTips.age_ics_name}>ICS Age: </text>
@@ -270,6 +245,33 @@ class SideBar extends Component {
                 attribute="age_ics_name"
               />
             </div>
+          </Dropdown>
+          <Dropdown title="Project/Data Source">
+            <div id="contact" className="menu-item">
+              <ReactTooltip place="right" />
+              <text data-tip={toolTips.project_name}>Project Name: </text>
+              <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
+                className="async-multi"
+                constructMulti={this.props.constructMulti}
+                attribute="project_name"
+              />
+            </div>
+            <div id="contact" className="menu-item">
+              <ReactTooltip place="right" />
+              <text data-tip={toolTips.data_source}>Data Source: </text>
+              <AsyncMulti
+                user={this.props.user}
+                password={this.props.password}
+                className="async-multi"
+                constructMulti={this.props.constructMulti}
+                attribute="data_source"
+              />
+            </div>
+          </Dropdown>
+
+          <Dropdown title="Lithology">
             <div id="contact" className="menu-item">
               <ReactTooltip place="right" />
               <text data-tip={toolTips.lithology_name}>Lithology Name: </text>
@@ -311,11 +313,14 @@ class SideBar extends Component {
                 password={this.props.password}
                 className="async-multi"
                 constructMulti={this.props.constructMulti}
-                attribute="lithology_texture"
+                attribute="lithology_text"
               />
             </div>
             <div id="contact" className="menu-item">
-              Lithology Composition:{" "}
+              <ReactTooltip place="right" />
+              <text data-tip={toolTips.lithology_comp}>
+                Lithology Composition:{" "}
+              </text>
               <AsyncMulti
                 user={this.props.user}
                 password={this.props.password}
@@ -325,6 +330,8 @@ class SideBar extends Component {
               />
             </div>
           </Dropdown>
+          <div className="filter-menu-item">Show</div>
+
           <Dropdown title="Show">
             <Checkbox changeShow={this.props.changeShow} />
           </Dropdown>
@@ -335,18 +342,12 @@ class SideBar extends Component {
           )} */}
           <br />
 
-          <button className="search-btn" onClick={this.props.postSearch}>
-            Search
-          </button>
-
-          <br />
-
           <CSVLink
             className="export-btn"
             data={this.props.data}
             filename={"Stanford-sgp.csv"}
           >
-            {"Export "}
+            {" Export "}
             <FaFileDownload />
           </CSVLink>
         </Menu>

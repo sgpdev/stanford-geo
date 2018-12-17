@@ -1,13 +1,10 @@
 const { Pool } = require("pg");
-// const express = require("express");
-// const app = express();
-//Check if they are needed or not
 
 const pool = new Pool({
-  user: "sgpserver",
-  host: "se3pgdb.stanford.edu",
-  database: "geochem1",
-  password: "sgpsgp",
+  user: "sufyan",
+  host: "localhost",
+  database: "geochem_test",
+  password: "",
   port: 5432
 });
 

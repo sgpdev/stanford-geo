@@ -31,7 +31,7 @@ class MultiSelect extends Component {
   handleChange(selectedOption) {
     this.setState({ selectedOption });
     this.props.constructMulti(this.props.attribute, selectedOption);
-    console.log(`Option selected:`, selectedOption);
+    
   }
 
   getAttributes(attributes) {
@@ -43,7 +43,7 @@ class MultiSelect extends Component {
           attribute: response.data
         });
 
-        console.log(that.state.attribute);
+      
       })
       .catch(function(error) {
         console.log(error);

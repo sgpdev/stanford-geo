@@ -30,8 +30,6 @@ router.use(function timeLog(req, res, next) {
 // define the home page route
 
 router.post("/post", jsonParser, function(req, res) {
-  console.log(req.body);
-
   // Base Relation Setup
   var req_type = "samples";
   if (default_rels[req.body.type]) {
@@ -61,7 +59,7 @@ router.post("/post", jsonParser, function(req, res) {
         search_req.add_joins(search_atts[att]);
       } else {
         // @TODO Error Case
-        console.log("sufsufsuf");
+
         res
           .status(400)
           .send(
@@ -142,7 +140,7 @@ router.post("/post", jsonParser, function(req, res) {
   }
   // Evaluate the query
   search_req.to_sql_pub_api(search_atts, search_joins);
-  console.log(search_req);
+  // console.log(search_req);
 
   // Run the query
   const sq_query = {
@@ -152,7 +150,6 @@ router.post("/post", jsonParser, function(req, res) {
 });
 
 router.post("/post/attr", jsonParser, function(req, res) {
-  console.log(req.body);
   // Declare request handling variables
   var cur_att = null;
   var cur_search = "";
@@ -206,7 +203,7 @@ router.post("/post/attr", jsonParser, function(req, res) {
     cur_limit
   );
 
-  console.log(search_req);
+  // console.log(search_req);
 
   const sq_query = {
     text: search_req.sq_sql
