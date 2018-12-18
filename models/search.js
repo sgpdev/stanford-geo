@@ -78,7 +78,7 @@ class AttributeValue {
       case "num_arr":
         this.av_value_db = `${this.av_attribute.attribute_sql} BETWEEN ${
           this.av_value_api[0]
-        } AND ${this.av_value_api[1]}`;
+        } AND ${this.av_value_api[1]} AND ${this.av_attribute.attribute_sql} IS NOT NULL`;
         break;
       default: // @TODO Error Case
     }
