@@ -1,7 +1,7 @@
 /* The sidebar menu */
 .sidenav {
   height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 60px; /* Set the width of the sidebar */
+  width: 45px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 45px; /* Stay at the top */
@@ -13,11 +13,24 @@
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 6px 8px 6px 16px;
+  padding: 4px 5px 4px 8px;
   text-decoration: none;
   font-size: 25px;
   color: white;
-  display: block;
+}
+
+.export-btn-closed {
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.api-btn-closed {
+  margin-top: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* When you mouse over the navigation links, change their color */

@@ -1,6 +1,5 @@
 .navbar {
   height: 45px;
-  margin-bottom: 1px;
 }
 nav.navbar,
 .navbar-default {
@@ -21,11 +20,11 @@ nav.navbar,
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #9abee3;
+  color: black;
 }
 
 .navbar-default .navbar-brand {
-  color: #9abee3;
+  color: black;
 }
 
 .navbar-default .navbar-toggle {
@@ -42,8 +41,18 @@ nav.navbar,
 }
 
 .navbar-default .navbar-brand:hover {
-  color: white;
+  text-decoration: underline;
+  text-decoration-color: #9abee3;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:active {
   background-color: #9abee3;
+}
+
+.navbar-default .navbar-brand:active {
+  text-decoration: underline;
+  text-decoration-color: #9abee3;
 }
 
 .navbar-default .navbar-brand {
@@ -51,9 +60,8 @@ nav.navbar,
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-  color: white;
-  background-color: #9abee3;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: #9abee3;
 }
 
 .navbar-nav {

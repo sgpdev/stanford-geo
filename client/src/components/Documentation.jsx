@@ -1,67 +1,76 @@
 import React, { Component } from "react";
 import "./Documentation.css";
 
-import { Alert, Button } from "react-bootstrap";
+export default class Documentation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: false };
 
-export default class Documentation extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleDismiss = this.handleDismiss.bind(this);
-    this.handleShow = this.handleShow.bind(this);
-
-    this.state = {
-      show: true
-    };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
-  handleDismiss() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
+  showModal() {
     this.setState({ show: true });
   }
 
+  hideModal() {
+    this.setState({ show: false });
+  }
+
   render() {
-    if (this.state.show) {
-      return (
-        <Alert bsClass="login" bsStyle="info" onDismiss={this.handleDismiss}>
-          <h4>Please Login!</h4>
-          <p>To access the SGP data please enter the Password</p>
-          {/* <label for="textInput">User:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            size="10"
-            value={this.props.user}
-            onChange={this.props.handleChange}
-          /> */}
-          <label for="textInput">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            size="10"
-            value={this.props.password}
-            onChange={this.props.handlePasswordChange}
-          />
-          <br />
-          <p>
-            <Button
-              onClick={this.props.login}
-              bsStyle="info"
-              bsClass="login-btn"
-            >
-              Login
-            </Button>
-          </p>
-        </Alert>
-      );
-    }
-    // return <Button onClick={this.handleShow}>Show Alert</Button>;
+    return (
+      <main>
+        <Modal show={this.state.show} handleClose={this.hideModal}>
+          <div id="user">
+            <label className="label-header" for="textInput">
+              User:
+            </label>
+            <input
+              className="userInput"
+              type="text"
+              name="name"
+              required
+              size="10"
+              value={this.props.user}
+              onChange={this.props.handleChange}
+            />
+          </div>
+
+          <div id="password">
+            <label className="label-header" for="textInput">
+              Password:
+            </label>
+            <input
+              className="userInput"
+              type="password"
+              name="password"
+              required
+              size="10"
+              value={this.props.password}
+              onChange={this.props.handlePasswordChange}
+            />
+          </div>
+        </Modal>
+        <button type="button" className="login-btn" onClick={this.showModal}>
+          Login
+        </button>
+      </main>
+    );
   }
 }
+
+const Modal = ({ handleClose, show, children }) => {
+  const showHideClassName = show ? "modal display-block" : "modal display-none";
+
+  return (
+    <div className={showHideClassName}>
+      <section className="modal-main">
+        {children}
+        <button className="login-btn" onClick={handleClose}>
+          Login
+        </button>
+      </section>
+    </div>
+  );
+};

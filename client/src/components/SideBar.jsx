@@ -11,6 +11,15 @@ import AsyncMulti from "./AsyncMulti";
 import RangeSelect from "./RangeSelect";
 import Dropdown from "./Dropdown";
 import { push as Menu } from "react-burger-menu";
+import {
+  customElements,
+  iron,
+  carbon,
+  sulfur,
+  metalIsotope,
+  nitrogen,
+  defaultShow
+} from "./attributeShow";
 
 const toolTips = {
   environment_bin:
@@ -332,8 +341,40 @@ class SideBar extends Component {
           </Dropdown>
           <div className="filter-menu-item">Show</div>
 
-          <Dropdown title="Show">
-            <Checkbox changeShow={this.props.changeShow} />
+          <Dropdown title="Iron">
+            <Checkbox changeShow={this.props.changeShow} attributes={iron} />
+          </Dropdown>
+          <Dropdown title="Carbon">
+            <Checkbox changeShow={this.props.changeShow} attributes={carbon} />
+          </Dropdown>
+          <Dropdown title="Sulfur">
+            <Checkbox changeShow={this.props.changeShow} attributes={sulfur} />
+          </Dropdown>
+          <Dropdown title="Nitrogen">
+            <Checkbox
+              changeShow={this.props.changeShow}
+              attributes={nitrogen}
+            />
+          </Dropdown>
+          <Dropdown title="Metal Isotopes">
+            <Checkbox
+              changeShow={this.props.changeShow}
+              attributes={metalIsotope}
+            />
+          </Dropdown>
+
+          <Dropdown title="Elemental State">
+            <Checkbox
+              changeShow={this.props.changeShow}
+              attributes={customElements}
+            />
+          </Dropdown>
+
+          <Dropdown title="Samples Context">
+            <Checkbox
+              changeShow={this.props.changeShow}
+              attributes={defaultShow}
+            />
           </Dropdown>
           {/* {this.props.query.type !== "analyses" && (
             <Dropdown title="Analytes">
@@ -342,14 +383,14 @@ class SideBar extends Component {
           )} */}
           <br />
 
-          <CSVLink
+          {/* <CSVLink
             className="export-btn"
             data={this.props.data}
             filename={"Stanford-sgp.csv"}
           >
             {" Export "}
             <FaFileDownload />
-          </CSVLink>
+          </CSVLink> */}
         </Menu>
       </div>
     );

@@ -1,10 +1,13 @@
 .bm-burger-button {
   z-index: 1000;
-  position: relative;
-  width: 18px;
+  position: fixed;
+  width: 20px;
   height: 15px;
   left: 14px;
-  top: 50px;
+  top: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bm-burger-bars {
@@ -19,13 +22,13 @@
 }
 
 .bm-menu {
-  background: #7d90b8;
-  font-size: 1.15em;
+  background: white;
+  font-size: 1.075em;
 }
 
-.bm-menu-wrap {
+/* .bm-menu-wrap {
   margin-top: 45px;
-}
+} */
 
 .bm-morph-shape {
   fill: RGB(80, 84, 95);
@@ -44,7 +47,7 @@
 
 /* Sidebar Menu */
 .filter-menu-item {
-  font-size: 1.1em;
+  font-size: 1.3em;
   font-weight: bold;
   color: #4f535e;
 }

@@ -3,7 +3,6 @@ import axios from "axios";
 import "./App.css";
 import Table from "./Table";
 import SideBar from "./SideBar";
-import ReactTooltip from "react-tooltip";
 import Documentation from "./Documentation";
 import SidePanel from "./SidePanel";
 import "./Search.css";
@@ -77,13 +76,11 @@ class Search extends Component {
       let fiery = this.state.query.show;
       fiery = fiery.splice(showIndex, 1);
       this.setState({ fiery });
-      console.log(this.state.query.show, "pushing");
     } else {
       let query = this.state.query;
 
       query.show.push(value);
       this.setState({ query });
-      console.log(this.state.query.show, "pushing");
     }
     this.postSearch();
   }
@@ -104,24 +101,19 @@ class Search extends Component {
         data: [{}]
       });
     }
-
-    console.log(this.state.query);
   }
 
   constructRange(min, max, attribute) {
-    console.log(typeof min, typeof max, "checking if zero");
     let query = this.state.query;
     if (min === 0 && max === 0) {
       delete query.filters[attribute];
     } else {
       query.filters[attribute] = [Number(min), Number(max)];
       this.postSearch();
-      console.log(this.state.query);
     }
   }
 
   postSearch() {
-    console.log("before sending", this.state.query);
     var that = this;
     axios
       .post("sgp-search/api/post", this.state.query, {
@@ -132,7 +124,6 @@ class Search extends Component {
         }
       })
       .then(function(response) {
-        console.log(response.data);
         that.setState({
           data: response.data
         });
@@ -144,7 +135,6 @@ class Search extends Component {
   }
 
   login() {
-    console.log("before sending", this.state.user, this.state.password);
     var that = this;
     axios
       .get("sgp-search/api/get", {
@@ -172,7 +162,10 @@ class Search extends Component {
   render() {
     return (
       <div id="outer-container">
-        <SidePanel />
+        <SidePanel
+          data={this.state.data}
+          query={`${JSON.stringify(this.state.query)}`}
+        />
         <SideBar
           query={this.state.query}
           changeType={this.changeType}

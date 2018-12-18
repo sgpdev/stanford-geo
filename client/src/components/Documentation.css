@@ -4,7 +4,86 @@
   margin: 3px;
 }
 
-.login-btn {
+/* .login-btn {
   color: #7d90b8;
   border-radius: 5px;
+} */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.login-btn {
+  background: linear-gradient(to right, #9cc2e6 2%, #8a9bbf 100%);
+  border: none;
+  width: 12%;
+  color: white;
+  border-radius: 6px;
+}
+.label-header {
+  display: block;
+  color: white;
+}
+.userInput {
+  border-radius: 6px;
+}
+
+#user {
+  display: block;
+  margin: 5px;
+}
+
+#password {
+  display: block;
+  margin: 5px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: #9cc2e6;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
 }
