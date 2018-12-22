@@ -13,12 +13,14 @@ app.use(express.static("public/"));
 app.use(express.static("client/dist"));
 
 app.use(
+  "/sgp-search/api",
   basicAuth({
     users: {
       frontend: "Ogilvie1"
     }
   })
 );
-app.use("/sgp-search/api", routes);
+
+app.use("/sgp-search", routes);
 
 module.exports = app;

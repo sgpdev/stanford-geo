@@ -4,7 +4,7 @@ import { CSVLink } from "react-csv";
 import ReactTooltip from "react-tooltip";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-import "./SidePanel.css";
+import "./../styles/SidePanel.css";
 
 class SidePanel extends Component {
   constructor(props) {
@@ -15,17 +15,18 @@ class SidePanel extends Component {
   }
 
   render() {
+    const { query, data } = this.props;
     return (
       <div>
         <div className="sidenav">
           <a className="api-btn-closed" onClick={this.copyToClipboard}>
             <CopyToClipboard
-              text={this.props.query}
+              text={query}
               onCopy={() => this.setState({ copied: true })}
             >
               <span>
                 <img
-                  data-tip={this.props.query}
+                  data-tip={query}
                   src={require("./../images/api-logo.png")}
                 />
                 <ReactTooltip place="right" />
@@ -34,7 +35,7 @@ class SidePanel extends Component {
           </a>
           <CSVLink
             className="export-btn-closed"
-            data={this.props.data}
+            data={data}
             filename={"Stanford-sgp.csv"}
           >
             <FaFileDownload />

@@ -1,6 +1,5 @@
 "use strict";
 const express = require("express");
-const db = require("../models/index");
 const ctrl = require("./../controllers");
 const router = express.Router();
 var bodyParser = require("body-parser");
@@ -213,6 +212,18 @@ router.post("/post/attr", jsonParser, function(req, res) {
 
 router.get("/get", jsonParser, function(req, res) {
   res.status(201).send(`login succeeded`);
+});
+
+router.get("/get/info/samples", jsonParser, function(req, res) {
+  ctrl.example.samples(req, res);
+});
+
+router.get("/get/info/results", jsonParser, function(req, res) {
+  ctrl.example.results(req, res);
+});
+
+router.get("/get/info/countries", jsonParser, function(req, res) {
+  ctrl.example.countries(req, res);
 });
 
 // export our router to be mounted by the parent application

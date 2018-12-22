@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./SideBar.css";
+import "./../styles/SideBar.css";
 import Radiobox from "./Radiobox";
 import MultiSelect from "./MultiSelect";
 import ReactTooltip from "react-tooltip";
@@ -20,31 +20,7 @@ import {
   nitrogen,
   defaultShow
 } from "./attributeShow";
-
-const toolTips = {
-  environment_bin:
-    "Environments are divided into five bins - inner shelf/outer shelf/basinal/lacustrine/fluvial  - according to the following criteria (1-3 from Sperling et al. 2015).",
-  section_name:
-    "This could be a drillcore, stratigraphic section, or spot-sampling locality. In some rare instances where complete information could be not obtained, a best-guess sampling locality was created (for instance, the geographic center of New York state if the only geographical information was 'New York State'). More information can be found under 'geological context notes'",
-  craton_terrane:
-    "The name of the craton or terrane e.g. Laurentia, Avalonia. As entered by SGP collaborative team members",
-  basin_name:
-    "The name of the sedimentary basin e.g. Taconic Foreland Basin. As entered by SGP collaborative team members",
-  basin_type: "The type of basin e.g. peripheral foreland, rift, etc.",
-  metamorphic_bin:
-    "Sites are sorted into three low-grade metamorphic bins, roughly based on metapelite zones as follows:      1) Diagenetic zone. Under mature, preserved biomarkers, KI>0.42, CAI ≤3, Ro <2.0, facies: zeolite-subgreenschist facies, grade: diagenesis-very low grade      2) Anchizone. Over-mature, no preserved biomarkers, CAI=4, Ro 2-4, facies: sub-greenschist, grade: very low grade     3) Epizone. Ro>4, CAI=5, KI<0.25, facies: greenschist, grade: low-grade ",
-  age_ics_name: "International Commission on Stratigraphy age names",
-  lithology_name: "The primary sediment type of the sample",
-  lithology_text: "Textural modifiers (siltey, muddy, sandy, clayey)",
-  lithology_comp:
-    "Compositional modifiers (e.g., phosphatic, calcareous, dolomitic, etc.)",
-  interpreted_age:
-    "A numerical estimate for the age of the sample in millions of years",
-  project_name:
-    "SGP data are organized as 'Projects.' In most cases, these represent the data contained in a published paper. However, in some cases they may represent groupings of papers, data from a particular region, or samples run by a particular person or lab.",
-  data_source:
-    "Data in the SGP database come from three main data sources: 1) information provided by the SGP collaborative team, 2) legacy USGS data from the National Geochemical Database, 3) data compiled by the USGS Critical Metals In Black Shales project (CMIBS)"
-};
+import toolTips from "./toolTips";
 
 var btoa = require("btoa");
 
@@ -54,24 +30,30 @@ class SideBar extends Component {
   }
 
   render() {
+    const {
+      query,
+      changeType,
+      user,
+      password,
+      constructMulti,
+      constructRange,
+      changeShow
+    } = this.props;
     return (
       <div id="side-bar">
         <Menu pageWrapId={"page-wrap"} width={"33%"}>
           <div id="type" className="menu-item">
             <div className="filter-menu-item">Type</div>
-            <Radiobox
-              type={this.props.query.type}
-              changeType={this.props.changeType}
-            />
+            <Radiobox type={query.type} changeType={changeType} />
           </div>
           <div className="filter-menu-item">Filters</div>
           <div id="contact" className="menu-item">
             Original Name:{" "}
             <AsyncMulti
-              user={this.props.user}
-              password={this.props.password}
+              user={user}
+              password={password}
               className="async-multi"
-              constructMulti={this.props.constructMulti}
+              constructMulti={constructMulti}
               attribute="original_name"
             />
           </div>
@@ -80,30 +62,30 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Country:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="country"
               />
             </div>
             <div id="contact" className="menu-item">
               State/Province:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="state_province"
               />
             </div>
             <div id="contact" className="menu-item">
               Site Type:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="site_type"
               />
             </div>
@@ -111,10 +93,10 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.section_name}>Section Name: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="section_name"
               />
             </div>
@@ -123,10 +105,10 @@ class SideBar extends Component {
               <text data-tip={toolTips.craton_terrane}>Craton/Terrane: </text>
 
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="craton_terrane"
               />
             </div>
@@ -134,10 +116,10 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.basin_name}>Basin Name: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="basin_name"
               />
             </div>
@@ -145,10 +127,10 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.basin_type}>Basin Type: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="basin_type"
               />
             </div>
@@ -158,10 +140,10 @@ class SideBar extends Component {
                 Metamorphic Name:{" "}
               </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="meta_bin"
               />
             </div>
@@ -171,42 +153,42 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Collector's First Name:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="collector_first"
               />
             </div>
             <div id="contact" className="menu-item">
               Collector's Lat Name:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="collector_last"
               />
             </div>
-            {this.props.query.type === "analyses" && (
+            {query.type === "analyses" && (
               <div>
                 <div id="contact" className="menu-item">
                   Run By Last Name:{" "}
                   <AsyncMulti
-                    user={this.props.user}
-                    password={this.props.password}
+                    user={user}
+                    password={password}
                     className="async-multi"
-                    constructMulti={this.props.constructMulti}
+                    constructMulti={constructMulti}
                     attribute="run_by_last"
                   />
                 </div>
                 <div id="contact" className="menu-item">
                   Lab Provider:{" "}
                   <AsyncMulti
-                    user={this.props.user}
-                    password={this.props.password}
+                    user={user}
+                    password={password}
                     className="async-multi"
-                    constructMulti={this.props.constructMulti}
+                    constructMulti={constructMulti}
                     attribute="provider_lab"
                   />
                 </div>
@@ -217,10 +199,10 @@ class SideBar extends Component {
             <div id="contact" className="menu-item">
               Long Stratigraphy Name:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="strat_name_long"
               />
             </div>
@@ -231,15 +213,15 @@ class SideBar extends Component {
               </text>
 
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="environment_bin"
               />
             </div>
             <RangeSelect
-              constructRange={this.props.constructRange}
+              constructRange={constructRange}
               attribute="interpreted_age"
               title="Interpreted Age (Younger-Older):  "
             />
@@ -247,10 +229,10 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.age_ics_name}>ICS Age: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="age_ics_name"
               />
             </div>
@@ -260,10 +242,10 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.project_name}>Project Name: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="project_name"
               />
             </div>
@@ -271,10 +253,10 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.data_source}>Data Source: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="data_source"
               />
             </div>
@@ -285,30 +267,30 @@ class SideBar extends Component {
               <ReactTooltip place="right" />
               <text data-tip={toolTips.lithology_name}>Lithology Name: </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="lithology_name"
               />
             </div>
             <div id="contact" className="menu-item">
               Lithology Type:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="lithology_type"
               />
             </div>
             <div id="contact" className="menu-item">
               Lithology Class:{" "}
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="lithology_class"
               />
             </div>
@@ -318,10 +300,10 @@ class SideBar extends Component {
                 Lithology Texture:{" "}
               </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="lithology_text"
               />
             </div>
@@ -331,10 +313,10 @@ class SideBar extends Component {
                 Lithology Composition:{" "}
               </text>
               <AsyncMulti
-                user={this.props.user}
-                password={this.props.password}
+                user={user}
+                password={password}
                 className="async-multi"
-                constructMulti={this.props.constructMulti}
+                constructMulti={constructMulti}
                 attribute="lithology_comp"
               />
             </div>
@@ -342,55 +324,30 @@ class SideBar extends Component {
           <div className="filter-menu-item">Show</div>
 
           <Dropdown title="Iron">
-            <Checkbox changeShow={this.props.changeShow} attributes={iron} />
+            <Checkbox changeShow={changeShow} attributes={iron} />
           </Dropdown>
           <Dropdown title="Carbon">
-            <Checkbox changeShow={this.props.changeShow} attributes={carbon} />
+            <Checkbox changeShow={changeShow} attributes={carbon} />
           </Dropdown>
           <Dropdown title="Sulfur">
-            <Checkbox changeShow={this.props.changeShow} attributes={sulfur} />
+            <Checkbox changeShow={changeShow} attributes={sulfur} />
           </Dropdown>
           <Dropdown title="Nitrogen">
-            <Checkbox
-              changeShow={this.props.changeShow}
-              attributes={nitrogen}
-            />
+            <Checkbox changeShow={changeShow} attributes={nitrogen} />
           </Dropdown>
           <Dropdown title="Metal Isotopes">
-            <Checkbox
-              changeShow={this.props.changeShow}
-              attributes={metalIsotope}
-            />
+            <Checkbox changeShow={changeShow} attributes={metalIsotope} />
           </Dropdown>
 
           <Dropdown title="Elemental State">
-            <Checkbox
-              changeShow={this.props.changeShow}
-              attributes={customElements}
-            />
+            <Checkbox changeShow={changeShow} attributes={customElements} />
           </Dropdown>
 
           <Dropdown title="Samples Context">
-            <Checkbox
-              changeShow={this.props.changeShow}
-              attributes={defaultShow}
-            />
+            <Checkbox changeShow={changeShow} attributes={defaultShow} />
           </Dropdown>
-          {/* {this.props.query.type !== "analyses" && (
-            <Dropdown title="Analytes">
-              <Checkbox changeShow={this.props.changeShow} />
-            </Dropdown>
-          )} */}
-          <br />
 
-          {/* <CSVLink
-            className="export-btn"
-            data={this.props.data}
-            filename={"Stanford-sgp.csv"}
-          >
-            {" Export "}
-            <FaFileDownload />
-          </CSVLink> */}
+          <br />
         </Menu>
       </div>
     );

@@ -1,76 +1,84 @@
 import React, { Component } from "react";
-import { Button, Popover, Modal, Tooltip } from "react-bootstrap";
-import "./About.css";
+import "./../styles/LoginModal.css";
 
 export default class LoginModal extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
+    this.state = { show: false };
 
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
-    this.state = {
-      show: false
-    };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
+  showModal() {
     this.setState({ show: true });
   }
 
+  hideModal() {
+    this.props.login();
+  }
+
   render() {
+    const { show } = this.state;
+
+    const { user, handleChange, password, handlePasswordChange } = this.props;
+
     return (
-      <div>
-        <p>Login to access the Data Set!</p>
-
-        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-          Login!
-        </Button>
-
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Login Page</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Please Login!</h4>
-            <p>To access the SGP data please enter the Password</p>
-            <label for="textInput">User:</label>
+      <main>
+        <Modal show={show} handleClose={this.hideModal}>
+          <img
+            src={require("./../images/sgp_logo.png")}
+            className="img-modal"
+          />
+          <div id="user">
+            <label className="label-header" for="textInput">
+              User
+            </label>
             <input
+              className="userInput"
               type="text"
-              id="name"
               name="name"
               required
               size="10"
-              value={this.props.user}
-              onChange={this.props.handleChange}
+              value={user}
+              onChange={handleChange}
             />
-            <label for="textInput">Password:</label>
+          </div>
+
+          <div id="password">
+            <label className="label-header" for="textInput">
+              Password
+            </label>
             <input
+              className="userInput"
               type="password"
-              id="password"
               name="password"
               required
               size="10"
-              value={this.props.password}
-              onChange={this.props.handlePasswordChange}
+              value={password}
+              onChange={handlePasswordChange}
             />
-            <br />
-            <h4>Text in a modal</h4>
-            <p>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
-
-            <hr />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer>
+          </div>
         </Modal>
-      </div>
+        <button type="button" className="login-btn" onClick={this.showModal}>
+          Login
+        </button>
+      </main>
     );
   }
 }
+
+const Modal = ({ handleClose, show, children }) => {
+  const showHideClassName = show ? "modal display-block" : "modal display-none";
+
+  return (
+    <div className={showHideClassName}>
+      <section className="modal-main">
+        {children}
+        <button className="login-btn-modal" onClick={handleClose}>
+          Login
+        </button>
+      </section>
+    </div>
+  );
+};

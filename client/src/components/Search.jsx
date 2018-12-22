@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./App.css";
+import About from "./About";
 import Table from "./Table";
 import SideBar from "./SideBar";
-import Documentation from "./Documentation";
 import SidePanel from "./SidePanel";
-import "./Search.css";
+import "./../styles/Search.css";
 
 var btoa = require("btoa");
 
@@ -160,44 +159,43 @@ class Search extends Component {
   }
 
   render() {
+    const { user, password, login, data, query, column } = this.state;
     return (
-      <div id="outer-container">
-        <SidePanel
-          data={this.state.data}
-          query={`${JSON.stringify(this.state.query)}`}
-        />
-        <SideBar
-          query={this.state.query}
-          changeType={this.changeType}
-          constructMulti={this.constructMulti}
-          constructRange={this.constructRange}
-          changeShow={this.changeShow}
-          user={this.state.user}
-          password={this.state.password}
-          data={this.state.data}
-          postSearch={this.postSearch}
-        />
-
-        <div id="page-wrap">
-          {this.state.login !== "login succeeded" && (
-            <Documentation
-              handleChange={this.handleChange}
-              handlePasswordChange={this.handlePasswordChange}
-              login={this.login}
-              user={this.state.user}
-              password={this.state.password}
-            />
-          )}
-
-          <Table
-            column={this.state.column}
-            data={this.state.data}
-            columnConstructor={this.columnConstructor}
+      <div>
+        {login !== "login succeeded" && (
+          <About
+            handleChange={this.handleChange}
+            handlePasswordChange={this.handlePasswordChange}
+            login={this.login}
+            user={user}
+            password={password}
           />
-          <br />
-          {/* {`${JSON.stringify(this.state.query)}`}
-          <br /> */}
-        </div>
+        )}
+
+        {login === "login succeeded" && (
+          <div id="outer-container">
+            <SidePanel data={data} query={`${JSON.stringify(query)}`} />
+            <SideBar
+              query={query}
+              changeType={this.changeType}
+              constructMulti={this.constructMulti}
+              constructRange={this.constructRange}
+              changeShow={this.changeShow}
+              user={user}
+              password={password}
+              data={data}
+              postSearch={this.postSearch}
+            />
+
+            <div id="page-wrap">
+              <Table
+                column={column}
+                data={data}
+                columnConstructor={this.columnConstructor}
+              />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

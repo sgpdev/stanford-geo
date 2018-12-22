@@ -22,7 +22,7 @@
 .login-btn {
   background: linear-gradient(to right, #9cc2e6 2%, #8a9bbf 100%);
   border: none;
-  width: 12%;
+  width: 100%;
   color: white;
   border-radius: 6px;
 }

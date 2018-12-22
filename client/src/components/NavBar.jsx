@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
-import "./NavBar.css";
+import "./../styles/NavBar.css";
 
 export default class CustomNavBar extends Component {
   render() {

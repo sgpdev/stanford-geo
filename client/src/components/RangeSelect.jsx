@@ -33,12 +33,15 @@ export default class RangeSelect extends Component {
   }
 
   render() {
+    const { min, max } = this.state;
+    const { title } = this.props;
+
     return (
       <div>
-        {this.props.title}
+        {title}
         <input
           onChange={this.handleMinChange}
-          value={this.state.min}
+          value={min}
           type="number"
           style={{
             width: "50px",
@@ -49,7 +52,7 @@ export default class RangeSelect extends Component {
         {" - "}
         <input
           onChange={this.handleMaxChange}
-          value={this.state.max}
+          value={max}
           type="number"
           style={{
             width: "50px",

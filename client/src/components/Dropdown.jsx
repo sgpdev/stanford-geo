@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
-import "./Dropdown.css";
+import "./../styles/Dropdown.css";
 
 export default class Dropdown extends Component {
   constructor(props) {
@@ -22,7 +22,6 @@ export default class Dropdown extends Component {
     }));
   }
   render(props) {
-    const { list } = this.props;
     const { listOpen, headerTitle } = this.state;
     return (
       <div className="dd-wrapper">

@@ -59,11 +59,12 @@ export default class AsyncMulti extends Component {
   }
 
   render() {
+    const { selectedOption } = this.state;
     return (
       <AsyncSelect
         // This is the example that the list was cleared (FIXED)
         defaultOptions
-        value={this.state.selectedOption}
+        value={selectedOption}
         loadOptions={this.getOptions}
         onChange={this.handleChange}
         closeMenuOnSelect={false}

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
 import NavBar from "./NavBar";
 import Search from "./Search";
 import About from "./About";
 import Documentation from "./Documentation";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
+import "./../styles/App.css";
 
 class App extends Component {
   constructor(props) {
