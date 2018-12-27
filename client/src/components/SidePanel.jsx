@@ -19,24 +19,26 @@ class SidePanel extends Component {
     return (
       <div>
         <div className="sidenav">
-          <a className="api-btn-closed" onClick={this.copyToClipboard}>
+          <a
+            className="api-btn-closed"
+            data-tip={query}
+            onClick={this.copyToClipboard}
+          >
             <CopyToClipboard
               text={query}
               onCopy={() => this.setState({ copied: true })}
             >
               <span>
-                <img
-                  data-tip={query}
-                  src={require("./../images/api-logo.png")}
-                />
-                <ReactTooltip place="right" />
+                <img src={require("./../images/api-logo.png")} />
               </span>
             </CopyToClipboard>
           </a>
+          <ReactTooltip place="right" />
           <CSVLink
             className="export-btn-closed"
             data={data}
             filename={"Stanford-sgp.csv"}
+            target="_self"
           >
             <FaFileDownload />
           </CSVLink>

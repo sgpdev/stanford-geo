@@ -32,6 +32,7 @@
   justify-content: center;
 }
 
+/* the sgp info overlayer (i.e results,samples,countries) */
 #c1,
 #c3 {
   padding-top: 20px;
@@ -57,7 +58,7 @@
 
 #wrapper {
   width: 100%;
-  margin-top: 134px;
+  margin-top: 112px;
 }
 
 #wrapper:after {

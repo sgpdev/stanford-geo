@@ -4,9 +4,7 @@ import "./../styles/SideBar.css";
 import Radiobox from "./Radiobox";
 import MultiSelect from "./MultiSelect";
 import ReactTooltip from "react-tooltip";
-import { FaFileDownload } from "react-icons/fa";
 import Checkbox from "./Checkbox";
-import { CSVLink } from "react-csv";
 import AsyncMulti from "./AsyncMulti";
 import RangeSelect from "./RangeSelect";
 import Dropdown from "./Dropdown";
@@ -47,7 +45,7 @@ class SideBar extends Component {
             <Radiobox type={query.type} changeType={changeType} />
           </div>
           <div className="filter-menu-item">Filters</div>
-          <div id="contact" className="menu-item">
+          <div id="contact" className="menu-item original-name">
             Original Name:{" "}
             <AsyncMulti
               user={user}

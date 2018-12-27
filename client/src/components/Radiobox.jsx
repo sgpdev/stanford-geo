@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
 import "./../styles/Radiobox.css";
 
 export default class Radiobox extends Component {

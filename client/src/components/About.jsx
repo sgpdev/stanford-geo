@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Jumbotron, Button, Row, Col, code } from "react-bootstrap";
+import { Jumbotron } from "react-bootstrap";
 import "./../styles/About.css";
 import LoginModal from "./LoginModal";
 
@@ -29,7 +29,6 @@ class About extends Component {
         that.setState({
           samples: response.data[0].count
         });
-        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -45,7 +44,6 @@ class About extends Component {
         that.setState({
           results: response.data[0].count
         });
-        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -61,7 +59,6 @@ class About extends Component {
         that.setState({
           countries: response.data[0].count
         });
-        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -103,7 +100,7 @@ class About extends Component {
             on Phase 1 Working Group manuscripts. Upon publication of these
             manuscripts the search site will be publicly available.
           </p>
-          <p className="login-container">
+          <span className="login-container">
             <LoginModal
               handleChange={handleChange}
               handlePasswordChange={handlePasswordChange}
@@ -111,7 +108,7 @@ class About extends Component {
               user={user}
               password={password}
             />
-          </p>
+          </span>
           <div id="wrapper">
             <div id="c1">
               <h1>{this.state.countries}</h1>

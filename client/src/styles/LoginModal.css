@@ -8,7 +8,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
@@ -42,32 +41,44 @@
 
 .login-btn-modal {
   background: #8a9bbf;
+  margin: 7px;
   border: none;
   width: 12%;
   color: white;
   border-radius: 6px;
 }
+
+.login-btn-modal:hover {
+  color: rgba(156, 194, 230, 0.67);
+}
 .label-header {
   display: block;
   color: white;
 }
+
 .userInput {
   border: 1px solid #9cc2e6;
-  background-color: #8a9bbf;
+  background-color: white;
   border-radius: 7px;
   width: 30%;
-  color: white;
+}
+
+label {
+  margin-bottom: 0.25rem;
 }
 
 .img-modal {
-  width: 250px;
-  margin: 0 auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
 #user {
   font-weight: bold;
   display: block;
   margin: auto;
+  padding-left: 4px;
   width: 100%;
 }
 
@@ -75,5 +86,6 @@
   font-weight: bold;
   display: block;
   margin: auto;
+  padding-left: 4px;
   width: 100%;
 }

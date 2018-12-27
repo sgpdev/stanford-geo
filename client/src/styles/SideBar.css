@@ -18,7 +18,7 @@
   height: 70px;
 }
 .bm-cross {
-  background: white;
+  background: #7d90b8;
 }
 
 .bm-menu {
@@ -47,6 +47,7 @@
 
 /* Sidebar Menu */
 .filter-menu-item {
+  margin-left: 2px;
   font-size: 1.3em;
   font-weight: bold;
   color: #4f535e;
@@ -75,4 +76,8 @@
   color: white;
   background-color: rgba(80, 84, 95, 0.35);
   border-radius: 7px;
+}
+
+.menu-item {
+  margin-left: 4px;
 }

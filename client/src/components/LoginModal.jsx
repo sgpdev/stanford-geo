@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./../styles/LoginModal.css";
+import { FaUser, FaLock } from "react-icons/fa";
 
 export default class LoginModal extends Component {
   constructor(props) {
@@ -34,7 +35,9 @@ export default class LoginModal extends Component {
             <label className="label-header" for="textInput">
               User
             </label>
+            <FaUser color="white" />
             <input
+              placeholder="User"
               className="userInput"
               type="text"
               name="name"
@@ -49,7 +52,9 @@ export default class LoginModal extends Component {
             <label className="label-header" for="textInput">
               Password
             </label>
+            <FaLock color="white" />
             <input
+              placeholder="Password"
               className="userInput"
               type="password"
               name="password"

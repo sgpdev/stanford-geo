@@ -211,6 +211,7 @@ router.post("/post/attr", jsonParser, function(req, res) {
 });
 
 router.get("/get", jsonParser, function(req, res) {
+  console.log("not reaching");
   res.status(201).send(`login succeeded`);
 });
 
