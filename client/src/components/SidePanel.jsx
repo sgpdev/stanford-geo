@@ -22,6 +22,7 @@ class SidePanel extends Component {
           <a
             className="api-btn-closed"
             data-tip={query}
+            data-for="api-button"
             onClick={this.copyToClipboard}
           >
             <CopyToClipboard
@@ -33,7 +34,7 @@ class SidePanel extends Component {
               </span>
             </CopyToClipboard>
           </a>
-          <ReactTooltip place="right" />
+          <ReactTooltip place="right" id="api-button" />
           <CSVLink
             className="export-btn-closed"
             data={data}

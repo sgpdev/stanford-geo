@@ -147,7 +147,6 @@ class Search extends Component {
         that.setState({
           login: response.data
         });
-        console.log(response);
       })
       .catch(function(error) {
         console.log(error);

@@ -18,7 +18,8 @@ app.use(
     users: {
       frontend: "Ogilvie1"
     }
-  })
+  }),
+  routes
 );
 
 app.use("/sgp-search", routes);

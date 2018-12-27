@@ -202,8 +202,6 @@ router.post("/post/attr", jsonParser, function(req, res) {
     cur_limit
   );
 
-  // console.log(search_req);
-
   const sq_query = {
     text: search_req.sq_sql
   };
@@ -211,7 +209,6 @@ router.post("/post/attr", jsonParser, function(req, res) {
 });
 
 router.get("/get", jsonParser, function(req, res) {
-  console.log("not reaching");
   res.status(201).send(`login succeeded`);
 });
 
