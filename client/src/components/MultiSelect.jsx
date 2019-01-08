@@ -31,19 +31,16 @@ class MultiSelect extends Component {
   handleChange(selectedOption) {
     this.setState({ selectedOption });
     this.props.constructMulti(this.props.attribute, selectedOption);
-    
   }
 
   getAttributes(attributes) {
     var that = this;
     axios
-      .post("/api/post/attr", that.state.dynamic)
+      .post("api/post/attr", that.state.dynamic)
       .then(function(response) {
         that.setState({
           attribute: response.data
         });
-
-      
       })
       .catch(function(error) {
         console.log(error);

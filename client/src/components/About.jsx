@@ -24,7 +24,7 @@ class About extends Component {
     const that = this;
 
     axios
-      .get("sgp-search/get/info/samples")
+      .get("get/info/samples")
       .then(function(response) {
         that.setState({
           samples: response.data[0].count
@@ -39,7 +39,7 @@ class About extends Component {
     const that = this;
 
     axios
-      .get("sgp-search/get/info/results")
+      .get("get/info/results")
       .then(function(response) {
         that.setState({
           results: response.data[0].count
@@ -54,7 +54,7 @@ class About extends Component {
     const that = this;
 
     axios
-      .get("sgp-search/get/info/countries")
+      .get("get/info/countries")
       .then(function(response) {
         that.setState({
           countries: response.data[0].count

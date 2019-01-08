@@ -49,6 +49,7 @@
 }
 
 .login-btn-modal:hover {
+  background-color: White;
   color: rgba(156, 194, 230, 0.67);
 }
 .label-header {

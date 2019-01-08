@@ -115,7 +115,7 @@ class Search extends Component {
   postSearch() {
     var that = this;
     axios
-      .post("sgp-search/api/post", this.state.query, {
+      .post("api/post", this.state.query, {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -136,7 +136,7 @@ class Search extends Component {
   login() {
     var that = this;
     axios
-      .get("sgp-search/api/get", {
+      .get("api/get", {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
