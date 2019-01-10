@@ -8,7 +8,7 @@ export default class CustomNavBar extends Component {
   render() {
     return (
       <div className="sticky-nav">
-        <Navbar default collapseOnSelect>
+        <Navbar default collapseOnSelect staticTop="true">
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">
@@ -21,13 +21,13 @@ export default class CustomNavBar extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <Menu num={1} href="/sgp-search">
+            <Menu num={1} href="/">
               HOME
             </Menu>
-            <Menu num={2} href="/sgp-search/documentation">
+            <Menu num={2} href="/documentation">
               DOCUMENTATION
             </Menu>
-            <Menu num={3} href="/sgp-search/about">
+            <Menu num={3} href="/about">
               ABOUT
             </Menu>
           </Nav>

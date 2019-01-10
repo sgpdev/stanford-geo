@@ -1,0 +1,46 @@
+/* .section3 {
+  display: inline-flex;
+  height: 200px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section3-right {
+  box-sizing: border-box;
+  width: 20%;
+  background-color: #fe3562;
+  color: white;
+}
+
+.section3-left {
+  background-image: url("https://static1.squarespace.com/static/589e0b7346c3c44d745653e1/t/58b886e703596ed6a2c60679/1488488176463/");
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  width: 80%;
+  background-color: black;
+}
+
+.section3-txt {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 55px;
+  text-align: center;
+  margin: 5%;
+} */
+
+.outer-doc {
+  padding-top: 35px;
+  margin: 50px;
+}
+
+.main-title-doc {
+  text-align: center;
+  color: #9cc2e6;
+  border: 3px solid #9cc2e6;
+}
+
+.title-doc {
+  color: #9cc2e6;
+  text-decoration: underline;
+}

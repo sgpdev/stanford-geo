@@ -1,68 +1,23 @@
-.jumbotron {
-  height: 600px;
-  width: 100%;
-  object-fit: contain;
-  background-image: url("./../images/jumbo.jpg");
-  padding: 0px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.about {
+  margin: 25px;
 }
 
-.text {
-  color: white;
+.thumbnail {
+  border: solid 2px grey;
+}
+
+.mission {
   text-align: center;
-  padding: 16px;
+  color: #808080;
 }
 
-.header {
-  padding-top: 150px;
+.mission-title {
+  color: #9cc2e6;
+  padding-bottom: 10px;
+  text-decoration: underline #9cc2e6;
 }
 
-.login-btn {
-  background: linear-gradient(to right, #9cc2e6 2%, #8a9bbf 100%);
-  border: none;
-  width: 100%;
-  color: white;
-  border-radius: 6px;
-}
-
-.login-container {
-  display: flex;
-  justify-content: center;
-}
-
-/* the sgp info overlayer (i.e results,samples,countries) */
-#c1,
-#c3 {
-  padding-top: 20px;
-  float: left;
-  color: white;
-  width: 33%;
-  border: rgba(156, 194, 230, 0.95) 0.5px solid;
-  background-color: rgba(156, 194, 230, 0.67);
-  text-align: center;
-  height: 131px;
-}
-
-#c2 {
-  padding-top: 20px;
-  float: left;
-  color: white;
-  width: 34%;
-  border: rgba(156, 194, 230, 0.95) 0.5px solid;
-  background-color: rgba(156, 194, 230, 0.67);
-  text-align: center;
-  height: 131px;
-}
-
-#wrapper {
-  width: 100%;
-  margin-top: 112px;
-}
-
-#wrapper:after {
-  content: "";
-  display: table;
-  clear: both;
+.title-doc {
+  color: #9cc2e6;
+  text-decoration: underline;
 }

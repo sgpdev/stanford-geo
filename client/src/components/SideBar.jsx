@@ -8,6 +8,7 @@ import Checkbox from "./Checkbox";
 import AsyncMulti from "./AsyncMulti";
 import RangeSelect from "./RangeSelect";
 import Dropdown from "./Dropdown";
+import RangeList from "./RangeList";
 import { push as Menu } from "react-burger-menu";
 import {
   customElements,
@@ -319,6 +320,45 @@ class SideBar extends Component {
               />
             </div>
           </Dropdown>
+          {(query.type === "samples" || query.type === "nhhrxf") && (
+            <div>
+              <div className="filter-menu-item">Analytes</div>
+              <Dropdown title="Iron">
+                <RangeList constructRange={constructRange} attributes={iron} />
+              </Dropdown>
+              <Dropdown title="Carbon">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={carbon}
+                />
+              </Dropdown>
+              <Dropdown title="Sulfur">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={sulfur}
+                />
+              </Dropdown>
+              <Dropdown title="Nitrogen">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={nitrogen}
+                />
+              </Dropdown>
+              <Dropdown title="Metal Isotopes">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={metalIsotope}
+                />
+              </Dropdown>
+
+              <Dropdown title="Elemental State">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={customElements}
+                />
+              </Dropdown>
+            </div>
+          )}
           <div className="filter-menu-item">Show</div>
 
           <Dropdown title="Iron">

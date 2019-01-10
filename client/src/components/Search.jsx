@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import About from "./About";
+import JumbotronUi from "./JumbotronUI";
 import Table from "./Table";
 import SideBar from "./SideBar";
 import SidePanel from "./SidePanel";
@@ -162,13 +162,27 @@ class Search extends Component {
     return (
       <div>
         {login !== "login succeeded" && (
-          <About
-            handleChange={this.handleChange}
-            handlePasswordChange={this.handlePasswordChange}
-            login={this.login}
-            user={user}
-            password={password}
-          />
+          <span>
+            <JumbotronUi
+              handleChange={this.handleChange}
+              handlePasswordChange={this.handlePasswordChange}
+              login={this.login}
+              user={user}
+              password={password}
+            />
+            <div className="mission">
+              <h1 className="mission-title">Our Mission</h1>
+              <p>
+                The Sedimentary Geochemistry and Paleoenvironments Project (SGP)
+                is a research consortium that seeks to address questions of
+                environmental evolution across Earth history through statistical
+                analyses of the sedimentary geochemical record. The search site
+                is currently password-protected and only available to analysts
+                working on Phase 1 Working Group manuscripts. Upon publication
+                of these manuscripts the search site will be publicly available.
+              </p>
+            </div>
+          </span>
         )}
 
         {login === "login succeeded" && (
