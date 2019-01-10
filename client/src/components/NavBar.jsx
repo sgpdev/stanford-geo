@@ -11,7 +11,7 @@ export default class CustomNavBar extends Component {
         <Navbar default collapseOnSelect staticTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">
+              <Link to="">
                 <img
                   src={require("./../images/sgp_logo.png")}
                   width="68"
@@ -21,7 +21,7 @@ export default class CustomNavBar extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <Menu num={1} href="/">
+            <Menu num={1} href="">
               HOME
             </Menu>
             <Menu num={2} href="/documentation">
