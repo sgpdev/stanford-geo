@@ -28,7 +28,7 @@ class JumbotronUI extends Component {
       .get("get/info/samples")
       .then(function(response) {
         that.setState({
-          samples: response.data[0].count
+          samples: Number(response.data[0].count)
         });
       })
       .catch(function(error) {
@@ -43,7 +43,7 @@ class JumbotronUI extends Component {
       .get("get/info/results")
       .then(function(response) {
         that.setState({
-          results: response.data[0].count
+          results: Number(response.data[0].count)
         });
       })
       .catch(function(error) {
@@ -97,31 +97,34 @@ class JumbotronUI extends Component {
               Sedimentary Geochemistry and Paleoenvironments Project
             </Typing>
           </div>
-
-          <span className="login-container">
-            <LoginModal
-              handleChange={handleChange}
-              handlePasswordChange={handlePasswordChange}
-              login={login}
-              user={user}
-              password={password}
-            />
-          </span>
+          {this.props.handlePasswordChange !== undefined && (
+            <span className="login-container">
+              <LoginModal
+                handleChange={handleChange}
+                handlePasswordChange={handlePasswordChange}
+                login={login}
+                user={user}
+                password={password}
+              />
+            </span>
+          )}
         </Jumbotron>
-        <div id="wrapper">
-          <div id="c1">
-            <h1>{this.state.countries}</h1>
-            <h4>Countries</h4>
+        {this.state.results > 1 && (
+          <div id="wrapper">
+            <div id="c1">
+              <h1>{this.state.countries}</h1>
+              <h4>Countries</h4>
+            </div>
+            <div id="c2">
+              <h1>{this.state.samples.toLocaleString()}</h1>
+              <h4>Samples</h4>
+            </div>
+            <div id="c3">
+              <h1>{this.state.results.toLocaleString()}</h1>
+              <h4>Results</h4>
+            </div>
           </div>
-          <div id="c2">
-            <h1>{this.state.samples}</h1>
-            <h4>Samples</h4>
-          </div>
-          <div id="c3">
-            <h1>{this.state.results}</h1>
-            <h4>Results</h4>
-          </div>
-        </div>
+        )}
       </span>
     );
   }

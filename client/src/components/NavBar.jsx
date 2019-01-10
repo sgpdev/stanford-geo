@@ -8,7 +8,7 @@ export default class CustomNavBar extends Component {
   render() {
     return (
       <div className="sticky-nav">
-        <Navbar default collapseOnSelect staticTop="true">
+        <Navbar default collapseOnSelect staticTop>
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">

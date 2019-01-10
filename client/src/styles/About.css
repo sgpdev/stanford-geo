@@ -3,7 +3,18 @@
 }
 
 .thumbnail {
-  border: solid 2px grey;
+  overflow: auto;
+}
+
+.thumbnail img {
+  width: 180px;
+  height: 171px;
+  display: block;
+  border-radius: 50%;
+}
+
+.thumbnail-text {
+  text-align: center;
 }
 
 .mission {

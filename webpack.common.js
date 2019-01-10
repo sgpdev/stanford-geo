@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "./client/dist"),
-    publicPath: "https://pangea.stanford.edu/sgp-search/"
+    publicPath: "https://pangea.stanford.edu/sgp-search"
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),

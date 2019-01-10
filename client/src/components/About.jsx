@@ -32,31 +32,37 @@ class About extends Component {
           <br />
           <Grid>
             <Row>
-              <Col xs={6} md={4}>
+              <Col xs={1} md={3}>
                 <Thumbnail
-                  src={require("./../images/download.jpg")}
+                  src={require("./../images/erik_head_shot.jpg")}
                   alt="242x150"
                 >
-                  <h3>Thumbnail label</h3>
-                  <p>Description</p>
+                  <h3>Erik Sperling</h3>
+                  <p>Stanford University</p>
                 </Thumbnail>
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={1} md={3}>
                 <Thumbnail
-                  src={require("./../images/download.jpg")}
+                  src={require("./../images/farrell.jpg")}
                   alt="242x150"
                 >
-                  <h3>Thumbnail label</h3>
-                  <p>Description</p>
+                  <h3>Una Farrell</h3>
+                  <p>Trinity College, Dublin</p>
                 </Thumbnail>
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={1} md={3}>
+                <Thumbnail src={require("./../images/davej.jpg")} alt="242x150">
+                  <h3>David Johnston</h3>
+                  <p>Harvard University</p>
+                </Thumbnail>
+              </Col>
+              <Col xs={1} md={3}>
                 <Thumbnail
-                  src={require("./../images/download.jpg")}
+                  src={require("./../images/planavsky.jpg")}
                   alt="242x150"
                 >
-                  <h3>Thumbnail label</h3>
-                  <p>Description</p>
+                  <h3>Noah Planavsky</h3>
+                  <p>Yale University</p>
                 </Thumbnail>
               </Col>
             </Row>
@@ -66,35 +72,30 @@ class About extends Component {
           <br />
           <Grid>
             <Row>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={6}>
                 <Thumbnail
                   src={require("./../images/download.jpg")}
                   alt="242x150"
                 >
-                  <h3>Thumbnail label</h3>
-                  <p>Description</p>
+                  <h3>Sufyan Lattouf</h3>
+                  <p>Exeter University</p>
                 </Thumbnail>
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={6}>
                 <Thumbnail
-                  src={require("./../images/download.jpg")}
+                  src={require("./../images/sufian.png")}
                   alt="242x150"
                 >
-                  <h3>Thumbnail label</h3>
-                  <p>Description</p>
-                </Thumbnail>
-              </Col>
-              <Col xs={6} md={4}>
-                <Thumbnail
-                  src={require("./../images/download.jpg")}
-                  alt="242x150"
-                >
-                  <h3>Thumbnail label</h3>
-                  <p>Description</p>
+                  <span clasName="thumbnail-text">
+                    <h3>Rifa'at Samawi</h3>
+                    <p>Yale University</p>
+                  </span>
                 </Thumbnail>
               </Col>
             </Row>
           </Grid>
+          <br />
+          <br />
           <h3 className="title-doc">Collaborative Team</h3>
           <br />
           <br />
