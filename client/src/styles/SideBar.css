@@ -37,7 +37,10 @@
 .bm-item-list {
   color: #4f535e;
   font-weight: 550;
+  overflow-y: scroll !important;
+  padding-bottom: 50px;
 }
+
 .bm-item {
   display: block;
 }

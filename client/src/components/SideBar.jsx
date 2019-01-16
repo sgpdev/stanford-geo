@@ -351,7 +351,7 @@ class SideBar extends Component {
                 />
               </Dropdown>
 
-              <Dropdown title="Elemental State">
+              <Dropdown title="Elemental Data">
                 <RangeList
                   constructRange={constructRange}
                   attributes={customElements}
@@ -377,7 +377,7 @@ class SideBar extends Component {
             <Checkbox changeShow={changeShow} attributes={metalIsotope} />
           </Dropdown>
 
-          <Dropdown title="Elemental State">
+          <Dropdown title="Elemental Data">
             <Checkbox changeShow={changeShow} attributes={customElements} />
           </Dropdown>
 

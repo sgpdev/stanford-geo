@@ -30,6 +30,7 @@ class Search extends Component {
     };
 
     this.postSearch = this.postSearch.bind(this);
+    this.clearAllFilters = this.clearAllFilters.bind(this);
     this.changeType = this.changeType.bind(this);
     this.changeShow = this.changeShow.bind(this);
     this.constructMulti = this.constructMulti.bind(this);
@@ -49,6 +50,16 @@ class Search extends Component {
           }))
         }
       ]
+    });
+  }
+
+  clearAllFilters() {
+    this.setState({
+      query: {
+        type: "samples",
+        filters: {},
+        show: []
+      }
     });
   }
 
@@ -189,6 +200,7 @@ class Search extends Component {
           <div id="outer-container">
             <SidePanel data={data} query={`${JSON.stringify(query)}`} />
             <SideBar
+              clearAllFilters={this.clearAllFilters}
               query={query}
               changeType={this.changeType}
               constructMulti={this.constructMulti}
