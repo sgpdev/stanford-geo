@@ -36,7 +36,7 @@ export default class AsyncMulti extends Component {
       };
     }
 
-    var answer = await axios.post("api/post/attr", attribute, {
+    var answer = await axios.post("/api/post/attr", attribute, {
       headers: {
         Authorization: `Basic ${btoa(
           `${this.props.user}:${this.props.password}`

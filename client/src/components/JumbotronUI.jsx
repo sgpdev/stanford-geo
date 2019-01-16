@@ -25,7 +25,7 @@ class JumbotronUI extends Component {
     const that = this;
 
     axios
-      .get("get/info/samples")
+      .get("/get/info/samples")
       .then(function(response) {
         that.setState({
           samples: Number(response.data[0].count)
@@ -40,7 +40,7 @@ class JumbotronUI extends Component {
     const that = this;
 
     axios
-      .get("get/info/results")
+      .get("/get/info/results")
       .then(function(response) {
         that.setState({
           results: Number(response.data[0].count)
@@ -55,7 +55,7 @@ class JumbotronUI extends Component {
     const that = this;
 
     axios
-      .get("get/info/countries")
+      .get("/get/info/countries")
       .then(function(response) {
         that.setState({
           countries: response.data[0].count
