@@ -351,7 +351,7 @@ class SideBar extends Component {
                 />
               </Dropdown>
 
-              <Dropdown title="Elemental State">
+              <Dropdown title="Elemental Data">
                 <RangeList
                   constructRange={constructRange}
                   attributes={customElements}
@@ -360,26 +360,28 @@ class SideBar extends Component {
             </div>
           )}
           <div className="filter-menu-item">Show</div>
-
-          <Dropdown title="Iron">
-            <Checkbox changeShow={changeShow} attributes={iron} />
-          </Dropdown>
-          <Dropdown title="Carbon">
-            <Checkbox changeShow={changeShow} attributes={carbon} />
-          </Dropdown>
-          <Dropdown title="Sulfur">
-            <Checkbox changeShow={changeShow} attributes={sulfur} />
-          </Dropdown>
-          <Dropdown title="Nitrogen">
-            <Checkbox changeShow={changeShow} attributes={nitrogen} />
-          </Dropdown>
-          <Dropdown title="Metal Isotopes">
-            <Checkbox changeShow={changeShow} attributes={metalIsotope} />
-          </Dropdown>
-
-          <Dropdown title="Elemental State">
-            <Checkbox changeShow={changeShow} attributes={customElements} />
-          </Dropdown>
+          {(query.type === "samples" || query.type === "nhhrxf") && (
+            <span>
+              <Dropdown title="Iron">
+                <Checkbox changeShow={changeShow} attributes={iron} />
+              </Dropdown>
+              <Dropdown title="Carbon">
+                <Checkbox changeShow={changeShow} attributes={carbon} />
+              </Dropdown>
+              <Dropdown title="Sulfur">
+                <Checkbox changeShow={changeShow} attributes={sulfur} />
+              </Dropdown>
+              <Dropdown title="Nitrogen">
+                <Checkbox changeShow={changeShow} attributes={nitrogen} />
+              </Dropdown>
+              <Dropdown title="Metal Isotopes">
+                <Checkbox changeShow={changeShow} attributes={metalIsotope} />
+              </Dropdown>
+              <Dropdown title="Elemental Data">
+                <Checkbox changeShow={changeShow} attributes={customElements} />
+              </Dropdown>
+            </span>
+          )}
 
           <Dropdown title="Samples Context">
             <Checkbox changeShow={changeShow} attributes={defaultShow} />

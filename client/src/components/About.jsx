@@ -74,7 +74,7 @@ class About extends Component {
             <Row>
               <Col xs={6} md={6}>
                 <Thumbnail
-                  src={require("./../images/download.jpg")}
+                  src={require("./../images/sufian.png")}
                   alt="242x150"
                 >
                   <h3>Sufyan Lattouf</h3>

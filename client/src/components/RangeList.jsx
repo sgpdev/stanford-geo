@@ -14,7 +14,7 @@ export default class RangeList extends Component {
           <RangeSelect
             constructRange={constructRange}
             attribute={item[0]}
-            title={`${item[1]} (Younger-Older):  `}
+            title={`${item[1]} (Low-High):  `}
           />
         ))}
       </div>
