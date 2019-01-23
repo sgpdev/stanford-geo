@@ -8,9 +8,8 @@ const pool = new Pool({
   port: 5432
 });
 
-/*&ohXi$Vn*/
 /*const pool = new Pool({
-  user: "sgp_server",
+  user: "sgpserver",
   host: "se3pgdb.stanford.edu",
   database: "geochem1",
   password: "sgpsgp",

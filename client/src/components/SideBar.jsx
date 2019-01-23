@@ -45,7 +45,7 @@ class SideBar extends Component {
             <div className="filter-menu-item">Type</div>
             <Radiobox type={query.type} changeType={changeType} />
           </div>
-          <div className="filter-menu-item">Filters</div>
+          <div className="filter-menu-item"> Sample Filters</div>
           <div id="contact" className="menu-item original-name">
             Original Name:{" "}
             <AsyncMulti
@@ -56,6 +56,18 @@ class SideBar extends Component {
               attribute="original_name"
             />
           </div>
+          {query.type === "analyses" && (
+            <div id="contact" className="menu-item">
+              Analyte Code:{" "}
+              <AsyncMulti
+                user={user}
+                password={password}
+                className="async-multi"
+                constructMulti={constructMulti}
+                attribute="ana_code"
+              />
+            </div>
+          )}
 
           <Dropdown title="Collection Site">
             <div id="contact" className="menu-item">
@@ -150,7 +162,14 @@ class SideBar extends Component {
           <Dropdown title="People/Batches/Insights">
             {" "}
             <div id="contact" className="menu-item">
-              Collector's First Name:{" "}
+              <ReactTooltip place="right" />
+              <text
+                data-tip={
+                  "Samples may be associated with multiple attributes. If selected, this will cause the sample to appear multiple times in the results table."
+                }
+              >
+                Collector's First Name:{" "}
+              </text>
               <AsyncMulti
                 user={user}
                 password={password}
@@ -160,7 +179,14 @@ class SideBar extends Component {
               />
             </div>
             <div id="contact" className="menu-item">
-              Collector's Lat Name:{" "}
+              <ReactTooltip place="right" />
+              <text
+                data-tip={
+                  "Samples may be associated with multiple attributes. If selected, this will cause the sample to appear multiple times in the results table."
+                }
+              >
+                Collector's Lat Name:{" "}
+              </text>
               <AsyncMulti
                 user={user}
                 password={password}
@@ -239,7 +265,13 @@ class SideBar extends Component {
           <Dropdown title="Project/Data Source">
             <div id="contact" className="menu-item">
               <ReactTooltip place="right" />
-              <text data-tip={toolTips.project_name}>Project Name: </text>
+              <text
+                data-tip={
+                  "Samples may be associated with multiple attributes. If selected, this will cause the sample to appear multiple times in the results table."
+                }
+              >
+                Project Name:{" "}
+              </text>
               <AsyncMulti
                 user={user}
                 password={password}
@@ -322,7 +354,7 @@ class SideBar extends Component {
           </Dropdown>
           {(query.type === "samples" || query.type === "nhhrxf") && (
             <div>
-              <div className="filter-menu-item">Analytes</div>
+              <div className="filter-menu-item">Analyte Filters</div>
               <Dropdown title="Iron">
                 <RangeList constructRange={constructRange} attributes={iron} />
               </Dropdown>
@@ -360,28 +392,27 @@ class SideBar extends Component {
             </div>
           )}
           <div className="filter-menu-item">Show</div>
-          {(query.type === "samples" || query.type === "nhhrxf") && (
-            <span>
-              <Dropdown title="Iron">
-                <Checkbox changeShow={changeShow} attributes={iron} />
-              </Dropdown>
-              <Dropdown title="Carbon">
-                <Checkbox changeShow={changeShow} attributes={carbon} />
-              </Dropdown>
-              <Dropdown title="Sulfur">
-                <Checkbox changeShow={changeShow} attributes={sulfur} />
-              </Dropdown>
-              <Dropdown title="Nitrogen">
-                <Checkbox changeShow={changeShow} attributes={nitrogen} />
-              </Dropdown>
-              <Dropdown title="Metal Isotopes">
-                <Checkbox changeShow={changeShow} attributes={metalIsotope} />
-              </Dropdown>
-              <Dropdown title="Elemental Data">
-                <Checkbox changeShow={changeShow} attributes={customElements} />
-              </Dropdown>
-            </span>
-          )}
+
+          <span>
+            <Dropdown title="Iron">
+              <Checkbox changeShow={changeShow} attributes={iron} />
+            </Dropdown>
+            <Dropdown title="Carbon">
+              <Checkbox changeShow={changeShow} attributes={carbon} />
+            </Dropdown>
+            <Dropdown title="Sulfur">
+              <Checkbox changeShow={changeShow} attributes={sulfur} />
+            </Dropdown>
+            <Dropdown title="Nitrogen">
+              <Checkbox changeShow={changeShow} attributes={nitrogen} />
+            </Dropdown>
+            <Dropdown title="Metal Isotopes">
+              <Checkbox changeShow={changeShow} attributes={metalIsotope} />
+            </Dropdown>
+            <Dropdown title="Elemental Data">
+              <Checkbox changeShow={changeShow} attributes={customElements} />
+            </Dropdown>
+          </span>
 
           <Dropdown title="Samples Context">
             <Checkbox changeShow={changeShow} attributes={defaultShow} />
