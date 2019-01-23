@@ -1481,6 +1481,8 @@ ORDER BY s.sample_id, s.original_num)
 
   var attributes = [
     "country",
+    "ana_code",
+    "environment_bin",
     "original_name",
     "section_name",
     "site_type",

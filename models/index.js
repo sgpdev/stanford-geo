@@ -1,18 +1,10 @@
 const { Pool } = require("pg");
 
-/*const pool = new Pool({
-  user: "sgp_server",
+const pool = new Pool({
+  user: "sufyan",
   host: "localhost",
   database: "geochem_test",
-  password: "sgpsgp",
-  port: 5432
-});*/
-
-const pool = new Pool({
-  user: "sgpserver",
-  host: "se3pgdb.stanford.edu",
-  database: "geochem1",
-  password: "sgpsgp",
+  password: "",
   port: 5432
 });
 

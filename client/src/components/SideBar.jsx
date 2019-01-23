@@ -352,7 +352,47 @@ class SideBar extends Component {
               />
             </div>
           </Dropdown>
+          {(query.type === "samples" || query.type === "nhhrxf") && (
+            <div>
+              <div className="filter-menu-item">Analyte Filters</div>
+              <Dropdown title="Iron">
+                <RangeList constructRange={constructRange} attributes={iron} />
+              </Dropdown>
+              <Dropdown title="Carbon">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={carbon}
+                />
+              </Dropdown>
+              <Dropdown title="Sulfur">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={sulfur}
+                />
+              </Dropdown>
+              <Dropdown title="Nitrogen">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={nitrogen}
+                />
+              </Dropdown>
+              <Dropdown title="Metal Isotopes">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={metalIsotope}
+                />
+              </Dropdown>
+
+              <Dropdown title="Elemental Data">
+                <RangeList
+                  constructRange={constructRange}
+                  attributes={customElements}
+                />
+              </Dropdown>
+            </div>
+          )}
           <div className="filter-menu-item">Show</div>
+
           <span>
             <Dropdown title="Iron">
               <Checkbox changeShow={changeShow} attributes={iron} />
