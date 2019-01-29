@@ -1103,7 +1103,7 @@
         "select_priority": 268,
         "where_priority": 194,
         "group_priority": 268,
-        "join_path": "reference_overview(reference_id)alternate_num(reference_id)"
+        "join_path": "reference_overview(reference_id)base(reference_id)"
       },
       {
         "attribute_api": "analysis_ref_short",
@@ -1113,7 +1113,7 @@
         "select_priority": 269,
         "where_priority": 195,
         "group_priority": 269,
-        "join_path": "reference_overview(reference_id)alternate_num(reference_id)"
+        "join_path": "reference_overview(reference_id)base(reference_id)"
       },
       {
         "attribute_api": "fe_carb",
@@ -2657,14 +2657,6 @@
         "to_table": "data_source_batch",
         "to_atts_db": "data_source_id",
         "join_priority": 3
-      },
-      {
-        "join_hash": "reference_overview(reference_id)alternate_num(reference_id)",
-        "from_table": "reference_overview",
-        "from_atts_db": "reference_id",
-        "to_table": "alternate_num",
-        "to_atts_db": "reference_id",
-        "join_priority": 2
       },
       {
         "join_hash": "reference_overview(reference_id)base(reference_id)",
