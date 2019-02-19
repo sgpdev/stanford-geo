@@ -30,7 +30,6 @@ class Search extends Component {
     };
 
     this.postSearch = this.postSearch.bind(this);
-    this.clearAllFilters = this.clearAllFilters.bind(this);
     this.changeType = this.changeType.bind(this);
     this.changeShow = this.changeShow.bind(this);
     this.constructMulti = this.constructMulti.bind(this);
@@ -50,16 +49,6 @@ class Search extends Component {
           }))
         }
       ]
-    });
-  }
-
-  clearAllFilters() {
-    this.setState({
-      query: {
-        type: "samples",
-        filters: {},
-        show: []
-      }
     });
   }
 
@@ -126,7 +115,7 @@ class Search extends Component {
   postSearch() {
     var that = this;
     axios
-      .post("/api/post", this.state.query, {
+      .post("api/post", this.state.query, {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -147,7 +136,7 @@ class Search extends Component {
   login() {
     var that = this;
     axios
-      .get("/api/get", {
+      .get("api/get", {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -197,27 +186,29 @@ class Search extends Component {
         )}
 
         {login === "login succeeded" && (
-          <div id="outer-container">
-            <SidePanel data={data} query={`${JSON.stringify(query)}`} />
-            <SideBar
-              clearAllFilters={this.clearAllFilters}
-              query={query}
-              changeType={this.changeType}
-              constructMulti={this.constructMulti}
-              constructRange={this.constructRange}
-              changeShow={this.changeShow}
-              user={user}
-              password={password}
-              data={data}
-              postSearch={this.postSearch}
-            />
-
-            <div id="page-wrap">
-              <Table
-                column={column}
+          <div>
+            <div id="nav-color"> </div>
+            <div id="outer-container">
+              <SidePanel data={data} query={`${JSON.stringify(query)}`} />
+              <SideBar
+                query={query}
+                changeType={this.changeType}
+                constructMulti={this.constructMulti}
+                constructRange={this.constructRange}
+                changeShow={this.changeShow}
+                user={user}
+                password={password}
                 data={data}
-                columnConstructor={this.columnConstructor}
+                postSearch={this.postSearch}
               />
+
+              <div id="page-wrap">
+                <Table
+                  column={column}
+                  data={data}
+                  columnConstructor={this.columnConstructor}
+                />
+              </div>
             </div>
           </div>
         )}

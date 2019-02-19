@@ -40,7 +40,7 @@ class SideBar extends Component {
     } = this.props;
     return (
       <div id="side-bar">
-        <Menu pageWrapId={"page-wrap"} width={"33%"}>
+        <Menu isOpen pageWrapId={"page-wrap"} width={"33%"}>
           <div id="type" className="menu-item">
             <div className="filter-menu-item">Type</div>
             <Radiobox type={query.type} changeType={changeType} />
@@ -248,7 +248,7 @@ class SideBar extends Component {
             <RangeSelect
               constructRange={constructRange}
               attribute="interpreted_age"
-              title="Interpreted Age (Younger-Older):  "
+              title="Interpreted Age in Ma (Younger-Older):  "
             />
             <div id="contact" className="menu-item">
               <ReactTooltip place="right" />
@@ -352,7 +352,7 @@ class SideBar extends Component {
               />
             </div>
           </Dropdown>
-          {(query.type === "samples" || query.type === "nhhrxf") && (
+          {(query.type === "samples" || query.type === "nhhxrf") && (
             <div>
               <div className="filter-menu-item">Analyte Filters</div>
               <Dropdown title="Iron">

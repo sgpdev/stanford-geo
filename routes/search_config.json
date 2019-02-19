@@ -1029,7 +1029,7 @@
       },
       {
         "attribute_api": "geochem_method",
-        "attribute_id": "geochemical method brief",
+        "attribute_id": "prep method",
         "attribute_db": "prep_translation",
         "search_bases": "analyses",
         "select_priority": 254,

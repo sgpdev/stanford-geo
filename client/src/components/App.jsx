@@ -19,7 +19,7 @@ class App extends Component {
         <Router>
           <div>
             <NavBar />
-            <Route exact path="/" component={Search} />
+            <Route exact path="" component={Search} />
             <Route path="/documentation" component={Documentation} />
             <Route path="/about" component={About} />
           </div>

@@ -17,7 +17,7 @@ export default class Radiobox extends Component {
         <input type="radio" value="samples" name="gender" />
         {" Samples "}
         <input type="radio" value="analyses" name="gender" /> {"Analyses "}
-        <input type="radio" value="nhhrxf" name="gender" /> {"No HHRXF"}
+        <input type="radio" value="nhhxrf" name="gender" /> {"No HHRXF"}
       </div>
     );
   }

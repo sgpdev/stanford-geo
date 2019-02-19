@@ -36,7 +36,7 @@ class MultiSelect extends Component {
   getAttributes(attributes) {
     var that = this;
     axios
-      .post("/api/post/attr", that.state.dynamic)
+      .post("api/post/attr", that.state.dynamic)
       .then(function(response) {
         that.setState({
           attribute: response.data

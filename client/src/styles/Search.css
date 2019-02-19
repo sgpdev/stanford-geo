@@ -1,8 +1,10 @@
 #page-wrap {
-  margin-top: 51px;
   margin-left: 60px;
 }
 
+.ReactTable {
+  padding-top: 15px;
+}
 .mission {
   text-align: center;
   color: #808080;
@@ -13,4 +15,11 @@
   color: #9cc2e6;
   padding-bottom: 10px;
   text-decoration: underline #9cc2e6;
+}
+
+#nav-color {
+  background-color: #7d90b8;
+  width: 100%;
+  top: 0;
+  height: 45px;
 }

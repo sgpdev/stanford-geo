@@ -23,7 +23,12 @@ export default class AsyncMulti extends Component {
   }
 
   async getOptions(inputValue) {
-    if (!inputValue) {
+    if (!inputValue && this.props.attribute == "ana_code") {
+      var attribute = {
+        limit: 1000,
+        attribute: this.props.attribute
+      };
+    } else if (!inputValue) {
       var attribute = {
         limit: 10,
         attribute: this.props.attribute

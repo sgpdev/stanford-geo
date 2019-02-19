@@ -105,10 +105,14 @@ class About extends Component {
             Working Groups addressing particular questions about Earth’s
             environmental evolution. A full list of collaborative team members
             can be found on the SGP website:{" "}
-            <a target="_blank" href="https://sgp.stanford.edu/who-we-are">
-              sgp.stanford.edu
-            </a>
           </div>
+          <a
+            style={{ display: "table-cell" }}
+            href="http://sgp.stanford.edu/who-we-are"
+            target="_blank"
+          >
+            https://sgp.stanford.edu/who-we-are
+          </a>
         </div>
       </span>
     );
