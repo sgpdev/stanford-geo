@@ -187,7 +187,12 @@ class SearchQuery {
             if (item.attribute_sql.length == 0) {
                 item.attribute_sql = `${this.sq_base_rel.br_db}.${item.attribute_db}`;
             }
-            select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
+            if (item.attribute_db == "is_turbiditic") {
+                select_str_list.push(`CAST(${item.attribute_sql} AS varchar(10)) AS "${item.attribute_id}"`);
+            } else {
+                select_str_list.push(`${item.attribute_sql} AS "${item.attribute_id}"`);
+            }
+
         });
         return select_str_list;
     }

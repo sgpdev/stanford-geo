@@ -40,6 +40,7 @@ Includes details of methods, who ran the analysis, and where the analyses were r
     s.height_depth_m,
     s.lith_notes,
     s.sample_notes,
+    s.munsell_code,
     adl.detection_upper_limit,
     adl.detection_lower_limit,
 
@@ -174,6 +175,7 @@ s.original_num,
 s.height_depth_m,
 s.lith_notes,
 s.sample_notes,
+s.munsell_code,
 
 /* Connector Attributes */
 s.coll_event_id,
@@ -880,6 +882,7 @@ s.original_num,
 s.height_depth_m,
 s.lith_notes,
 s.sample_notes,
+s.munsell_code,
 
 /* Connector Attributes */
 s.coll_event_id,
