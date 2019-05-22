@@ -9,7 +9,6 @@ export default class Table extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.data, "dayta");
     this.props.columnConstructor();
   }
 

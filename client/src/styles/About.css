@@ -1,0 +1,34 @@
+.about {
+  margin: 25px;
+}
+
+.thumbnail {
+  overflow: auto;
+}
+
+.thumbnail img {
+  width: 180px;
+  height: 171px;
+  display: block;
+  border-radius: 50%;
+}
+
+.thumbnail-text {
+  text-align: center;
+}
+
+.mission {
+  text-align: center;
+  color: #808080;
+}
+
+.mission-title {
+  color: #9cc2e6;
+  padding-bottom: 10px;
+  text-decoration: underline #9cc2e6;
+}
+
+.title-doc {
+  color: #9cc2e6;
+  text-decoration: underline;
+}

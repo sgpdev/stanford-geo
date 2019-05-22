@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./App.css";
+import JumbotronUi from "./JumbotronUI";
 import Table from "./Table";
 import SideBar from "./SideBar";
-import ReactTooltip from "react-tooltip";
-import {
-  Tooltip,
-  OverlayTrigger,
-  ButtonToolbar,
-  Button
-} from "react-bootstrap";
-import Documentation from "./Documentation";
-import "./Search.css";
+import SidePanel from "./SidePanel";
+import "./../styles/Search.css";
 
 var btoa = require("btoa");
 
@@ -82,13 +75,11 @@ class Search extends Component {
       let fiery = this.state.query.show;
       fiery = fiery.splice(showIndex, 1);
       this.setState({ fiery });
-      console.log(this.state.query.show, "pushing");
     } else {
       let query = this.state.query;
 
       query.show.push(value);
       this.setState({ query });
-      console.log(this.state.query.show, "pushing");
     }
     this.postSearch();
   }
@@ -104,28 +95,27 @@ class Search extends Component {
 
     if (Object.keys(this.state.query.filters).length) {
       this.postSearch();
+    } else {
+      this.setState({
+        data: [{}]
+      });
     }
-
-    console.log(this.state.query);
   }
 
   constructRange(min, max, attribute) {
-    console.log(typeof min, typeof max, "checking if zero");
     let query = this.state.query;
     if (min === 0 && max === 0) {
       delete query.filters[attribute];
     } else {
       query.filters[attribute] = [Number(min), Number(max)];
       this.postSearch();
-      console.log(this.state.query);
     }
   }
 
   postSearch() {
-    console.log("before sending", this.state.query);
     var that = this;
     axios
-      .post("/api/post", this.state.query, {
+      .post("api/post", this.state.query, {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -133,7 +123,6 @@ class Search extends Component {
         }
       })
       .then(function(response) {
-        console.log(response.data);
         that.setState({
           data: response.data
         });
@@ -145,10 +134,9 @@ class Search extends Component {
   }
 
   login() {
-    console.log("before sending", this.state.user, this.state.password);
     var that = this;
     axios
-      .get("/api/get", {
+      .get("api/get", {
         headers: {
           Authorization: `Basic ${btoa(
             `${this.state.user}:${this.state.password}`
@@ -159,7 +147,6 @@ class Search extends Component {
         that.setState({
           login: response.data
         });
-        console.log(response);
       })
       .catch(function(error) {
         console.log(error);
@@ -171,40 +158,60 @@ class Search extends Component {
   }
 
   render() {
+    const { user, password, login, data, query, column } = this.state;
     return (
-      <div id="outer-container">
-        <SideBar
-          query={this.state.query}
-          changeType={this.changeType}
-          constructMulti={this.constructMulti}
-          constructRange={this.constructRange}
-          changeShow={this.changeShow}
-          user={this.state.user}
-          password={this.state.password}
-          data={this.state.data}
-          postSearch={this.postSearch}
-        />
-
-        <div id="page-wrap">
-          {this.state.login !== "login succeeded" && (
-            <Documentation
+      <div>
+        {login !== "login succeeded" && (
+          <span>
+            <JumbotronUi
               handleChange={this.handleChange}
               handlePasswordChange={this.handlePasswordChange}
               login={this.login}
-              user={this.state.user}
-              password={this.state.password}
+              user={user}
+              password={password}
             />
-          )}
+            <div className="mission">
+              <h1 className="mission-title">Our Mission</h1>
+              <p>
+                The Sedimentary Geochemistry and Paleoenvironments Project (SGP)
+                is a research consortium that seeks to address questions of
+                environmental evolution across Earth history through statistical
+                analyses of the sedimentary geochemical record. The search site
+                is currently password-protected and only available to analysts
+                working on Phase 1 Working Group manuscripts. Upon publication
+                of these manuscripts the search site will be publicly available.
+              </p>
+            </div>
+          </span>
+        )}
 
-          <Table
-            column={this.state.column}
-            data={this.state.data}
-            columnConstructor={this.columnConstructor}
-          />
-          <br />
-          {/* {`${JSON.stringify(this.state.query)}`}
-          <br /> */}
-        </div>
+        {login === "login succeeded" && (
+          <div>
+            <div id="nav-color"> </div>
+            <div id="outer-container">
+              <SidePanel data={data} query={`${JSON.stringify(query)}`} />
+              <SideBar
+                query={query}
+                changeType={this.changeType}
+                constructMulti={this.constructMulti}
+                constructRange={this.constructRange}
+                changeShow={this.changeShow}
+                user={user}
+                password={password}
+                data={data}
+                postSearch={this.postSearch}
+              />
+
+              <div id="page-wrap">
+                <Table
+                  column={column}
+                  data={data}
+                  columnConstructor={this.columnConstructor}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

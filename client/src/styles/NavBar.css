@@ -1,0 +1,71 @@
+.navbar {
+  height: 45px;
+}
+nav.navbar,
+.navbar-default {
+  background-color: transparent !important;
+}
+
+/* Navigation bar border */
+.sticky-nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 99999999;
+}
+.navbar-default {
+  background-image: none;
+  border-radius: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  font-weight: 700;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+  background-color: #9abee3;
+}
+
+.navbar-default .navbar-brand:hover {
+  text-decoration: underline;
+  text-decoration-color: #9abee3;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:active {
+  background-color: #9abee3;
+}
+
+.navbar-default .navbar-brand:active {
+  text-decoration: underline;
+  text-decoration-color: #9abee3;
+}
+
+.navbar-default .navbar-brand {
+  font-family: sans-serif;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  text-decoration: underline;
+  text-decoration-color: #9abee3;
+}
+
+.navbar-nav {
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}

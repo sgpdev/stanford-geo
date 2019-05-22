@@ -2,8 +2,12 @@ const { Pool } = require("pg");
 
 const pool = new Pool({
   user: "sgpserver",
-  host: "se3pgdb.stanford.edu",
-  database: "geochem1",
+  host: "localhost",
+  database: "data_freeze1",
   password: "sgpsgp",
   port: 5432
 });
+
+module.exports = {
+  pool
+};

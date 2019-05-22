@@ -430,9 +430,21 @@
         ]
       },
       {
-        "attribute_api": "dep_env_bin",
+        "attribute_api": "environment_bin",
+        "attribute_id": "environmental bin",
+        "attribute_db": "env_bin",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
         "select_priority": 56,
-        "group_priority": 56
+        "where_priority": 20,
+        "group_priority": 56,
+        "join_path": [
+          "geol_context(geol_context_id)base(geol_context_id)",
+          "environment(env_id)geol_context(env_id)"
+        ]
       },
       {
         "attribute_api": "environment_notes",
@@ -909,6 +921,7 @@
       {
         "attribute_api": "data_source",
         "attribute_id": "data source",
+        "attribute_db": "data_source",
         "search_bases": [
           "analyses",
           "samples",
@@ -916,7 +929,30 @@
         ],
         "select_priority": 274,
         "where_priority": 1,
-        "group_priority": 274
+        "group_priority": 274,
+        "join_path": [
+          "batch(batch_id)base(batch_id)",
+          "data_source_batch(batch_id)batch(batch_id)",
+          "data_source(data_source_id)data_source_batch(data_source_id)"
+        ]
+      },
+      {
+        "attribute_api": "data_source_desc",
+        "attribute_id": "data source description",
+        "attribute_db": "data_source_desc",
+        "search_bases": [
+          "analyses",
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 275,
+        "where_priority": 1,
+        "group_priority": 275,
+        "join_path": [
+          "batch(batch_id)base(batch_id)",
+          "data_source_batch(batch_id)batch(batch_id)",
+          "data_source(data_source_id)data_source_batch(data_source_id)"
+        ]
       },
       {
         "attribute_api": "run_by_first",
@@ -993,7 +1029,7 @@
       },
       {
         "attribute_api": "geochem_method",
-        "attribute_id": "geochemical method brief",
+        "attribute_id": "prep method",
         "attribute_db": "prep_translation",
         "search_bases": "analyses",
         "select_priority": 254,
@@ -1060,6 +1096,26 @@
         "group_priority": 260
       },
       {
+        "attribute_api": "analysis_ref_long",
+        "attribute_id": "analysis reference (long)",
+        "attribute_db": "ref_long",
+        "search_bases": "analyses",
+        "select_priority": 268,
+        "where_priority": 194,
+        "group_priority": 268,
+        "join_path": "reference_overview(reference_id)base(reference_id)"
+      },
+      {
+        "attribute_api": "analysis_ref_short",
+        "attribute_id": "analysis reference (short)",
+        "attribute_db": "ref_short",
+        "search_bases": "analyses",
+        "select_priority": 269,
+        "where_priority": 195,
+        "group_priority": 269,
+        "join_path": "reference_overview(reference_id)base(reference_id)"
+      },
+      {
         "attribute_api": "fe_carb",
         "attribute_id": "Fe-carb (wt%)",
         "attribute_db": "fe_carb",
@@ -1120,7 +1176,7 @@
         "group_priority": 185
       },
       {
-        "attribute_api": "fe_hr_et",
+        "attribute_api": "fe_hr_fe_t",
         "attribute_id": "FeHR/FeT",
         "attribute_db": "fe_hr_et",
         "search_bases": [
@@ -1132,7 +1188,7 @@
         "group_priority": 186
       },
       {
-        "attribute_api": "fe_py_hr",
+        "attribute_api": "fe_py_fe_hr",
         "attribute_id": "Fe-py/FeHR",
         "attribute_db": "fe_py_hr",
         "search_bases": [
@@ -1144,7 +1200,7 @@
         "group_priority": 187
       },
       {
-        "attribute_api": "fe_et_al",
+        "attribute_api": "fe_t_al",
         "attribute_id": "FeT/Al",
         "attribute_db": "fe_et_al",
         "search_bases": [
@@ -1180,7 +1236,7 @@
         "group_priority": 190
       },
       {
-        "attribute_api": "del_13c",
+        "attribute_api": "del_13c_org",
         "attribute_id": "Delta13C-org (permil)",
         "attribute_db": "del_13c",
         "search_bases": [
@@ -1192,7 +1248,7 @@
         "group_priority": 201
       },
       {
-        "attribute_api": "del_34s",
+        "attribute_api": "del_34s_py",
         "attribute_id": "Delta34S-py (permil)",
         "attribute_db": "del_34s",
         "search_bases": [
@@ -2030,6 +2086,234 @@
         "select_priority": 165,
         "where_priority": 280,
         "group_priority": 165
+      },
+      {
+        "attribute_api": "tic",
+        "attribute_id": "TIC (wt%)",
+        "attribute_db": "tic",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 166,
+        "where_priority": 281,
+        "group_priority": 166
+      },
+      {
+        "attribute_api": "s_py",
+        "attribute_id": "S-py (wt%)",
+        "attribute_db": "s_py",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 167,
+        "where_priority": 282,
+        "group_priority": 167
+      },
+      {
+        "attribute_api": "cas",
+        "attribute_id": "CAS (ppm)",
+        "attribute_db": "cas",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 168,
+        "where_priority": 283,
+        "group_priority": 168
+      },
+      {
+        "attribute_api": "del_34s_obs",
+        "attribute_id": "Delta34S-obs (permil)",
+        "attribute_db": "del_34s_obs",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 169,
+        "where_priority": 284,
+        "group_priority": 169
+      },
+      {
+        "attribute_api": "del_13c_carb",
+        "attribute_id": "Delta13C-carb (permil)",
+        "attribute_db": "del_13c_carb",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 170,
+        "where_priority": 285,
+        "group_priority": 170
+      },
+      {
+        "attribute_api": "del_34s_cas",
+        "attribute_id": "Delta34S-cas (permil)",
+        "attribute_db": "del_34s_cas",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 171,
+        "where_priority": 286,
+        "group_priority": 171
+      },
+      {
+        "attribute_api": "del_34s_bulk",
+        "attribute_id": "Delta34S-bulk (permil)",
+        "attribute_db": "del_34s_bulk",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 172,
+        "where_priority": 287,
+        "group_priority": 172
+      },
+      {
+        "attribute_api": "del_34s_gyp",
+        "attribute_id": "Delta34S-gyp (permil)",
+        "attribute_db": "del_34s_gyp",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 173,
+        "where_priority": 288,
+        "group_priority": 173
+      },
+      {
+        "attribute_api": "s_org",
+        "attribute_id": "S-org (wt%)",
+        "attribute_db": "s_org",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 174,
+        "where_priority": 289,
+        "group_priority": 174
+      },
+      {
+        "attribute_api": "s_so4",
+        "attribute_id": "S-SO4 (wt%)",
+        "attribute_db": "s_so4",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 175,
+        "where_priority": 290,
+        "group_priority": 175
+      },
+      {
+        "attribute_api": "nd143_nd144",
+        "attribute_id": "Nd143/Nd144",
+        "attribute_db": "nd143_nd144",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 176,
+        "where_priority": 291,
+        "group_priority": 176
+      },
+      {
+        "attribute_api": "os187_os188i",
+        "attribute_id": "Os187/Os188(I)",
+        "attribute_db": "os187_os188i",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 177,
+        "where_priority": 292,
+        "group_priority": 177
+      },
+      {
+        "attribute_api": "se82_se78",
+        "attribute_id": "Se82/Se78",
+        "attribute_db": "se82_se78",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 178,
+        "where_priority": 293,
+        "group_priority": 178
+      },
+      {
+        "attribute_api": "del_56fe_t",
+        "attribute_id": "Delta56Fe-T (permil)",
+        "attribute_db": "del_56fe_t",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 179,
+        "where_priority": 294,
+        "group_priority": 179
+      },
+      {
+        "attribute_api": "del_56fe_py",
+        "attribute_id": "Delta56Fe-py (permil)",
+        "attribute_db": "del_56fe_py",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 180,
+        "where_priority": 295,
+        "group_priority": 180
+      },
+      {
+        "attribute_api": "tmax",
+        "attribute_id": "Tmax (degC)",
+        "attribute_db": "tmax",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 181,
+        "where_priority": 296,
+        "group_priority": 181
+      },
+      {
+        "attribute_api": "s2",
+        "attribute_id": "S2 (mgHC/g)",
+        "attribute_db": "s2",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 182,
+        "where_priority": 297,
+        "group_priority": 182
+      },
+      {
+        "attribute_api": "s1",
+        "attribute_id": "S1 (mgHC/g)",
+        "attribute_db": "s1",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 183,
+        "where_priority": 298,
+        "group_priority": 183
+      },
+      {
+        "attribute_api": "s3",
+        "attribute_id": "S3 (mgCO2/g)",
+        "attribute_db": "s3",
+        "search_bases": [
+          "samples",
+          "nhhxrf"
+        ],
+        "select_priority": 184,
+        "where_priority": 299,
+        "group_priority": 184
       }
     ]
   },
@@ -2357,6 +2641,33 @@
         "to_table": "base",
         "to_atts_db": "ana_method_id",
         "join_priority": 1
+      },
+      {
+        "join_hash": "data_source_batch(batch_id)batch(batch_id)",
+        "from_table": "data_source_batch",
+        "from_atts_db": "batch_id",
+        "to_table": "batch",
+        "to_atts_db": "batch_id",
+        "join_priority": 2
+      },
+      {
+        "join_hash": "data_source(data_source_id)data_source_batch(data_source_id)",
+        "from_table": "data_source",
+        "from_atts_db": "data_source_id",
+        "to_table": "data_source_batch",
+        "to_atts_db": "data_source_id",
+        "join_priority": 3
+      },
+      {
+        "join_hash": "reference_overview(reference_id)base(reference_id)",
+        "from_table": "reference_overview",
+        "from_atts_db": "reference_id",
+        "to_table": "base",
+        "to_atts_db": "reference_id",
+        "join_priority": 1
+      },
+      {
+        "join_hash": "()()"
       }
     ]
   }

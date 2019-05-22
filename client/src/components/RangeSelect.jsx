@@ -13,9 +13,8 @@ export default class RangeSelect extends Component {
   }
 
   handleMinChange(event) {
-    console.log(event.target.value);
     this.setState({ min: event.target.value });
-    console.log("Min", this.state.min, this.state.max);
+
     this.props.constructRange(
       Number(event.target.value),
       Number(this.state.max),
@@ -24,10 +23,8 @@ export default class RangeSelect extends Component {
   }
 
   handleMaxChange(event) {
-    console.log(event.target.value);
     this.setState({ max: event.target.value });
-    console.log(this.state.max);
-    // console.log("Max", this.state.min, this.state.max);
+
     this.props.constructRange(
       Number(this.state.min),
       Number(event.target.value),
@@ -36,27 +33,30 @@ export default class RangeSelect extends Component {
   }
 
   render() {
+    const { min, max } = this.state;
+    const { title } = this.props;
+
     return (
       <div>
-        {this.props.title}
+        {title}
         <input
           onChange={this.handleMinChange}
-          value={this.state.min}
+          value={min}
           type="number"
           style={{
             width: "50px",
-            border: "2px solid rgba(140, 21, 21, 0.85)",
+            border: "2px solid #7d90b8",
             borderRadius: "4px"
           }}
         />
         {" - "}
         <input
           onChange={this.handleMaxChange}
-          value={this.state.max}
+          value={max}
           type="number"
           style={{
             width: "50px",
-            border: "2px solid rgba(140, 21, 21, 0.85)",
+            border: "2px solid #7d90b8",
             borderRadius: "4px"
           }}
         />

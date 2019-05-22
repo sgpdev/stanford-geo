@@ -1,0 +1,92 @@
+.login {
+  background-color: #9cc2e6;
+  border-radius: 7px;
+  margin: 3px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: linear-gradient(to right, #9cc2e6 2%, #8a9bbf 100%);
+  width: 450px;
+  border-radius: 6px;
+  height: auto;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.login-btn {
+  background: linear-gradient(to right, #9cc2e6 2%, #8a9bbf 100%);
+  border: none;
+  width: 100%;
+  color: white;
+  border-radius: 6px;
+}
+
+.login-btn-modal {
+  background: #8a9bbf;
+  margin: 7px;
+  border: none;
+  width: 12%;
+  color: white;
+  border-radius: 6px;
+}
+
+.login-btn-modal:hover {
+  background-color: White;
+  color: rgba(156, 194, 230, 0.67);
+}
+.label-header {
+  display: block;
+  color: white;
+}
+
+.userInput {
+  border: 1px solid #9cc2e6;
+  background-color: white;
+  border-radius: 7px;
+  width: 30%;
+}
+
+label {
+  margin-bottom: 0.25rem;
+}
+
+.img-modal {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+#user {
+  font-weight: bold;
+  display: block;
+  margin: auto;
+  padding-left: 4px;
+  width: 100%;
+}
+
+#password {
+  font-weight: bold;
+  display: block;
+  margin: auto;
+  padding-left: 4px;
+  width: 100%;
+}

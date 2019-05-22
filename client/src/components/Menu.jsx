@@ -1,7 +1,7 @@
 import React from "react";
 import { NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Menu.css";
+import "./../styles/Menu.css";
 
 const Menu = ({ num, href, children }) => (
   <NavItem

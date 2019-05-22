@@ -1,0 +1,86 @@
+.bm-burger-button {
+  z-index: 1000;
+  position: fixed;
+  width: 20px;
+  height: 15px;
+  left: 14px;
+  top: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bm-burger-bars {
+  background: white;
+}
+
+.bm-cross-button {
+  height: 70px;
+}
+.bm-cross {
+  background: #7d90b8;
+}
+
+.bm-menu {
+  background: white;
+  font-size: 1.075em;
+}
+
+/* .bm-menu-wrap {
+  margin-top: 45px;
+} */
+
+.bm-morph-shape {
+  fill: RGB(80, 84, 95);
+}
+
+.bm-item-list {
+  color: #4f535e;
+  font-weight: 550;
+  overflow-y: scroll !important;
+  padding-bottom: 50px;
+}
+
+.bm-item {
+  display: block;
+}
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Sidebar Menu */
+.filter-menu-item {
+  margin-left: 2px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #4f535e;
+}
+
+/* Items in Each Category */
+.menu-item {
+  width: 200px;
+}
+
+.async-multi {
+  float: right;
+}
+
+.export-btn {
+  width: 78px;
+  height: 30px;
+  color: white;
+  background-color: rgba(80, 84, 95, 0.35);
+  border-radius: 7px;
+}
+
+.search-btn {
+  width: 78px;
+  height: 30px;
+  color: white;
+  background-color: rgba(80, 84, 95, 0.35);
+  border-radius: 7px;
+}
+
+.menu-item {
+  margin-left: 4px;
+}

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import axios from "axios";
 import NavBar from "./NavBar";
 import Search from "./Search";
 import About from "./About";
+import Footer from "./Footer";
 import Documentation from "./Documentation";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
+import "./../styles/App.css";
 
 class App extends Component {
   constructor(props) {
@@ -19,11 +19,12 @@ class App extends Component {
         <Router>
           <div>
             <NavBar />
-            <Route exact path="/" component={Search} />
+            <Route exact path="" component={Search} />
             <Route path="/documentation" component={Documentation} />
             <Route path="/about" component={About} />
           </div>
         </Router>
+        <Footer />
       </div>
     );
   }
