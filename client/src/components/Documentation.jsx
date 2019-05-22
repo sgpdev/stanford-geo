@@ -112,13 +112,15 @@ class About extends Component {
             programming languages). Users should send their API calls to the
             following URL using an HTTP POST method:
             <br />
-            <a href="https://pangea.stanford.edu/sgp-search/api/post">
-              https://pangea.stanford.edu/sgp-search/api/post
+            <br />
+            <a href="">
+              URL-HERE/api/post
             </a>
+            <br />
             <br />
             An SGP API request consists of three parts which are analogous to
             those found in an SGP frontend search:
-            <ul>
+            <ul />
               <li>
                 type: One search option for selecting the search type (samples,
                 analyses or nhhxrf)
@@ -131,10 +133,11 @@ class About extends Component {
                 show: Contains search options that determine which columns will
                 appear in the results
               </li>
-            </ul>
+              <br />
             Using the JSON data interchange format, a user can pass their search
             option parameters within the body of the HTTP Post packet. Below is
             an example SGP API call:
+            <br />
             <br />
             {JSON.stringify({
               type: "samples",
@@ -148,9 +151,10 @@ class About extends Component {
                 "fe",
                 "fe_carb",
                 "section_name",
-                "height¬_meters"
+                "height_meters"
               ]
             })}
+            <br />
             <br />
             This API call is making a samples type search for samples that
             originate from Argentina, Canada or Oman, have 2%-4% Fe and
@@ -160,7 +164,7 @@ class About extends Component {
             (i.e. country, fe, section_name etc.) has an single word API name, a
             set of search types in which it can be searched upon and only
             accepts certain search parameter types which are listed below:
-            <ul>
+            <ul />
               <li>
                 String: tells the backend to find results matching a single
                 given string (e.g. country : "Canada")
@@ -178,7 +182,7 @@ class About extends Component {
                 Number Range: will match with any samples/analysis that contain
                 a value in the given range (e.g. fe : [2, 4.5])
               </li>
-            </ul>
+              <br />
             With this guide and the search attribute dictionary below, users now
             have the power to sift through the SGP database in any way they
             please. We hope this documentation has been helpful, and appreciate
@@ -189,7 +193,29 @@ class About extends Component {
             <br />
             <h3 className="title-doc"> Search Attribute Dictionary</h3>
             The table below presents all searchable attributes that currently
-            exist in the SGP database.
+            exist in the SGP database. Here are descriptions for each column:
+            <ul />
+              <li>
+                Attribute API: This is the single word string that is used in
+                API calls to refer to the attribute.
+              </li>
+              <li>
+                Attribute ID: This human readable string identifies the
+                attribute and is used as column titles in search results.
+              </li>
+              <li>
+                Search Types: This lists the search types within which the
+                attribute can be filtered through and/or shown.
+              </li>
+              <li>
+                Parameter Types: This lists the legal parameter types the search
+                attributes accepts during filtering.
+              </li>
+              <li>
+                Geology Description: This optional column may contain additional
+                descriptions that are important from a semantic standpoint.
+              </li>
+            <br />
             <table border="1">
               <tr>
                 <td>Attribute API</td>
@@ -1552,29 +1578,6 @@ class About extends Component {
                 <td />
               </tr>
             </table>
-            Below are descriptions for each column:
-            <ul>
-              <li>
-                Attribute API: This is the single word string that is used in
-                API calls to refer to the attribute.
-              </li>
-              <li>
-                Attribute ID: This human readable string identifies the
-                attribute and is used as column titles in search results.
-              </li>
-              <li>
-                Search Types: This lists the search types within which the
-                attribute can be filtered through and/or shown.
-              </li>
-              <li>
-                Parameter Types: This lists the legal parameter types the search
-                attributes accepts during filtering.
-              </li>
-              <li>
-                Geology Description: This optional column may contain additional
-                descriptions that are important from a semantic standpoint.
-              </li>
-            </ul>
           </div>
         </div>
       </span>

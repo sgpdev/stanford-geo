@@ -74,22 +74,26 @@ class About extends Component {
             <Row>
               <Col xs={6} md={6}>
                 <Thumbnail
-                  src={require("./../images/sufian.png")}
-                  alt="242x150"
-                >
-                  <h3>Sufyan Lattouf</h3>
-                  <p>Exeter University</p>
-                </Thumbnail>
-              </Col>
-              <Col xs={6} md={6}>
-                <Thumbnail
                   src={require("./../images/samawi.jpg")}
                   alt="242x150"
                 >
                   <span clasName="thumbnail-text">
-                    <h3>Rifa'at Samawi</h3>
+                    <h3><a href="https://www.linkedin.com/in/rifaat-samawi">
+                    Rifaat Samawi
+                    </a></h3>
                     <p>Yale University</p>
                   </span>
+                </Thumbnail>
+              </Col>
+              <Col xs={6} md={6}>
+                <Thumbnail
+                  src={require("./../images/sufian.png")}
+                  alt="242x150"
+                >
+                  <h3><a href="https://www.linkedin.com/in/sufyan-lattouf-46046098">
+                  Sufyan Lattouf
+                  </a></h3>
+                  <p>Al-Zaytoonah University</p>
                 </Thumbnail>
               </Col>
             </Row>

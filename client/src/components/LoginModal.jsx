@@ -66,7 +66,7 @@ export default class LoginModal extends Component {
           </div>
         </Modal>
         <button type="button" className="login-btn" onClick={this.showModal}>
-          Login
+          Search
         </button>
       </main>
     );
