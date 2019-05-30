@@ -114,7 +114,7 @@ class About extends Component {
             <br />
             <br />
             <a href="">
-              URL-HERE/api/post
+              http://www.sgp-search.io/api/post
             </a>
             <br />
             <br />
