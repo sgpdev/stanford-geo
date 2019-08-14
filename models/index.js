@@ -3,7 +3,7 @@ const { Pool } = require("pg");
 const pool = new Pool({
   user: "sgpserver",
   host: "localhost",
-  database: "data_freeze1",
+  database: "data_freeze2",
   password: "sgpsgp",
   port: 5432
 });
